@@ -29,50 +29,52 @@ class Admin extends Controller
     public function login()
     {
         $data = null;
-        
+       
+
         if(filter_input(INPUT_POST,'login')) {
             $indexes = $this->indexInput($_POST);
 
-            if($indexes['user'] && $indexes['pass']) {
-            	
-            
+            if($indexes['user'] && $indexes['pass'] && $indexes['soma'])  {
 
-                    if($this->login->verifyLogin(new User($indexes['user'], $indexes['pass']))) {
+            	if($indexes['soma'] != $_SESSION['soma']){
+                    $this->reload();
+                    die;
+                }
 
-                        if($indexes['continue']) {
-                            $this->login->createCookies();
-                        }
+                if($this->login->verifyLogin(new User($indexes['user'], $indexes['pass']))) {
+
+                    if($indexes['continue']) {
+                        $this->login->createCookies();
+                    }
 
 
-                        $this->login->createSession();
+                    $this->login->createSession();
 
 
-                        if($this->login->verifyPassword($indexes['user'])) {
+                    if($this->login->verifyPassword($indexes['user'])) {
                     
-                            $this->location('Admin/changePassword');
-                            die;
-				
-			}
+                        $this->location('Admin/changePassword');
+                        die;
+                    }
 
-                        if($this->login->verifyNewPassword($indexes['user'], $indexes['pass'])){
+                    if($this->login->verifyNewPassword($indexes['user'], $indexes['pass'])){
 
-                            $this->location('Admin/changePassword');
-                            die;    
+                        $this->location('Admin/changePassword');
+                        die;    
                             
-                        }
+                    }
                         
-                       } else {
-                            $data['msg'] = "Login ou Senha invalidos!";
-                       } 
+                } else {
+                    $data['msg'] = "Login ou Senha invalidos!";
+                }
       
-          
-
-            
-    
             } else {
                 $data['msg'] = "Preencha todos os campos!";
             }
 
+        } else {
+            $numbers = $this->numbesrGenerator(1,30);
+            $this->createSessionSoma($numbers);
         }
 
         if($this->login->isLogged()) {
@@ -164,5 +166,25 @@ class Admin extends Controller
 
     }
 	
+    private function numbesrGenerator($begin, $end) 
+    {
+        $number1 = rand($begin, $end);
+        $number2 = rand($begin, $end);
+        $soma = $number1 + $number2;
+
+        $numbers = [
+            'num1'=>$number1,
+            'num2'=>$number2,
+            'soma'=>$soma
+        ];
+
+        return $numbers;
+    }
+
+    private function createSessionSoma($numbers) {
+        $_SESSION['num1'] = $numbers['num1'];
+        $_SESSION['num2'] = $numbers['num2'];
+        $_SESSION['soma'] = $numbers['soma'];
+    }
  
 }
