@@ -35,36 +35,36 @@ class Admin extends Controller
 
             if($indexes['user'] && $indexes['pass']) {
             	
-            		var_dump($indexes);
+            
 
-            		if($this->login->verifyLogin(new User($indexes['user'], $indexes['pass']))) {
+                    if($this->login->verifyLogin(new User($indexes['user'], $indexes['pass']))) {
 
-			            if($indexes['continue']) {
-			                $this->login->createCookies();
-			            }
-
-		                $this->login->createSession();
-
-		                 if($this->login->verifyNewPassword($indexes['user'], $indexes['pass'])){
-
-                        	$this->location('Admin/changePassword');
-                            die;	
-                            
+                        if($indexes['continue']) {
+                            $this->login->createCookies();
                         }
 
+
+                        $this->login->createSession();
+
+
                         if($this->login->verifyPassword($indexes['user'])) {
-                
-                          	$this->location('Admin/changePassword');
-                            die;
-                        } 
+                    
+                            $this->location('Admin/changePassword');
+                        die;}
 
+                        if($this->login->verifyNewPassword($indexes['user'], $indexes['pass'])){
 
-	                
-		           } else {
-		                $data['msg'] = "Login ou Senha invalidos!";
-		           } 
+                            $this->location('Admin/changePassword');
+                            die;    
+                            
+                        }
+                        
+                       } else {
+                            $data['msg'] = "Login ou Senha invalidos!";
+                       } 
+      
+          
 
-            
             
     
             } else {
@@ -100,13 +100,11 @@ class Admin extends Controller
     }  
 
 
-	
-
 	public function changePassword() 
     {
 	
         $data = null;  
-        $work = false;
+        $work = null;
 
         if(filter_input(INPUT_POST,'update')) {
         	//$this->view->load('update-password', $data);	
