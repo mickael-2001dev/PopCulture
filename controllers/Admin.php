@@ -50,7 +50,9 @@ class Admin extends Controller
                         if($this->login->verifyPassword($indexes['user'])) {
                     
                             $this->location('Admin/changePassword');
-                        die;}
+                            die;
+				
+			}
 
                         if($this->login->verifyNewPassword($indexes['user'], $indexes['pass'])){
 
