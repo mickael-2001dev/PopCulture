@@ -53,11 +53,27 @@
             
               
             </div>
+
+
+
+            <div class="form-group row justify-content-center ">
+            
+             
+              <input class="form-control col-4" type="number" name="soma" placeholder="  <?php echo $_SESSION['num1'].' + '.$_SESSION['num2'].' =  ' ?> ">
+             
+            
+              
+            </div>
+            <div class="form-group row justify-content-center">
+                <p class="help-block col-4">Digite o resultado da soma a cima, para provar que você não é robô!</p>
+            </div>
+
             <div class="form-group row justify-content-center continue">
                <input type="checkbox" name="continue" id="continue">&nbsp;Continuar conectado?&nbsp;&nbsp;
               <a href="<?php echo $this->base_url ?>ForgetPassword">Esqueci minha senha?</a>        
           </div>
 
+       
 
                 <div class="form-group row justify-content-center">
                   <input type="submit" name="login" class="btn btn-primary btn-block btn-lg rounded-pill col-lg-4 d-block mx-auto" value="Login">
