@@ -127,7 +127,7 @@ class Email
 		
 //Set who the message is to be sent from
 //For gmail, this generally needs to be the same as the user you logged in as
-        $mail->setFrom($email, 'Batclub');
+        $mail->setFrom($email, 'PopCulture Brasil');
 
 //Set who the message is to be sent to
         $mail->addAddress($this->para, $this->para);
