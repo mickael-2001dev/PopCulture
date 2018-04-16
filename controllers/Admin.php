@@ -73,7 +73,7 @@ class Admin extends Controller
             }
 
         } else {
-            $numbers = $this->numbesrGenerator(1,30);
+            $numbers = $this->numbesrGenerator(1,20);
             $this->createSessionSoma($numbers);
         }
 

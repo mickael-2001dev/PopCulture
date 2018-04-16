@@ -328,3 +328,11 @@ header.masthead .bg-circle-4 {
   /*padding-right: 2%;*/
  font-size: 12pt;
 }
+.help-block{
+  color: #999999;
+  text-align: left;
+  font-size: 12pt;
+}
+.input-custom{
+    border-radius: 0;
+}

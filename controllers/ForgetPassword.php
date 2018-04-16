@@ -20,17 +20,24 @@ class ForgetPassword extends Controller
             $index = $this->indexInput($_POST);
             $newPass = $this->passowordGenerator(8);
 
+            if(!$index['user']) {
+
+                $data['msg'] = "Campos vazios!";
+
+            } else {
+
+                if($this->login->updateTempPassword($index['user'], $newPass)) {
+                    $email = $this->login->showEmail($index['user']);
+                    $msg = 'A sua senha é: '.$newPass;
+                    $this->sendMail($email, $msg);
+                    $this->location();
+                }
+                
+            }
             //var_dump($index);
             //var_dump($newPass);
-            
-            if($this->login->updateTempPassword($index['user'], $newPass)) {
 
-            	$msg = 'A sua senha é: '.$newPass;
-                $this->sendMail($index['email'], $msg);
-               	$this->location();
-            }
-            
-        }
+        } 
 
         if(!$work) {
             $this->view->load('forgot-password', $data); 

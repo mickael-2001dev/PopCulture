@@ -35,7 +35,7 @@
               <div class="form-group row justify-content-center">
              
                
-                  <input class="form-control col-4" type="text" name="user" placeholder="Usuário">
+                  <input class="form-control col-4 input-custom" type="text" name="user" placeholder="Usuário">
                
                 
                
@@ -44,7 +44,7 @@
               <div class="form-group row justify-content-center">
             
             
-                  <input class="form-control col-4" type="password" name="new-pass" placeholder="Nova Senha">
+                  <input class="form-control col-4 input-custom" type="password" name="new-pass" placeholder="Nova Senha">
                
                 
                
@@ -55,7 +55,7 @@
             
               
                
-                  <input class="form-control col-4" type="password" name="repeat-pass" placeholder="Repetir Senha">
+                  <input class="form-control col-4 input-custom" type="password" name="repeat-pass" placeholder="Repetir Senha">
                
                 
                

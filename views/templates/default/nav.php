@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto navbar-left">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>Home">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="news.html">Noticias</a>
@@ -31,13 +31,13 @@
               <a class="nav-link" href="videos.html">Videos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contato.html">Contato</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>Contato">Contato</a>
             </li>
              <li class="nav-item search-item">
               <div class="input-group">
-                <input class="form-control custom-form">
+                <input class="form-control custom-form" placeholder="Pesquisar">
                 <span class="input-group-append">
-                  <div class="input-group-text"><i class="fa fa-search"></i></div>
+                  <div id="search-btn" class="input-group-text"><i class="fa fa-search"></i></div>
                 </span>
               </div>
             </li>

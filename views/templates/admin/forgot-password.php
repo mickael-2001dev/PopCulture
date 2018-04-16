@@ -35,21 +35,17 @@
               <div class="form-group row justify-content-center">
              
                
-                  <input class="form-control col-4" type="text" name="user" placeholder="Usuário">
+                  <input class="form-control col-4 input-custom" type="text" name="user" placeholder="Usuário">
                
                 
                
             
             </div>
-              <div class="form-group row justify-content-center">
+              <!--<div class="form-group row justify-content-center">
                
-                  <input class="form-control col-4" type="email" name="email" placeholder="Email">
-               
-                
-               
-             
-       
-            </div>
+                  <input class="form-control col-4 input-custom" type="email" name="email" placeholder="Email">
+   
+              </div>-->
            
 
 

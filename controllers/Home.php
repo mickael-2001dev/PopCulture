@@ -18,4 +18,12 @@ class Home extends Controller
 		$this->view->load('footer');
 
 	}
+
+
+	public function page($nome) 
+	{
+		die($nome);
+
+	}
+
 }

@@ -35,7 +35,7 @@
               <div class="form-group row justify-content-center">
             
                
-                  <input class="form-control col-4" type="text" name="user" placeholder="Usuário">
+                  <input class="form-control col-4 input-custom" type="text" name="user" placeholder="Usuário">
                
                 
                
@@ -46,7 +46,7 @@
              
 
                
-                  <input class="form-control col-4" type="password" name="pass" placeholder="Senha">
+                  <input class="form-control col-4 input-custom" type="password" name="pass" placeholder="Senha">
                
                 
                
@@ -59,7 +59,7 @@
             <div class="form-group row justify-content-center ">
             
              
-              <input class="form-control col-4" type="number" name="soma" placeholder="  <?php echo $_SESSION['num1'].' + '.$_SESSION['num2'].' =  ' ?> ">
+              <input class="form-control col-4 input-custom" type="number" name="soma" placeholder="  <?php echo $_SESSION['num1'].' + '.$_SESSION['num2'].' =  ' ?> ">
              
             
               

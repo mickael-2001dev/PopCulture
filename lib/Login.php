@@ -23,8 +23,8 @@ class Login
         //$test = $this->user;
         //var_dump($test);
         if($this->user){
-            echo $this->user->getPassword().'<br>';
-            echo md5($user->getPassword());
+            //echo $this->user->getPassword().'<br>';
+            //echo md5($user->getPassword());
             if ($this->user->getPassword() == md5($user->getPassword())) {
                 $this->logged = true;
             }
@@ -42,9 +42,10 @@ class Login
         $dateUpdate = new DateTime($this->user->getDtupdate());
         $dateToday = new DateTime();
         $interval = $dateToday->diff($dateUpdate);
-        $interval = (int) $interval->format('%a');
 
-        if($interval >= 60) {
+        var_dump($interval);
+
+        if($interval->days >= 60) {
             $return = true;
         }
 
@@ -76,6 +77,13 @@ class Login
         $this->user = $this->model->getUserByLogin($username);
         
         return $this->model->updateTempPassword($pass, $this->user->getId());
+    }
+
+    public function showEmail($username)
+    {
+        $this->user =  $this->model->getUserByLogin($username);
+
+        return $this->user->getEmail();
     }
 
     public function createSession() 
