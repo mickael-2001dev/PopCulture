@@ -52,7 +52,7 @@ class NewsModel extends Model implements InterfaceModel
 		if($this->ExecuteCommand($sql,
 			[
 			':article'=>$news->getArticle(), 
-			':title'=>$news->getTitle(),
+			':title'=>$news->getTitle('2'),
 			'date_time'=>$news->getDateTime()
 			]
 			)

@@ -230,7 +230,7 @@
 
 
   })
- $(function () {
+ /*$(function () {
     //Initialize Select2 Elements
     //Datemask dd/mm/yyyy
 
@@ -239,20 +239,23 @@
       format: 'dd/mm/yyyy'
     })
 
-  })
+  })*/
  function CKupdate(){
     for ( instance in CKEDITOR.instances ){
         CKEDITOR.instances[instance].updateElement();
         CKEDITOR.instances[instance].setData('');
     }
 }
-  CKEDITOR.replace( 'editor1' );
+CKEDITOR.replace( 'editor1' );
  $(document).ready(function() {
-     $('#add-news-form').validator();
-    $('#add-news-form').submit(function() {
+
+    CKupdate();
+
+  //Validção de formulário do para adicionar noticia  
+  $('#add-news-form').validator().on('submit', function(e){
+      if(!e.isDefaultPrevented()) {
 
         var data = $(this).serialize();
-
         $.ajax({
           type: 'POST',
           url: '/PopCulture/app/AdminNews/save',
@@ -272,7 +275,12 @@
         });
 
         return false;
-    });  
+      }  
+   });
+  
+   
+       
+  
  });
 </script>
 </body>

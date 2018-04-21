@@ -24,6 +24,8 @@ class AdminNews extends Admin
 			$index = $this->indexInput($_POST);
 
 			if($index['title'] && $index['article'] && $index['date_time']) {
+				$index['date_time'] = new DateTime($index['date_time']);
+				$index['date_time'] = $index['date_time']->format('y-m-d');
 				if($this->model->insert(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, null, null))){
 					$data['msg']="Adicionada com sucesso!";
 					$this->success($data);

@@ -39,7 +39,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" name="date_time" placeholder="dd/mm/yyyy" class="form-control pull-right" id="datepicker" required data-required-error="Por favor preencha este campo!">
+                  <input type="date" name="date_time" placeholder="dd/mm/yyyy" class="form-control pull-right" required data-required-error="Por favor preencha este campo!">
                  
                 </div>
                 <!-- /.input group -->
