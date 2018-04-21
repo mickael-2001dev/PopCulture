@@ -186,5 +186,12 @@ class Admin extends Controller
         $_SESSION['num2'] = $numbers['num2'];
         $_SESSION['soma'] = $numbers['soma'];
     }
- 
+    
+    protected function error(array $data){
+        $this->view->load('error', $data);
+    } 
+
+    protected function success(array $data){
+        $this->view->load('success', $data);
+    }
 }

@@ -117,8 +117,6 @@ class Model
     {
     	$sql = "SELECT * FROM {$table}";
     	$results = $this->ExecuteQuery($sql, array());
-
-        return $results;
     }
 
     protected function getAllById($table, $id) 

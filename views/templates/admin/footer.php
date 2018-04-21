@@ -36,10 +36,26 @@
 <script src="<?php echo $this->asset ?>dist/js/demo.js"></script>
 
 <script src="<?php echo $this->asset ?>bower_components/chart.js/Chart.js"></script>
+
+<script src="<?php echo $this->asset ?>bower_components/ckeditor/ckeditor.js"></script>
+
+<script src="<?php echo $this->asset ?>plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<?php echo $this->asset ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<?php echo $this->asset ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="<?php echo $this->asset ?>plugins/validator.js"></script>
+
+
 <!-- FastClick -->
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
+  $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1')
+        //bootstrap WYSIHTML5 - text editor
+        $('.textarea').wysihtml5()
+  })
   $(function () {
     /* ChartJS
      * -------
@@ -209,7 +225,55 @@
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
    
+
+
+
+
   })
+ $(function () {
+    //Initialize Select2 Elements
+    //Datemask dd/mm/yyyy
+
+    $('#datepicker').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+
+  })
+ function CKupdate(){
+    for ( instance in CKEDITOR.instances ){
+        CKEDITOR.instances[instance].updateElement();
+        CKEDITOR.instances[instance].setData('');
+    }
+}
+  CKEDITOR.replace( 'editor1' );
+ $(document).ready(function() {
+     $('#add-news-form').validator();
+    $('#add-news-form').submit(function() {
+
+        var data = $(this).serialize();
+
+        $.ajax({
+          type: 'POST',
+          url: '/PopCulture/app/AdminNews/save',
+          data: data,
+          dataType: 'html',
+          success: function(response) {
+              $('#resp').css({
+                display: 'block'
+              });
+              $('#resp').html(response);
+              $('#add-news-form').trigger('reset');
+             
+               CKupdate();
+             
+ 
+          }
+        });
+
+        return false;
+    });  
+ });
 </script>
 </body>
 </html>

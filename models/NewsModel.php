@@ -4,16 +4,19 @@
 class NewsModel extends Model implements InterfaceModel
 {
 	
-	public function getAll()
+	public function select()
 	{
 		$news = [];
-		$results = parent::getAll('news');
+		parent::getAll('news');
 		//var_dump($results);
 
 		foreach ($results as $row) {
 			$news[] = new NewsAbstract(
 				$row['title'],
 				$row['article'],
+				$row['date_time'],
+				null,
+				null,
 				$row['id']
 			);
 		}
@@ -22,7 +25,7 @@ class NewsModel extends Model implements InterfaceModel
 
 	}
 
-	public function getAllById($id) 
+	public function selectById($id) 
 	{
 		parent::getAllById('news', $id);
 		
@@ -42,13 +45,30 @@ class NewsModel extends Model implements InterfaceModel
 		return $result;
 	}
 
-	public function insert($var) 
+	public function insert($news) 
 	{
-		echo "Insere";
+
+		$sql = "INSERT INTO news(article, title, date_time) VALUES (:article, :title, :date_time)";
+		if($this->ExecuteCommand($sql,
+			[
+			':article'=>$news->getArticle(), 
+			':title'=>$news->getTitle(),
+			'date_time'=>$news->getDateTime()
+			]
+			)
+		){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function update($var) 
 	{
 		echo "Atualiza";
+	}
+
+	public function encodeJson($results) {
+		return json_encode($results);
 	}
 }
