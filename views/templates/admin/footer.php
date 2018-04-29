@@ -42,6 +42,7 @@
 <script src="<?php echo $this->asset ?>plugins/input-mask/jquery.inputmask.js"></script>
 <script src="<?php echo $this->asset ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="<?php echo $this->asset ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
 <script src="<?php echo $this->asset ?>plugins/validator.js"></script>
 
 
@@ -49,13 +50,7 @@
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
-  $(function () {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace('editor1')
-        //bootstrap WYSIHTML5 - text editor
-        $('.textarea').wysihtml5()
-  })
+
   $(function () {
     /* ChartJS
      * -------
@@ -240,26 +235,30 @@
     })
 
   })*/
- function CKupdate(){
+ /*function CKupdate(){
     for ( instance in CKEDITOR.instances ){
         CKEDITOR.instances[instance].updateElement();
         CKEDITOR.instances[instance].setData('');
     }
 }
-CKEDITOR.replace( 'editor1' );
+CKEDITOR.replace( 'editor1' );*/
  $(document).ready(function() {
 
-    CKupdate();
-
+    //CKupdate();
+     //$('.textarea').wysihtml5()
+  $('#article').removeClass('has-errors');
+  $('#article').removeClass('has-danger');
   //Validção de formulário do para adicionar noticia  
   $('#add-news-form').validator().on('submit', function(e){
       if(!e.isDefaultPrevented()) {
 
-        var data = $(this).serialize();
+        var data = new FormData($('#add-news-form')[0]);
         $.ajax({
           type: 'POST',
           url: '/PopCulture/app/AdminNews/save',
           data: data,
+          processData: false,
+          contentType: false,
           dataType: 'html',
           success: function(response) {
               $('#resp').css({
@@ -268,7 +267,7 @@ CKEDITOR.replace( 'editor1' );
               $('#resp').html(response);
               $('#add-news-form').trigger('reset');
              
-               CKupdate();
+               //CKupdate();
              
  
           }
@@ -276,12 +275,10 @@ CKEDITOR.replace( 'editor1' );
 
         return false;
       }  
-   });
-  
-   
-       
+   });  
   
  });
+  
 </script>
 </body>
 </html>

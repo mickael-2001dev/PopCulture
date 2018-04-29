@@ -16,9 +16,7 @@
   <div class="row">
   <div class="box box-success">
             <div class="box-header with-border">
-                <div id="resp" style="display: none;">
                 
-              </div>
               <h3 class="box-title">Nova Notícia:</h3>
             </div>
             <!-- /.box-header -->
@@ -42,20 +40,29 @@
                   <input type="date" name="date_time" placeholder="dd/mm/yyyy" class="form-control pull-right" required data-required-error="Por favor preencha este campo!">
                  
                 </div>
-                <!-- /.input group -->
+              
                  <p class="help-block with-errors">Inserir data da notícia</p>
               </div>
 
-                <!-- textarea -->
-                <div class="form-group">
-                  <label>Artigo: </label>
-                   <textarea  id="editor1" name="article" rows="5" cols="80" required  data-required-error="Por favor preencha este campo!">
-                       
-                    </textarea>
-                     <p class="help-block with-errors">Inserir artigo da notícia</p>
-                </div>
-               
+              <div class="form-group">
+                  <label>Imagem: </label>
+                  <input type="file" name="image" required data-required-error="Envie uma imagem para a notícia!">
 
+                  <p class="help-block with-errors">Inserir imagem da notícia</p>
+                </div>
+
+              <div class="form-group">
+                  <label>Artigo: </label>
+                   
+                   
+                     <textarea class="textarea" name="article" id="article" placeholder="Insira um artigo"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required data-required-error="Por favor preencha este campo!"></textarea>
+                      <p class="help-block with-errors">Inserir artigo da notícia</p>
+                </div>
+             
+              <div id="resp" style="display: none;">
+                
+              </div>
               <div class="form-group">
 
                 <button class="btn btn-success btn-lg btn-flat" type="submit">

@@ -63,6 +63,15 @@ class NewsModel extends Model implements InterfaceModel
 		}
 	}
 
+	public function insertImagem($idimagem, $idnews) {
+		$sql = "INSERT INTO news_has_imagem(idimagem, idnews) VALUES (:idimagem, :idnews)";
+		if($this->ExecuteCommand($sql, [':idimagem'=>$idimagem, ':idnews'=>$idnews])){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function update($var) 
 	{
 		echo "Atualiza";
