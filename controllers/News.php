@@ -11,7 +11,12 @@ class News extends Controller
 
 	public function index() 
 	{
-		$data['news'] = $this->model->getAll();
+
+		$data['news'] = $this->model->select();
+		$data['title'] = "Notícias";
+		$this->view->load('header', $data);
+		$this->view->load('nav');
 		$this->view->load('news', $data);
+		$this->view->load('footer');
 	}
 }

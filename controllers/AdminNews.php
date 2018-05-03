@@ -8,6 +8,20 @@ class AdminNews extends Admin
 	{
 		parent::__construct();
 		$this->model = new NewsModel();
+		$this->imagem = new ImagemModel();
+	}
+
+	public function index()
+	{
+		$this->view->load('header');
+		$this->view->load('nav');
+		$this->view->load('news');
+		$this->view->load('footer');
+	}
+
+	public function get()
+	{
+		print $this->model->encodeJson();
 	}
 
 	public function add() 
@@ -30,14 +44,12 @@ class AdminNews extends Admin
 				$index['date_time'] = $index['date_time']->format('y-m-d');
 
 				if($_FILES['image']) {
-					if($this->saveImagem($_FILES['image'])){
-						return true;
-					} else {
+					if(!$this->saveImagem($_FILES['image'])){
 						die;
-					}
+					} 
 				}
 
-				if($this->model->insert(new NewsAbstract($index['title'], $index['article'],  $index['date_time']))){
+				if($this->model->insert(new NewsAbstract($index['title'], $index['article'],  $index['date_time'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest())){
 
 					$data['msg']="Adicionada com sucesso!";
 					$this->success($data);
@@ -56,17 +68,19 @@ class AdminNews extends Admin
 	{
 		$types = ['image/jpeg', 'image/png', 'image/gif'];
         $type_image = false;
-        $dir = 'view/img/'.$image['name'];
+        $dir = 'views/img/'.$image['name'];
         //var_dump($image);
         foreach($types as $type){
             if($image['type'] == $type){
                $type_image = true;
             }
         }
-        var_dump($dir);
+        //var_dump($dir);
         if($type_image){
            	if(move_uploaded_file($image['tmp_name'], $dir)){
-           		return true;
+           		if($this->imagem->insert($image['name'])){
+           			return true;
+           		}
   			} else {
                 $data['msg'] = "Não foi possível realizar o upload!";
                 $this->error($data);

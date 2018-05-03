@@ -20,7 +20,11 @@
               <h3 class="box-title">Nova Notícia:</h3>
             </div>
             <!-- /.box-header -->
+
             <div class="box-body">
+              <div id="resp" style="display: none;">
+                
+              </div>
               <form role="form" data-toggle="validator" method="post" id="add-news-form">
                 <!-- text input -->
                 <div class="form-group">
@@ -56,13 +60,11 @@
                    
                    
                      <textarea class="textarea" name="article" id="article" placeholder="Insira um artigo"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required data-required-error="Por favor preencha este campo!"></textarea>
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required data-required-error="Insira um artigo para a notícia!"></textarea>
                       <p class="help-block with-errors">Inserir artigo da notícia</p>
                 </div>
              
-              <div id="resp" style="display: none;">
-                
-              </div>
+              
               <div class="form-group">
 
                 <button class="btn btn-success btn-lg btn-flat" type="submit">

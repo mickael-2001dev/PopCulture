@@ -1,8 +1,19 @@
 <?php
 
-class Model 
-{
-  
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Model
+ *
+ * @author echoes
+ */
+class Model {
+    //put your code here
+   
     private $connectionString;
     private $user;
     private $password;
@@ -10,8 +21,7 @@ class Model
     private $dbname;
     private $drive;
 
-    public function __construct() 
-    {
+    public function __construct() {
         include 'config.php';
         $this->user = $config->dbuser;
         $this->password = $config->dbpassword;
@@ -29,14 +39,17 @@ class Model
         
     }
 
-    protected function ExecuteQuery($sql, $parameters) 
-    {
+    protected function ExecuteQuery($sql, $parameters, $extra_param = null) {
         $connection = null;
         try {
             $connection = new PDO($this->connectionString, $this->user, $this->password);
             $connection->beginTransaction();
             $preparedStatment = $connection->prepare($sql);
-            if ($parameters != null) {
+            if ($parameters != null && $extra_param != null) {
+                foreach ($parameters as $key => $value) {
+                    $preparedStatment->bindValue($key, $value, $extra_param);
+                }
+            } else {
                 foreach ($parameters as $key => $value) {
                     $preparedStatment->bindValue($key, $value);
                 }
@@ -72,8 +85,45 @@ class Model
         }
     }
 
-    protected function ExecuteCommand($sql, $parameters, $returnId = false) 
-    {
+    protected function ExecuteSimpleQuery($sql) {
+        $connection = null;
+        try {
+            $connection = new PDO($this->connectionString, $this->user, $this->password);
+            $connection->beginTransaction();
+            $preparedStatment = $connection->prepare($sql);
+            
+            if ($preparedStatment->execute() == FALSE) {
+                throw new PDOException($preparedStatment->errorCode());
+            }
+
+            $error = $preparedStatment->errorInfo();
+            if ($error[2]) {
+
+                echo "<pre>";
+                print_r($error[2]);
+                var_dump($preparedStatment->fetchAll());
+                var_dump($preparedStatment->debugDumpParams());
+                echo "</pre>";
+                die;
+            } else {
+                return $preparedStatment->fetch();
+            }
+        } catch (PDOException $exc) {
+            if ((isset($connection)) && ($connection->inTransaction())) {
+                $connection->rollBack();
+            }
+            echo $exc->getMessage();
+            die;
+            return array();
+        } finally {
+            if (isset($connection)) {
+                unset($connection);
+            }
+        } 
+        
+    }
+
+    protected function ExecuteCommand($sql, $parameters, $returnId = false) {
         $connection = null;
         try {
             $connection = new PDO($this->connectionString, $this->user, $this->password);
@@ -115,27 +165,28 @@ class Model
 
     protected function getAll($table) 
     {
-    	$sql = "SELECT * FROM {$table}";
-    	$results = $this->ExecuteQuery($sql, array());
+        $sql = "SELECT * FROM {$table}";
+        $results = $this->ExecuteQuery($sql, array());
+        return $results;
     }
 
     protected function getAllById($table, $id) 
     {
-    	$sql = "SELECT * FROM {$table} WHERE id = :id";
-    	$results = $this->ExecuteQuery($sql,['id'=>$id]);
+        $sql = "SELECT * FROM {$table} WHERE id = :id";
+        $results = $this->ExecuteQuery($sql,['id'=>$id]);
     }
 
     protected function delete($table, $id) 
     {
-    	$sql = "DELETE FROM {table} WHERE id = :id";
-    	try{
-	    $this->ExecuteCommand($sql, [':id'=>$id]);
-	    $results = true;
-	    throw new Excepetion('Erro no delete!');
-	} catch (Exception $e) {
-	    $results = $e->getMessage();
-	}	
-    	
+        $sql = "DELETE FROM {table} WHERE id = :id";
+        try{
+            $this->ExecuteCommand($sql, [':id'=>$id]);
+            $results = true;
+            throw new Excepetion('Erro no delete!');
+        } catch (Exception $e) {
+            $results = $e->getMessage();
+        }   
+        
     }
 
 }

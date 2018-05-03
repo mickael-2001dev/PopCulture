@@ -7,15 +7,17 @@ class NewsAbstract
 	private $date_time;
 	private $deleted;
 	private $dtupdate;
+	private $listimagens;
 	private $id;
 
-	public function __construct($title, $article, $date_time, $deleted = 0, $dtupdate = null, $id = null)
+	public function __construct($title, $article, $date_time, $listimagens = null, $id = null, $deleted = 0, $dtupdate = null)
 	{
 		$this->title = $title;
 		$this->article = $article;
 		$this->date_time = $date_time;
 		$this->deleted = $deleted;
 		$this->dtupdate = $dtupdate;
+		$this->listimagens = $listimagens;
 		$this->id = $id;
 	}
 
@@ -47,6 +49,11 @@ class NewsAbstract
 	public function getDtupdate()
 	{
 		return $this->dtupdate;
+	}
+
+	public function getListimagens()
+	{
+		return $this->listimagens;
 	}
 
 	public function setId($val)

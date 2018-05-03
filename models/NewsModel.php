@@ -7,16 +7,16 @@ class NewsModel extends Model implements InterfaceModel
 	public function select()
 	{
 		$news = [];
-		parent::getAll('news');
-		//var_dump($results);
+		$results = parent::getAll('news');
+		
 
 		foreach ($results as $row) {
+
 			$news[] = new NewsAbstract(
 				$row['title'],
 				$row['article'],
 				$row['date_time'],
-				null,
-				null,
+				$this->selectImagemNews($row['id']),
 				$row['id']
 			);
 		}
@@ -32,10 +32,41 @@ class NewsModel extends Model implements InterfaceModel
 		$news = new NewsAbstract(
 			$results['title'],
 			$results['article'],
+			$results['date_time'],
+			$this->selectImagemNews($results['id']),
 			$results['id']
 		);
 
 		return $news;
+	}
+
+	public function selectLatest()
+	{
+		$sql = "SELECT id FROM news ORDER BY id desc LIMIT 1";
+		$result = $this->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public function selectImagemNews($id)
+	{
+		//echo $id;
+		$imagem = [];
+		$sql = "SELECT im.* FROM news_has_imagem as ni
+				INNER JOIN news as n ON n.id = ni.idnews
+				INNER JOIN imagem as im ON im.id = ni.idimagem
+				WHERE ni.idnews = :id";
+		$results = $this->ExecuteQuery($sql, [':id'=>$id]);
+
+
+		foreach($results as $row){
+			$imagem[] = new ImagemAbstract($row['src'], $row['id']);
+		}
+
+		
+		//var_dump($imagem);
+		return $imagem;
 	}
 
 	public function delete($id)
@@ -64,8 +95,10 @@ class NewsModel extends Model implements InterfaceModel
 	}
 
 	public function insertImagem($idimagem, $idnews) {
+		//var_dump($idimagem);
+		//var_dump($idnews);
 		$sql = "INSERT INTO news_has_imagem(idimagem, idnews) VALUES (:idimagem, :idnews)";
-		if($this->ExecuteCommand($sql, [':idimagem'=>$idimagem, ':idnews'=>$idnews])){
+		if($this->ExecuteCommand($sql, [':idimagem'=>$idimagem['id'], ':idnews'=>$idnews['id']])){
 			return true;
 		} else {
 			return false;
@@ -77,7 +110,18 @@ class NewsModel extends Model implements InterfaceModel
 		echo "Atualiza";
 	}
 
-	public function encodeJson($results) {
+	public function encodeJson() {
+		$results = [];
+		foreach ($this->select() as $row) {
+			$results[] = [
+				'id'=>$row->getId(),
+				'title'=>$row->getTitle(),
+				'article'=>$row->getArticle(),
+				'date_time'=>$row->getDateTime()
+			];
+		}
+		
+
 		return json_encode($results);
 	}
 }

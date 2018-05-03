@@ -1,3 +1,5 @@
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="<?php echo $this->asset ?>bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo $this->asset ?>bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -45,11 +47,42 @@
 
 <script src="<?php echo $this->asset ?>plugins/validator.js"></script>
 
+<script src="<?php echo $this->asset ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo $this->asset ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+
 
 <!-- FastClick -->
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
+
+  /*Vue.component('news', {
+        props: ['news'],
+        template: "<tr>
+                  <td>news.id</td>
+                  <td>news.title</td>
+                  <td>news.article</td>
+                  <td>news.date_time</td>
+                  <td><button class="btn btn-warning  btn-flat"><i class="fa fa-pencil"></i></button></td>
+                  <td><button class="btn btn-danger btn-flat"><i class="fa fa-times"></i></button></td>
+                  </tr>"
+  })*/
+ var news = new Vue({
+        el: '#news',
+        data: {
+          results: [
+       
+          ]
+        },
+        mounted() {
+          axios.get('/PopCulture/app/AdminNews/get').then(response => {
+            this.results = response.data
+          })
+        }
+      });
+
 
   $(function () {
     /* ChartJS
@@ -61,7 +94,7 @@
     //- AREA CHART -
     //--------------
 
-
+    $('#example2').DataTable()
 
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -244,10 +277,9 @@
 CKEDITOR.replace( 'editor1' );*/
  $(document).ready(function() {
 
-    //CKupdate();
-     //$('.textarea').wysihtml5()
-  $('#article').removeClass('has-errors');
+  $('#article').removeClass('has-error');
   $('#article').removeClass('has-danger');
+
   //Validção de formulário do para adicionar noticia  
   $('#add-news-form').validator().on('submit', function(e){
       if(!e.isDefaultPrevented()) {
@@ -265,6 +297,7 @@ CKEDITOR.replace( 'editor1' );*/
                 display: 'block'
               });
               $('#resp').html(response);
+              $('html, body').animate({scrollTop:0}, 'fast');
               $('#add-news-form').trigger('reset');
              
                //CKupdate();

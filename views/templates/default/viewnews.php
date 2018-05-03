@@ -1,0 +1,1 @@
+viewnews.php

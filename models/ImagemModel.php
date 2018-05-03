@@ -8,7 +8,7 @@ class ImagemModel extends Model
 		parent::__construct();
 	}
 
-	public function insert()
+	public function select()
 	{
 		$imagem = [];
 		parent::getAll('imagem');
@@ -24,5 +24,21 @@ class ImagemModel extends Model
 		return $imagem;
 	}
 
-	
+	public function selectLatest()
+	{
+		$sql = "SELECT id FROM imagem ORDER BY id desc LIMIT 1";
+		$result = $this->ExecuteSimpleQuery($sql);
+
+		return $result;
+	}
+
+	public function insert($src)
+	{
+		$sql = "INSERT INTO imagem(src) VALUES(:src)";
+		if($this->ExecuteCommand($sql,[':src'=>$src])){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

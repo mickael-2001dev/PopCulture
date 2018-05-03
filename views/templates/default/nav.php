@@ -10,7 +10,7 @@
               <a class="nav-link" href="<?php echo $this->base_url ?>Home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="news.html">Noticias</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>News">Noticias</a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="cinema.html">Cinema</a>
