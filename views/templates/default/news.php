@@ -17,8 +17,9 @@
           <div class="col-lg-4">
             <div class="p-5">
             <?php $img = $new->getListimagens() ?>
+         
            
-              <a href="viewnews.html"><img class="img-fluid" src="<?php echo $this->base_url.'views/img/'.$img[0]->getSrc(); ?>" alt=""></a>
+              <a href="<?php echo $this->base_url ?>News/viewNews/<?php echo $new->getId() ?>"><img class="img-fluid" src="<?php echo $this->base_url.'views/img/'.$img[0]->getSrc(); ?>" alt=""></a>
             </div>
           
               <h4 class="text-center"><?php echo $new->getTitle(); ?></h4>
