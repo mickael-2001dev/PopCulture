@@ -5,7 +5,7 @@
 <script src="<?php echo $this->asset ?>bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button);
+  //$.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo $this->asset ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -25,7 +25,7 @@
 <!-- datepicker -->
 <script src="<?php echo $this->asset ?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?php echo $this->asset ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!--<script src="<?php echo $this->asset ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>-->
 <!-- Slimscroll -->
 <script src="<?php echo $this->asset ?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -57,7 +57,9 @@
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
-
+$(function(){
+  $('#example2').DataTable();
+})
   /*Vue.component('news', {
         props: ['news'],
         template: "<tr>
@@ -94,7 +96,7 @@
     //- AREA CHART -
     //--------------
 
-    $('#example2').DataTable()
+    
 
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -268,20 +270,27 @@
     })
 
   })*/
- /*function CKupdate(){
+ function CKupdate(){
     for ( instance in CKEDITOR.instances ){
         CKEDITOR.instances[instance].updateElement();
         CKEDITOR.instances[instance].setData('');
     }
 }
-CKEDITOR.replace( 'editor1' );*/
+
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+  
+  })
+
  $(document).ready(function() {
 
-  $('#article').removeClass('has-error');
-  $('#article').removeClass('has-danger');
 
   //Validção de formulário do para adicionar noticia  
   $('#add-news-form').validator().on('submit', function(e){
+      CKupdate();
       if(!e.isDefaultPrevented()) {
 
         var data = new FormData($('#add-news-form')[0]);

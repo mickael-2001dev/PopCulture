@@ -27,7 +27,9 @@ class NewsModel extends Model implements InterfaceModel
 
 	public function selectById($id) 
 	{
-		parent::getAllById('news', $id);
+		$results = parent::getAllById('news', $id);
+		//var_dump($results);
+		//echo $results['title'];
 		
 		$news = new NewsAbstract(
 			$results['title'],
@@ -116,7 +118,7 @@ class NewsModel extends Model implements InterfaceModel
 			$results[] = [
 				'id'=>$row->getId(),
 				'title'=>$row->getTitle(),
-				'article'=>$row->getArticle(),
+				'article'=>substr(filter_var($row->getArticle(), FILTER_SANITIZE_STRING), 0, 80)."...",
 				'date_time'=>$row->getDateTime()
 			];
 		}
@@ -125,3 +127,4 @@ class NewsModel extends Model implements InterfaceModel
 		return json_encode($results);
 	}
 }
+

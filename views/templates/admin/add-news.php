@@ -29,7 +29,7 @@
                 <!-- text input -->
                 <div class="form-group">
                   <label>Título: </label>
-                  <input  type="text" name="title" class="form-control" pattern="[A-Z]{1}[a-z]{2,}\s*[A-Z]*[a-z]*" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" data-required-error="Por favor preencha este campo!" required="">
+                  <input  type="text" name="title" class="form-control" pattern="([A-Z]{1}[a-z0-9:]{2,}\s{,1})*" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" data-required-error="Por favor preencha este campo!" required="">
                   <p class="help-block with-errors">Inserir título da notícia</p>
                 </div>
               
@@ -59,8 +59,8 @@
                   <label>Artigo: </label>
                    
                    
-                     <textarea class="textarea" name="article" id="article" placeholder="Insira um artigo"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required data-required-error="Insira um artigo para a notícia!"></textarea>
+                     <textarea  name="article" id="editor1" placeholder="Insira um artigo"
+                           required data-required-error="Insira um artigo para a notícia!"></textarea>
                       <p class="help-block with-errors">Inserir artigo da notícia</p>
                 </div>
              

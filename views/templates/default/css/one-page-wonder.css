@@ -211,7 +211,10 @@ header.masthead .bg-circle-4 {
   margin-bottom: 10%;
 }
 .custom-views{
-  margin-top: 10%;
+  margin-top: 5%;
+}
+.custom-views p {
+  font-size: 16pt;
 }
 .person-btn-1{
   font-size: 16pt;
@@ -347,4 +350,7 @@ header.masthead .bg-circle-4 {
 }
 #msg{
   font-size: 14pt;
+}
+.carousel-custom{
+  margin-top:5%;
 }

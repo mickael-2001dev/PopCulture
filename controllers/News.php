@@ -19,4 +19,16 @@ class News extends Controller
 		$this->view->load('news', $data);
 		$this->view->load('footer');
 	}
+
+	public function viewNews($id)
+	{
+		$data['news'] = $this->model->selectById($id);
+		$data['title'] = $data['news']->getTitle();
+
+		$this->view->load('header', $data);
+		$this->view->load('nav');
+		$this->view->load('viewnews', $data);
+		$this->view->load('footer');
+
+	}
 }

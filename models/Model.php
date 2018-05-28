@@ -173,7 +173,8 @@ class Model {
     protected function getAllById($table, $id) 
     {
         $sql = "SELECT * FROM {$table} WHERE id = :id";
-        $results = $this->ExecuteQuery($sql,['id'=>$id]);
+        $results = $this->ExecuteQuery($sql,['id'=>$id])[0];
+        return $results;
     }
 
     protected function delete($table, $id) 

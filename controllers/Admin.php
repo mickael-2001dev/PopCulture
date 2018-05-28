@@ -97,7 +97,15 @@ class Admin extends Controller
         $index = [];
 
         foreach ($indexForm as $key => $value) {
-            $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+            
+            if($key == 'article'){
+                $index['article'] = filter_input(INPUT_POST, 'article');
+            } else {
+                $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+            }
+
+         
+
         }
 
         return $index;
