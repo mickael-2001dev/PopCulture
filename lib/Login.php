@@ -72,19 +72,19 @@ class Login
         return $this->model->updatePassword($pass, $this->user->getId());
     }
 
-    public function updateTempPassword($username, $pass) 
+    public function updateTempPassword($username, $email, $pass) 
     {
-        $this->user = $this->model->getUserByLogin($username);
+        $this->user = $this->model->getUserByEmailLogin($username, $email);
         
         return $this->model->updateTempPassword($pass, $this->user->getId());
     }
 
-    public function showEmail($username)
+    /*public function showEmail($username)
     {
         $this->user =  $this->model->getUserByLogin($username);
 
         return $this->user->getEmail();
-    }
+    }*/
 
     public function createSession() 
     {

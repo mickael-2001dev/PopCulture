@@ -57,9 +57,7 @@
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
-$(function(){
-  $('#example2').DataTable();
-})
+
   /*Vue.component('news', {
         props: ['news'],
         template: "<tr>
@@ -95,7 +93,7 @@ $(function(){
     //--------------
     //- AREA CHART -
     //--------------
-
+    setTimeout(function(){ $('#example2').DataTable(); }, 500);
     
 
     var areaChartData = {

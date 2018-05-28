@@ -14,7 +14,33 @@ class UserModel extends Model
         }else{
           return $results;
         }
-   }   
+   }
+
+  public function getUserById($id)
+  {
+        $sql = "SELECT * FROM user WHERE id = :id";
+        $results = $this->ExecuteQuery($sql, [':id' => $id]);
+        
+        if($results){
+          $user = $results[0];
+          return new User($user['username'],$user['password'],$user['email'], 0, $user['dtupdate'], $user['tempPassword'], $user['id']);
+        }else{
+          return $results;
+        }
+   }
+
+   public function getUserByEmailLogin($username, $email)
+    {
+        $sql = "SELECT * FROM user WHERE username = :username and email = :email";
+        $results = $this->ExecuteQuery($sql, [':username' => $username, ':email'=>$email]);
+        
+        if($results){
+          $user = $results[0];
+          return new User($user['username'],$user['password'],$user['email'], 0, $user['dtupdate'], $user['tempPassword'], $user['id']);
+        }else{
+          return $results;
+        }
+   }     
 
    public function updatePassword($pass, $id) 
    {

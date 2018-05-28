@@ -33,15 +33,6 @@
               <p class="contact-p">Trocar Senha</p>
               <form method="post">
               <div class="form-group row justify-content-center">
-             
-               
-                  <input class="form-control col-4 input-custom" type="text" name="user" placeholder="Usuário">
-               
-                
-               
-             
-            </div>
-              <div class="form-group row justify-content-center">
             
             
                   <input class="form-control col-4 input-custom" type="password" name="new-pass" placeholder="Nova Senha">
