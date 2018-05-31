@@ -114,13 +114,18 @@ class NewsModel extends Model implements InterfaceModel
 
 	public function encodeJson() {
 		$results = [];
+
 		foreach ($this->select() as $row) {
 			$results[] = [
 				'id'=>$row->getId(),
 				'title'=>$row->getTitle(),
 				'article'=>substr(filter_var($row->getArticle(), FILTER_SANITIZE_STRING), 0, 80)."...",
-				'date_time'=>$row->getDateTime()
+				'date_time'=>date_create($row->getDateTime())
 			];
+		}
+
+		for($i = 0; $i < count($results); $i++){
+			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
 		}
 		
 

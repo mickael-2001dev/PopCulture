@@ -22,6 +22,26 @@ class User
 		$this->tempPassword =  $tempPassword;
 	}
 
+	public function validatePassword()
+	{
+		$return = false;
+
+		$letters = preg_replace("/.*?([A-z]*).*?/i", "$1", $this->password);
+		$numbers = preg_replace("/.*?([0-9]*).*?/", "$1", $this->password);
+
+		$totalLetters = strlen($letters);
+		$totalNumbers = strlen($numbers);
+
+		$total = $totalLetters + $totalNumbers;
+
+		if($total >= 4) {
+			$return = true;
+		}
+
+		return $return;
+	}
+
+
 	public function getId() 
 	{
 		return $this->id;

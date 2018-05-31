@@ -25,11 +25,11 @@
               <div id="resp" style="display: none;">
                 
               </div>
-              <form role="form" data-toggle="validator" method="post" id="add-news-form">
+              <form role="form" method="post" id="add-news-form" enctype="multipart/form-data">
                 <!-- text input -->
                 <div class="form-group">
                   <label>Título: </label>
-                  <input  type="text" name="title" class="form-control" pattern="([A-Z]{1}[a-z0-9:]{2,}\s{,1})*" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" data-required-error="Por favor preencha este campo!" required="">
+                  <input  type="text" name="title" class="form-control" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" >
                   <p class="help-block with-errors">Inserir título da notícia</p>
                 </div>
               
@@ -41,7 +41,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="date" name="date_time" placeholder="dd/mm/yyyy" class="form-control pull-right" required data-required-error="Por favor preencha este campo!">
+                  <input type="date" name="date_time" placeholder="dd/mm/yyyy" class="form-control pull-right">
                  
                 </div>
               
@@ -50,7 +50,7 @@
 
               <div class="form-group">
                   <label>Imagem: </label>
-                  <input type="file" name="image" required data-required-error="Envie uma imagem para a notícia!">
+                  <input type="file" name="image">
 
                   <p class="help-block with-errors">Inserir imagem da notícia</p>
                 </div>
@@ -60,7 +60,7 @@
                    
                    
                      <textarea  name="article" id="editor1" placeholder="Insira um artigo"
-                           required data-required-error="Insira um artigo para a notícia!"></textarea>
+                          ></textarea>
                       <p class="help-block with-errors">Inserir artigo da notícia</p>
                 </div>
              

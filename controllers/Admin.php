@@ -149,7 +149,10 @@ class Admin extends Controller
 
             $indexes = $this->indexInput($_POST);
             if($indexes['new-pass'] == $indexes['repeat-pass']){
-            	if($this->validatePassword($indexes['new-pass'])){
+
+                $validatePassUser = new User($user, $indexes['new-pass']);
+
+            	if($validatePassUser->validatePassword()){
 		            if($this->login->updatePassword($user, $indexes['new-pass'])) {
 		            	$this->location();
 			        } else {
@@ -169,25 +172,7 @@ class Admin extends Controller
        	
 	}
 
-	private function validatePassword($pass)
-	{
-		$return = false;
-
-		$letters = preg_replace("/.*?([A-z]*).*?/i", "$1", $pass);
-		$numbers = preg_replace("/.*?([0-9]*).*?/", "$1", $pass);
-
-		$totalLetters = strlen($letters);
-		$totalNumbers = strlen($numbers);
-
-		$total = $totalLetters + $totalNumbers;
-
-		if($total >= 4) {
-			$return = true;
-		}
-
-		return $return;
-	}
-
+	
     private function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
     {
      	var_dump($msg);
