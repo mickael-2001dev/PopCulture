@@ -6,7 +6,7 @@
 <script src="<?php echo $this->asset ?>bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  //$.widget.bridge('uibutton', $.ui.button);
+  $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo $this->asset ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -26,7 +26,7 @@
 <!-- datepicker -->
 <script src="<?php echo $this->asset ?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<!--<script src="<?php echo $this->asset ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>-->
+<script src="<?php echo $this->asset ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="<?php echo $this->asset ?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -93,6 +93,7 @@ Bootstrap 3.3.7
 
 
 
+
 <!-- FastClick -->
 <!-- AdminLTE App -->
 <!-- page script -->
@@ -112,7 +113,6 @@ Bootstrap 3.3.7
         })
       }
   });
-
 
 
  $(document).ready(function() {
@@ -207,7 +207,36 @@ $.validator.setDefaults({
           article:{
             required: "Você não inseriu um artigo para a notíca",
             minlength: "No mínimo 10 caracteres"
+          }
+        },
+        submitHandler: function() {
+          var data = new FormData($('#add-news-form')[0]);
+        
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/AdminNews/save',
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                $('#resp').css({
+                  display: 'block'
+                });
+                $('#resp').html(response);
+                $('html, body').animate({scrollTop:0}, 'fast');
+                $('#add-news-form').trigger('reset');
+               
+                 CKupdate();
+               
+   
+            }
+           });
 
+            return false;
+          }
+      });
+ 
  });
 
 
@@ -215,3 +244,4 @@ $.validator.setDefaults({
 </script>
 </body>
 </html>
+
