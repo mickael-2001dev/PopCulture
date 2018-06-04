@@ -2,7 +2,7 @@
 unset($config);
 $config = new stdClass();
 $config->defaultClass = "Home";
-$config->base_url = '/PopCulture/app/';
+$config->base_url = '/PopCulture/';
 $config->asset = $config->base_url.'views/templates/';
 $config->template = 'default';
 
