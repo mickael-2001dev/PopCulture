@@ -23,7 +23,7 @@
             </div>
           
               <h4 class="text-center"><?php echo $new->getTitle(); ?></h4>
-              <p class="text-center"><?php echo $new->getArticle(); ?> </p>
+              <p class="text-center"><?php echo substr($new->getArticle(),0,120)."...";?> </p>
            
           </div>
       <?php endforeach; ?>

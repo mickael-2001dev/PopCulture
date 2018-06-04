@@ -25,7 +25,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list"></i> Listar</a></li>
+            <li><a href="<?php echo $this->base_url ?>AdminNews"><i class="fa fa-list"></i> Listar</a></li>
             <li><a href="<?php echo $this->base_url ?>AdminNews/add"><i class="fa fa-plus"></i> Adicionar</a></li>
           </ul>
         </li>

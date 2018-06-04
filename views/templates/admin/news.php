@@ -40,10 +40,10 @@
                     <td class="text-center"><button class="btn btn-warning  btn-flat"><i class="fa fa-pencil"></i></button></td>
                     <td class="text-center"><button class="btn btn-danger btn-flat"><i class="fa fa-times"></i></button></td>
                   </tr>-->
-                  <td class="text-center">{{td.id}}</td>
-                  <td class="text-center">{{td.title}}</td>
-                  <td class="text-center">{{td.article}}</td>
-                  <td class="text-center">{{td.date_time}}</td>
+                  <td class="text-center" v-text="td.id"></td>
+                  <td class="text-center" v-text="td.title"></td>
+                  <td class="text-center"  v-text="td.article"></td>
+                  <td class="text-center" v-text="td.date_time"></td>
                     <td class="text-center"><button class="btn btn-warning  btn-flat"><i class="fa fa-pencil"></i></button></td>
                     <td class="text-center"><button class="btn btn-danger btn-flat"><i class="fa fa-times"></i></button></td>
                 </tr>

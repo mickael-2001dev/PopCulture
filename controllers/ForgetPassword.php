@@ -20,14 +20,14 @@ class ForgetPassword extends Controller
             $index = $this->indexInput($_POST);
             $newPass = $this->passowordGenerator(8);
 
-            if(!$index['user']) {
+            if(!$index['user'] || !$index['email']) {
 
                 $data['msg'] = "Campos vazios!";
 
             } else {
 
-                if($this->login->updateTempPassword($index['user'], $newPass)) {
-                    $email = $this->login->showEmail($index['user']);
+                if($this->login->updateTempPassword($index['user'], $index['email'], $newPass)) {
+                    $email = $index['email'];
                     $msg = 'A sua senha é: '.$newPass;
                     $this->sendMail($email, $msg);
                     $this->location();
@@ -70,7 +70,7 @@ class ForgetPassword extends Controller
 
 	private function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
     {
-     	var_dump($msg);
+     	//var_dump($msg);
         $mail = new Email($mail, $theme, $msg, null, $replyUser);
         if($mail->send()) {
             return true;
