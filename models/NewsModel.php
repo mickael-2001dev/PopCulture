@@ -7,7 +7,7 @@ class NewsModel extends Model implements InterfaceModel
 	public function select()
 	{
 		$news = [];
-		$results = parent::getAll('news');
+		$results = parent::getAll('news', true);
 		
 
 		foreach ($results as $row) {
@@ -71,13 +71,6 @@ class NewsModel extends Model implements InterfaceModel
 		return $imagem;
 	}
 
-	public function delete($id)
-	{
-		$result = parent::delete('news', $id);
-
-		return $result;
-	}
-
 	public function insert($news) 
 	{
 
@@ -106,6 +99,25 @@ class NewsModel extends Model implements InterfaceModel
 			return false;
 		}
 	}
+
+	public function delete($id)
+	{
+		$return = false;
+		$sql = "UPDATE news SET deleted = 1 WHERE id = :id";
+		if($this->ExecuteCommand($sql,  [':id'=>$id])){
+			$return = true;
+		}
+
+		return $return;
+	}
+
+	public function deleteDefinitive($id)
+	{
+		$result = parent::delete('news', $id);
+
+		return $result;
+	}
+
 
 	public function update($var) 
 	{

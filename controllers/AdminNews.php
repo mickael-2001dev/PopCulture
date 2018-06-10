@@ -24,6 +24,11 @@ class AdminNews extends Admin
 		print $this->model->encodeJson();
 	}
 
+	public function delete($id)
+	{
+		$this->model->delete($id);
+	}
+
 	public function add() 
 	{
 		$this->view->load('header');
