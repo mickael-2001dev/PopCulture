@@ -100,9 +100,6 @@
       });
     }
 
- $(document).ready(function() {
-
-
 
 
    setTimeout(function(){ $('#example2').DataTable(); }, 500);
@@ -228,12 +225,7 @@ $.validator.setDefaults({
           }
       });
 
-
-
  });
-
-
-  
 </script>
 
 </body>
