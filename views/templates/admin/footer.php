@@ -101,10 +101,7 @@
     }
 
 
-
-   setTimeout(function(){ $('#example2').DataTable(); }, 500);
     
-  CKEDITOR.replace('editor1');
 
 
    setTimeout(function(){ 
@@ -230,6 +227,12 @@ $.validator.setDefaults({
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
