@@ -120,8 +120,10 @@ class NewsModel extends Model implements InterfaceModel
 	}
 
 
+
 	public function update($news) 
 	{
+
 		$return = false;
 		$date = new DateTime();
 		$date = $date->format('Y-m-d');

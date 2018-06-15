@@ -93,6 +93,7 @@ class AdminNews extends Admin
 					} 
 				}*/
 				if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, $id))){
+
 					//$data['msg']="Alterado com sucesso!";
 					print "Deu";
 					die;
