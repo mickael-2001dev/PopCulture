@@ -10,7 +10,7 @@ class CategoriaModel extends Model
 
 	public function select() {
 		$categoria = [];
-		parent::getAll('categoria');
+		$results = parent::getAll('categoria');
 
 		foreach ($results as $row) {
 			$categoria[] = new CategoriaAbstract
@@ -23,14 +23,30 @@ class CategoriaModel extends Model
 		return $categoria;
 	}
 
-	public function encodeJson()
-	{
-		$categoria = $this->select();
-		$data = [
-			'categoria:'=>$categoria->getCategoria(),
-			'id:'=>$categoria->getId()
-		]
+	public function selectById($id) {
 
-		return json_encode($data);
+		$results = parent::getAllById('categoria', id);
+
+		
+		$categoria = new CategoriaAbstract
+		(
+			$results['categoria'],
+			$results['id']
+		);
+
+		return $categoria;
+	}
+
+	public function getJson() {
+		$results = [];
+
+		foreach ($this->select() as $row) {
+			$results[] = [
+				'id'=>$row->getId(),
+				'categoria'=>$row->getCategoria()
+			];
+		}
+
+		return json_encode($results);
 	}
 }

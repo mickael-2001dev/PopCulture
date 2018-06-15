@@ -112,6 +112,7 @@ class NewsModel extends Model implements InterfaceModel
 	}
 
 	public function deleteDefinitive($id)
+
 	{
 		$result = parent::delete('news', $id);
 
@@ -119,10 +120,25 @@ class NewsModel extends Model implements InterfaceModel
 	}
 
 
-	public function update($var) 
+	public function update($news) 
 	{
-		echo "Atualiza";
+		$return = false;
+		$date = new DateTime();
+		$date = $date->format('Y-m-d');
+		$sql = "UPDATE news SET title = :title, article = :article, date_time = :date_time, dtupdate = :dt_update 
+		WHERE id = :id";
+		if($this->ExecuteCommand($sql,  
+		[':title'=>$news->getTitle(), 
+			':article'=>$news->getArticle(),
+			':date_time'=>$news->getDateTime(),
+			'dt_update'=>$date,
+			':id'=>$news->getId()])){
+			$return = true;
+		}
+
+		return $return;
 	}
+
 
 	public function getJson() {
 		$results = [];

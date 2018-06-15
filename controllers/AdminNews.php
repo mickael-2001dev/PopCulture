@@ -77,6 +77,36 @@ class AdminNews extends Admin
 		}
 	}
 
+	public function saveUpdate($id)
+	{
+		if($_POST) {
+			$index = $this->indexInput($_POST);
+
+			if($index['title'] && $index['article'] && $index['date_time']) {
+
+				$index['date_time'] = new DateTime($index['date_time']);
+				$index['date_time'] = $index['date_time']->format('y-m-d');
+
+				/*if($_FILES['image']) {
+					if(!$this->saveImagem($_FILES['image'])){
+						die;
+					} 
+				}*/
+				if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, $id))){
+					//$data['msg']="Alterado com sucesso!";
+					print "Deu";
+					die;
+				} else {
+					//$data['msg']="Tem parada errada ai mermão!";
+					print "Não deu, mas deu";
+				}
+			} else {
+				$data['msg']="Informe todos os campo!";
+				$this->error($data);
+			}
+		}
+	}
+
 	public function saveImagem($image)
 	{
 		$types = ['image/jpeg', 'image/png', 'image/gif'];

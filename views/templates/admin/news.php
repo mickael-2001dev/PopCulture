@@ -110,15 +110,20 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Warning Modal</h4>
+
+                <h4 class="modal-title">Editar Notícia</h4>
               </div>
               <div class="update-body">
-                      <form role="form" method="post" id="add-news-form" enctype="multipart/form-data">
+                <div id="resp"></div>
+                    <form role="form" method="post" id="update-news-form" enctype="multipart/form-data">
                 <!-- text input -->
                 <div class="form-group">
                   <label>Título: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" >
                   <p class="help-block with-errors">Inserir título da notícia</p>
+
+                  <input type="hidden" name="idinput" id="idinput">
+
                 </div>
               
                  <div class="form-group">
@@ -136,12 +141,8 @@
                  <p class="help-block with-errors">Inserir data da notícia</p>
               </div>
 
-              <div class="form-group">
-                  <label>Imagem: </label>
-                  <input type="file" name="image" id="image">
+              
 
-                  <p class="help-block with-errors">Inserir imagem da notícia</p>
-                </div>
 
               <div class="form-group">
                   <label>Artigo: </label>
@@ -158,7 +159,9 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-outline">Salvar</button>
+
+                <button type="submit" id="save" class="btn btn-outline">Salvar</button>
+
               </div>
             </div>
             <!-- /.modal-content -->

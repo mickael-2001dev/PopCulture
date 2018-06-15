@@ -77,6 +77,25 @@
           this.getNews();
         }
   }); 
+var cat = new Vue({
+      el: '#categoria',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getCategoria: function() {
+            axios.get('/PopCulture/app/AdminPost/getCategoria').then(response => {
+              this.results = response.data
+            })
+          }
+        },
+        mounted() {
+          this.getCategoria();
+        }
+  }); 
+ console.log(categoria.results);
  $(document).ready(function() {
 
     function replaceAll(string, token, newtoken) {
@@ -109,7 +128,16 @@
 
     function updateNews(){
       $('.update-news').click(function() {
-        var id = $(this).val();
+
+        $('#update-news-form').trigger('reset');
+
+        if($('.form-group').hasClass('has-success')){
+            $('.form-group').removeClass('has-success');
+        }
+      
+        var id = $(this).attr('value');
+
+
         $('#modal-update-news').modal('show');
         var results = [];
         $.ajax({
@@ -124,10 +152,24 @@
                     date = replaceAll(date, "/", "-");
                     var newdate = date.split("-").reverse().join("-");
                     console.log(newdate);
+
+
+                    $('#idinput').val(id);
+
                     $('#title').val(results.title);
                     $('#date').val('20'+newdate);
                     $('#image_default').val( results.image);
                     CKEDITOR.instances.editor1.setData(results.article); 
+
+                    $('#save').click(function(){
+                      //saveUpdateNews();
+                     
+                      $('#update-news-form').submit();
+                      $('#modal-update-news').modal('hide');
+                    
+                    });
+                
+
                 
             }
         });
@@ -136,6 +178,8 @@
       
       });
     }
+
+    
 
 
    setTimeout(function(){ 
@@ -253,9 +297,78 @@ $.validator.setDefaults({
    
             }
            });
+
+
             return false;
           }
       });
+
+    //function saveUpdateNews() {
+      $('#update-news-form').validate({
+        ignore: [],
+        rules:{
+            title: {
+              required: true,
+              minlength: 3
+            },
+            date_time: {
+              required: true
+            },
+            article: {
+                required:  function(textarea) {
+                  CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+                  var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+                  return editorcontent.length === 0;
+                },
+                minlength: 10
+            }
+        },
+        messages: {
+          title: {
+            required: "Você não inseriu um titulo a notícia",
+            minlength: "No mínimo 3 caracteres"
+          },
+          date_time:{
+            required: "Você não inseriu uma data válida para a notícia"
+          },
+          article:{
+            required: "Você não inseriu um artigo para a notíca",
+            minlength: "No mínimo 10 caracteres"
+          }
+        },
+        submitHandler: function() {
+          var data = new FormData($('#update-news-form')[0]);
+          var id = $('#idinput').val();
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/AdminNews/saveUpdate/'+id,
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                /*$('#resp').css({
+                  display: 'block'
+                });
+                $('#resp').html(response);*/
+                news.getNews();
+                //alert(response);
+                console.log(response);
+                //$('#save').addClass('pull-left');
+                //$('html, body').animate({scrollTop:0}, 'fast');
+                //$('#update-news-form').trigger('reset');
+               
+                //CKupdate();
+               
+   
+            }
+           });
+
+            return false;
+          }
+      });
+    //}
+
 
  });
 </script>
