@@ -111,16 +111,22 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <h4 class="modal-title">Editar Notícia</h4>
               </div>
               <div class="update-body">
                 <div id="resp"></div>
                       <form role="form" method="post" id="update-news-form" enctype="multipart/form-data">
 =======
+=======
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
                 <h4 class="modal-title">Warning Modal</h4>
               </div>
               <div class="update-body">
                       <form role="form" method="post" id="add-news-form" enctype="multipart/form-data">
+<<<<<<< HEAD
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
+=======
 >>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
                 <!-- text input -->
                 <div class="form-group">
@@ -128,7 +134,10 @@
                   <input type="text" name="title" id="title" class="form-control" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" >
                   <p class="help-block with-errors">Inserir título da notícia</p>
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <input type="hidden" name="idinput" id="idinput">
+=======
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
 =======
 >>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
                 </div>
@@ -149,14 +158,20 @@
               </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
               
 =======
+=======
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
               <div class="form-group">
                   <label>Imagem: </label>
                   <input type="file" name="image" id="image">
 
                   <p class="help-block with-errors">Inserir imagem da notícia</p>
                 </div>
+<<<<<<< HEAD
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
+=======
 >>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
 
               <div class="form-group">
@@ -175,7 +190,11 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <button type="submit" id="save" class="btn btn-outline">Salvar</button>
+=======
+                <button type="submit" class="btn btn-outline">Salvar</button>
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
 =======
                 <button type="submit" class="btn btn-outline">Salvar</button>
 >>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71

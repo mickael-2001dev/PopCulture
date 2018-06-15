@@ -110,7 +110,9 @@
     function updateNews(){
       $('.update-news').click(function() {
 
+
         var id = $(this).attr('value');
+
 
         $('#modal-update-news').modal('show');
         var results = [];
@@ -127,24 +129,30 @@
                     var newdate = date.split("-").reverse().join("-");
                     console.log(newdate);
 
+
                     $('#idinput').val(id);
 
                     $('#title').val(results.title);
                     $('#date').val('20'+newdate);
                     $('#image_default').val( results.image);
                     CKEDITOR.instances.editor1.setData(results.article); 
+
   $('#save').click(function(){
                       //saveUpdateNews();
                       $('#update-news-form').submit();
                     });
                 
 
+                
             }
         });
      
       
       
       });
+    }
+
+    
     }
 
    setTimeout(function(){ 
@@ -263,6 +271,7 @@ $.validator.setDefaults({
             }
            });
 
+
             return false;
           }
       });
@@ -331,13 +340,12 @@ $.validator.setDefaults({
       });
     //}
 
+
  });
 </script>
 
 </body>
 </html>
-
- 
 
 
 

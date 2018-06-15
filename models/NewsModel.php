@@ -113,7 +113,10 @@ class NewsModel extends Model implements InterfaceModel
 
 	public function deleteDefinitive($id)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
 	{
 		$result = parent::delete('news', $id);
 
@@ -150,6 +153,9 @@ class NewsModel extends Model implements InterfaceModel
 		return $return;
 	}
 
+<<<<<<< HEAD
+=======
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
 =======
 >>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
 	public function getJson() {
