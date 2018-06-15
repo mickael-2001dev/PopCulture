@@ -138,9 +138,6 @@
     }
 
 
-    
-
-
    setTimeout(function(){ 
       $('#example2').DataTable();  
       deleteNews();
@@ -265,6 +262,12 @@ $.validator.setDefaults({
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
