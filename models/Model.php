@@ -163,9 +163,14 @@ class Model {
         }
     }
 
-    protected function getAll($table) 
+    protected function getAll($table, $deleted = false) 
     {
         $sql = "SELECT * FROM {$table}";
+
+        if($deleted) {
+            $sql = "SELECT * FROM {$table} WHERE deleted = 0";
+        }
+       
         $results = $this->ExecuteQuery($sql, array());
         return $results;
     }
@@ -178,16 +183,15 @@ class Model {
     }
 
     protected function delete($table, $id) 
-    {
-        $sql = "DELETE FROM {table} WHERE id = :id";
-        try{
-            $this->ExecuteCommand($sql, [':id'=>$id]);
-            $results = true;
-            throw new Excepetion('Erro no delete!');
-        } catch (Exception $e) {
-            $results = $e->getMessage();
-        }   
-        
+    {   
+        $results = false;
+        $sql = "DELETE FROM {$table} WHERE id = :id";
+       
+        if($this->ExecuteCommand($sql, [':id'=>$id])){
+           $results = true;   
+        };
+          
+        return $results;
     }
 
 }

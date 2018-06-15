@@ -7,7 +7,7 @@ class NewsModel extends Model implements InterfaceModel
 	public function select()
 	{
 		$news = [];
-		$results = parent::getAll('news');
+		$results = parent::getAll('news', true);
 		
 
 		foreach ($results as $row) {
@@ -71,13 +71,6 @@ class NewsModel extends Model implements InterfaceModel
 		return $imagem;
 	}
 
-	public function delete($id)
-	{
-		$result = parent::delete('news', $id);
-
-		return $result;
-	}
-
 	public function insert($news) 
 	{
 
@@ -107,12 +100,59 @@ class NewsModel extends Model implements InterfaceModel
 		}
 	}
 
-	public function update($var) 
+	public function delete($id)
 	{
-		echo "Atualiza";
+		$return = false;
+		$sql = "UPDATE news SET deleted = 1 WHERE id = :id";
+		if($this->ExecuteCommand($sql,  [':id'=>$id])){
+			$return = true;
+		}
+
+		return $return;
 	}
 
-	public function encodeJson() {
+	public function deleteDefinitive($id)
+<<<<<<< HEAD
+=======
+	{
+		$result = parent::delete('news', $id);
+
+		return $result;
+	}
+
+
+	public function update($var) 
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
+	{
+		$result = parent::delete('news', $id);
+
+		return $result;
+	}
+
+<<<<<<< HEAD
+
+	public function update($news) 
+	{
+		$return = false;
+		$date = new DateTime();
+		$date = $date->format('Y-m-d');
+		$sql = "UPDATE news SET title = :title, article = :article, date_time = :date_time, dtupdate = :dt_update 
+		WHERE id = :id";
+		if($this->ExecuteCommand($sql,  
+		[':title'=>$news->getTitle(), 
+			':article'=>$news->getArticle(),
+			':date_time'=>$news->getDateTime(),
+			'dt_update'=>$date,
+			':id'=>$news->getId()])){
+			$return = true;
+		}
+
+		return $return;
+	}
+
+=======
+>>>>>>> b99cffd739d68c4eea4a48ea13ced5100fa68d71
+	public function getJson() {
 		$results = [];
 
 		foreach ($this->select() as $row) {
@@ -127,9 +167,27 @@ class NewsModel extends Model implements InterfaceModel
 		for($i = 0; $i < count($results); $i++){
 			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
 		}
+
+		return json_encode($results);
+	}
+
+	public function getJsonById($id) {
+		
+		$row = $this->selectById($id);
+		$results = [
+			'id'=>$row->getId(),
+			'title'=>$row->getTitle(),
+			'article'=>$row->getArticle(),
+			'date_time'=>date_create($row->getDateTime())
+		];
+		
+
+		
+		$results['date_time'] = date_format($results['date_time'], 'd/m/y');
 		
 
 		return json_encode($results);
 	}
+
 }
 
