@@ -58,13 +58,13 @@
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
- 
+ //var news_id_results = '';
  var news = new Vue({
       el: '#news',
           data: {
           results: [
          
-          ]
+          ],
         },
         methods: {
           getNews: function() {
@@ -79,7 +79,14 @@
   }); 
  $(document).ready(function() {
 
-  
+    function replaceAll(string, token, newtoken) {
+      while (string.indexOf(token) != -1) {
+        string = string.replace(token, newtoken);
+      }
+      return string;
+    }
+
+
 
     function deleteNews(){
       $('.delete-news').click(function() {
@@ -100,16 +107,44 @@
       });
     }
 
+    function updateNews(){
+      $('.update-news').click(function() {
+        var id = $(this).val();
+        $('#modal-update-news').modal('show');
+        var results = [];
+        $.ajax({
+            type: 'GET',
+            url: '/PopCulture/app/AdminNews/get/'+id,
+            dataType: 'json',
+            success: function(response){
+                  results = response;
+                  console.log(results);
+                 
+                    var date = results.date_time;
+                    date = replaceAll(date, "/", "-");
+                    var newdate = date.split("-").reverse().join("-");
+                    console.log(newdate);
+                    $('#title').val(results.title);
+                    $('#date').val('20'+newdate);
+                    $('#image_default').val( results.image);
+                    CKEDITOR.instances.editor1.setData(results.article); 
+                
+            }
+        });
+     
+      
+      
+      });
+    }
 
 
-   setTimeout(function(){ $('#example2').DataTable(); }, 500);
     
-  CKEDITOR.replace('editor1');
 
 
    setTimeout(function(){ 
       $('#example2').DataTable();  
       deleteNews();
+      updateNews();
     }, 500);
    
    

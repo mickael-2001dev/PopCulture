@@ -124,7 +124,7 @@ class NewsModel extends Model implements InterfaceModel
 		echo "Atualiza";
 	}
 
-	public function encodeJson() {
+	public function getJson() {
 		$results = [];
 
 		foreach ($this->select() as $row) {
@@ -139,9 +139,27 @@ class NewsModel extends Model implements InterfaceModel
 		for($i = 0; $i < count($results); $i++){
 			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
 		}
+
+		return json_encode($results);
+	}
+
+	public function getJsonById($id) {
+		
+		$row = $this->selectById($id);
+		$results = [
+			'id'=>$row->getId(),
+			'title'=>$row->getTitle(),
+			'article'=>$row->getArticle(),
+			'date_time'=>date_create($row->getDateTime())
+		];
+		
+
+		
+		$results['date_time'] = date_format($results['date_time'], 'd/m/y');
 		
 
 		return json_encode($results);
 	}
+
 }
 

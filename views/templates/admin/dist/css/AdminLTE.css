@@ -4980,3 +4980,8 @@ table.text-center th {
   font-size: 10pt!important;
   margin-top: 2%!important;
 }
+.update-body{
+  background-color: #fff!important;
+  position: relative;
+  padding: 15px;
+}

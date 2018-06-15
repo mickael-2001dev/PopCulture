@@ -19,9 +19,17 @@ class AdminNews extends Admin
 		$this->view->load('footer');
 	}
 
-	public function get()
+	public function get($id = null)
 	{
-		print $this->model->encodeJson();
+		$return = $this->model->getJson();
+
+		if($id) {
+			$return = $this->model->getJsonById($id);
+		}
+
+		print $return;
+
+
 	}
 
 	public function delete($id)

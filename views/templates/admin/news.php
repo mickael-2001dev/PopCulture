@@ -76,10 +76,13 @@
                 <button type="button" class="btn btn-outline" id="delete">Excluir</button>
               </div>
             </div>
+          </div>
+        </div>
+
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
-        </div>
+  
 
         <div class="modal modal-success fade" id="success-delete">
           <div class="modal-dialog">
@@ -94,6 +97,68 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+    <div class="modal modal-warning fade" id="modal-update-news">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Warning Modal</h4>
+              </div>
+              <div class="update-body">
+                      <form role="form" method="post" id="add-news-form" enctype="multipart/form-data">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Título: </label>
+                  <input type="text" name="title" id="title" class="form-control" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" >
+                  <p class="help-block with-errors">Inserir título da notícia</p>
+                </div>
+              
+                 <div class="form-group">
+
+                <label>Data:</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="date" id="date" name="date_time" placeholder="dd/mm/yyyy" class="form-control pull-right">
+                 
+                </div>
+              
+                 <p class="help-block with-errors">Inserir data da notícia</p>
+              </div>
+
+              <div class="form-group">
+                  <label>Imagem: </label>
+                  <input type="file" name="image" id="image">
+
+                  <p class="help-block with-errors">Inserir imagem da notícia</p>
+                </div>
+
+              <div class="form-group">
+                  <label>Artigo: </label>
+                   
+                   
+                     <textarea  name="article" id="editor1" placeholder="Insira um artigo"
+                          ></textarea>
+                      <p class="help-block with-errors">Inserir artigo da notícia</p>
+                </div>
+             
+              
+            
+              </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-outline">Salvar</button>
               </div>
             </div>
             <!-- /.modal-content -->
