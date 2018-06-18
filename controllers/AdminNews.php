@@ -108,32 +108,7 @@ class AdminNews extends Admin
 		}
 	}
 
-	public function saveImagem($image)
-	{
-		$types = ['image/jpeg', 'image/png', 'image/gif'];
-        $type_image = false;
-        $dir = 'views/img/'.$image['name'];
-        //var_dump($image);
-        foreach($types as $type){
-            if($image['type'] == $type){
-               $type_image = true;
-            }
-        }
-        //var_dump($dir);
-        if($type_image){
-           	if(move_uploaded_file($image['tmp_name'], $dir)){
-           		if($this->imagem->insert($image['name'])){
-           			return true;
-           		}
-  			} else {
-                $data['msg'] = "Não foi possível realizar o upload!";
-                $this->error($data);
-            } 
-  		} else {
-            $data['msg'] = "Extensão não suportada!";
-            $this->error($data); 
-        }
-	}
+	
 
 	
 

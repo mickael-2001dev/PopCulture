@@ -5,6 +5,7 @@ class Admin extends Controller
 
     protected $login;
     private $user;
+    private $imagem;
 
     public function __construct() 
     {
@@ -12,6 +13,7 @@ class Admin extends Controller
         $this->view->setTemplate('admin');
         $this->login = new Login();
         $this->model = new UserModel();
+        $this->imagem = new ImagemModel();
   
 
         if(!$this->login->isLogged()) {
@@ -212,5 +214,46 @@ class Admin extends Controller
 
     protected function success(array $data){
         $this->view->load('success', $data);
+    }
+
+    protected function saveImagem($image)
+    {
+        $types = ['image/jpeg', 'image/png', 'image/gif'];
+        $insert = false;
+        $upload = new Image($image, $types);
+
+        if(!$upload->saveImage()) {
+            $error = $upload->saveImage();
+            $this->view->error($error);
+        }
+
+        if($insert) {
+            if($this->imagem->insert($upload->getName())){
+                return true;
+            }
+        } 
+
+        /*$type_image = false;
+        $dir = 'views/img/'.$image['name'];
+        //var_dump($image);
+        foreach($types as $type){
+            if($image['type'] == $type){
+               $type_image = true;
+            }
+        }
+        //var_dump($dir);
+        if($type_image){
+            if(move_uploaded_file($image['tmp_name'], $dir)){
+                if($this->imagem->insert($image['name'])){
+                    return true;
+                }
+            } else {
+                $data['msg'] = "Não foi possível realizar o upload de imagem!";
+                $this->error($data);
+            } 
+        } else {
+            $data['msg'] = "Extensão não suportada!";
+            $this->error($data); 
+        }*/
     }
 }
