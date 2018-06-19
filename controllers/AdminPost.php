@@ -17,9 +17,24 @@ class AdminPost extends Admin
 	{
 		$this->view->load('header');
 		$this->view->load('nav');
+
+		$this->view->load('post');
+
 		$this->view->load('footer');
 	}
 
+	public function get($id = null)
+	{
+		$return = $this->model->getJson();
+
+		if($id) {
+			$return = $this->model->getJsonById($id);
+		}
+
+		print $return;
+
+	}
+	
 	public function add()
 	{
 		$this->view->load('header');
@@ -37,6 +52,7 @@ class AdminPost extends Admin
 	{
 		if($_POST) {
 			$index = $this->indexInput($_POST);
+
 
 			if($index['title'] && $index['article'] && $index['date_time'] && $index['categoria']) {
 				$index['date_time'] = new DateTime($index['date_time']);

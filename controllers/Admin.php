@@ -219,12 +219,14 @@ class Admin extends Controller
     protected function saveImagem($image)
     {
         $types = ['image/jpeg', 'image/png', 'image/gif'];
-        $insert = false;
+
+        $insert = true;
         $upload = new Image($image, $types);
 
-        if(!$upload->saveImage()) {
-            $error = $upload->saveImage();
-            $this->view->error($error);
+        if($upload->saveImage() !== true) {
+            $insert = false;
+            $data['msg'] = $upload->saveImage();
+            $this->error($data); 
         }
 
         if($insert) {

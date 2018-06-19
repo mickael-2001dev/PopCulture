@@ -57,7 +57,9 @@
 
               <div class="form-group" >
                   <label>Categoria: </label>
-                  <select id="categoria" class="form-control pull-right">
+
+                  <select id="categoria" name="categoria" class="form-control pull-right">
+
                     <option value="">
                        Selecionar Categoria
                     </option>

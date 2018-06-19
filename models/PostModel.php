@@ -7,15 +7,18 @@
  	
  	public function __construct()
  	{
- 		parent::__construct();
-
+ 		parent:: __construct();
  		$this->categoria = new CategoriaModel();
  	}
 
  	public function select()
  	{
+ 		//$categoria = new CategoriaModel();
+ 		//$test = $categoria->selectById(2);
+ 		//var_dump($test);
  		$post = [];
- 		$results = parent::getAll('post');
+ 		$results = parent::getAll('post', true);
+ 		//var_dump($results);
 
  		foreach ($results as $row) {
  			$post[] = new PostAbstract
@@ -23,12 +26,12 @@
  				$row['title'],
 				$row['article'],
 				$row['date_time'],
-				$this->selectImagemNews($row['id']),
 				$this->categoria->selectById($row['idcategoria']),
+				$this->selectImagemPost($row['id']),
 				$row['id']
  			);
  		}
-
+ 	
  		return $post;
  	}
 
@@ -40,8 +43,8 @@
  			$results['title'],
 			$results['article'],
 			$results['date_time'],
-			$this->selectImagemNews($results['id']),
 			$this->categoria->selectById($results['idcategoria']),
+			$this->selectImagemPost($results['id']),
 			$results['id']
  		);
 
@@ -62,10 +65,10 @@
 	{
 		//echo $id;
 		$imagem = [];
-		$sql = "SELECT im.* FROM post_has_imagem as pt
-				INNER JOIN post as p ON n.id = pt.idnews
-				INNER JOIN imagem as im ON im.id = pt.idimagem
-				WHERE ni.idnews = :id";
+		$sql = "SELECT im.* FROM post_has_imagem as pt 
+				INNER JOIN post as p ON p.id = pt.idpost 
+				INNER JOIN imagem as im ON im.id = pt.idimagem 
+				WHERE pt.idpost = :id ";
 		$results = $this->ExecuteQuery($sql, [':id'=>$id]);
 
 
@@ -87,7 +90,7 @@
 			':article'=>$post->getArticle(), 
 			':title'=>$post->getTitle('2'),
 			':date_time'=>$post->getDateTime(),
-			':idcategoria'=>$post->getCategoria()->getId()
+			':idcategoria'=>$post->getCategoria()
 			]
 			)
 		){
@@ -140,7 +143,7 @@
 			':article'=>$post->getArticle(),
 			':date_time'=>$post->getDateTime(),
 			':idcategoria'=>$post->getCategoria()->getId(),
-			'dt_update'=>$date,
+			':dt_update'=>$date,
 			':id'=>$post->getId()])){
 			$return = true;
 		}
@@ -157,7 +160,7 @@
 				'id'=>$row->getId(),
 				'title'=>$row->getTitle(),
 				'article'=>substr(filter_var($row->getArticle(), FILTER_SANITIZE_STRING), 0, 80)."...",
-				':idcategoria'=>$row->getCategoria()->getId(),
+				'categoria'=>$row->getCategoria()->getCategoria(),
 				'date_time'=>date_create($row->getDateTime())
 			];
 		}
@@ -176,7 +179,7 @@
 			'id'=>$row->getId(),
 			'title'=>$row->getTitle(),
 			'article'=>$row->getArticle(),
-			':idcategoria'=>$row->getCategoria()->getId(),
+			'categoria'=>$row->getCategoria()->getCategoria(),
 			'date_time'=>date_create($row->getDateTime())
 		];
 		

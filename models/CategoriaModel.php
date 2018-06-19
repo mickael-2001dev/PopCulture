@@ -25,7 +25,7 @@ class CategoriaModel extends Model
 
 	public function selectById($id) {
 
-		$results = parent::getAllById('categoria', id);
+		$results = parent::getAllById('categoria', $id);
 
 		
 		$categoria = new CategoriaAbstract

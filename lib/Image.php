@@ -4,6 +4,7 @@ class Image
 {
 	private $file;
 	private $name;
+	private $tmp_name;
 	private $types;
 	private $type_image;
 	private $dir;
@@ -14,6 +15,7 @@ class Image
 	{
 		$this->file = $file;
 		$this->name = $file['name'];
+		$this->tmp_name = $file['tmp_name'];
 		$this->types = $types;
 		$this->type_image = false;
 		$this->dir = 'views/img/';
@@ -26,9 +28,11 @@ class Image
 
 		foreach ($this->types as $type) {
 			if($this->file['type'] === $type){
-				$return  true;
+				$return = true;
 			}
 		}
+
+		return $return;
 	}
 
 	public function saveImage()
@@ -36,7 +40,7 @@ class Image
 		$return = "Tipo de imagem não suportado!";
 
 		if($this->verifyType()) {
-			return uploadImage();
+			return $this->uploadImage();
 			die;
 		} 
 
@@ -44,19 +48,20 @@ class Image
 
 	}
 
-	private uploadImage()
+	private function uploadImage()
 	{
 		$return = "Falha no upload de imagem, tente mais tarde!";
-
-		if(move_uploaded_file($this->name, $this->path)){
+	
+		if(move_uploaded_file($this->tmp_name, $this->path)){
 			$return = true;
 		}
-
 		return $return;
 	}
 
-	public getName()
+	public function getName()
 	{
-		return $this->name();
+		return $this->name;
 	}
+
+	
 }

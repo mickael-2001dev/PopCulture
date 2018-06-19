@@ -2,11 +2,22 @@
 
 class PostAbstract 
 {
+
+	private $id;
+	private $title;
+	private $article;
+	private $date_time;
+	private $deleted;
+	private $dtupdate;
+	private $categoria;
+	private $listimagens;
+
 	
 	public function __construct($title, $article, $date_time, $categoria, $listimagens = null, $id = null, $deleted = 0, $dtupdate = null)
 	{
 		$this->title = $title;
-		$this->article = $article
+		$this->article = $article;
+		$this->categoria = $categoria;
 		$this->date_time = $date_time;
 		$this->deleted = $deleted;
 		$this->dtupdate = $dtupdate;

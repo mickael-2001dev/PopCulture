@@ -58,6 +58,9 @@ class AdminNews extends Admin
 
 				if($_FILES['image']) {
 					if(!$this->saveImagem($_FILES['image'])){
+						/*$data['msg'] = $this->saveImagem($_FILES['image']);
+						/*var_dump($data['msg']);
+						$this->error($data);*/
 						die;
 					} 
 				}
@@ -78,7 +81,7 @@ class AdminNews extends Admin
 	}
 
 	public function saveUpdate($id)
-	{
+	{	
 		if($_POST) {
 			$index = $this->indexInput($_POST);
 
@@ -86,6 +89,7 @@ class AdminNews extends Admin
 
 				$index['date_time'] = new DateTime($index['date_time']);
 				$index['date_time'] = $index['date_time']->format('y-m-d');
+				var_dump($index);
 
 				/*if($_FILES['image']) {
 					if(!$this->saveImagem($_FILES['image'])){
@@ -93,14 +97,11 @@ class AdminNews extends Admin
 					} 
 				}*/
 				if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, $id))){
-
-					//$data['msg']="Alterado com sucesso!";
-					print "Deu";
 					die;
-				} else {
-					//$data['msg']="Tem parada errada ai mermão!";
-					print "Não deu, mas deu";
-				}
+				} 
+
+
+		
 			} else {
 				$data['msg']="Informe todos os campo!";
 				$this->error($data);

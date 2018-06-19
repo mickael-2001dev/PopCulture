@@ -2,11 +2,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Notícias
+        Postagens
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="#">Notícias</a></li>
+        <li class="active"><a href="#">Postagens</a></li>
       </ol>
     </section>
 
@@ -16,7 +16,7 @@
         <div class="col-xs-12">
            <div class="box box-success">
             <div class="box-header">
-              <h3 class="box-title">Todas Notícias: </h3>
+              <h3 class="box-title">Todos os Posts: </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -27,11 +27,12 @@
                   <th class="text-center">Titulo</th>
                   <th class="text-center">Artigo</th>
                   <th class="text-center">Data</th>
+                  <th class="text-center">Categoria</th>
                   <th class="text-center">Editar</th>
                   <th class="text-center">Excluir</th>
                 </tr>
                 </thead>
-                <tbody id="news">
+                <tbody id="post">
                   <tr v-for="td in results">
                     <!--<td class="text-center">1</td>
                     <td class="text-center">Teste</td>
@@ -44,8 +45,9 @@
                   <td class="text-center" v-text="td.title"></td>
                   <td class="text-center"  v-text="td.article"></td>
                   <td class="text-center" v-text="td.date_time"></td>
-                  <td class="text-center"><button class="btn btn-warning  btn-flat update-news" v-bind:value="td.id"><i class="fa fa-pencil"></i></button></td>
-                  <td class="text-center"><button class="btn btn-danger btn-flat delete-news" v-bind:value="td.id"><i class="fa fa-times"></i></button></td>
+                  <td class="text-center"  v-text="td.categoria"></td>
+                  <td class="text-center"><button class="btn btn-warning  btn-flat update-post" v-bind:value="td.id"><i class="fa fa-pencil"></i></button></td>
+                  <td class="text-center"><button class="btn btn-danger btn-flat delete-post" v-bind:value="td.id"><i class="fa fa-times"></i></button></td>
                 </tr>
                </tbody>
               </table>
@@ -60,16 +62,16 @@
     </section>
     <!-- /.content -->
   </div>
-    <div class="modal modal-danger fade" id="modal-delete-news">
+    <div class="modal modal-danger fade" id="modal-delete-post">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Excluir Notícia</h4>
+                <h4 class="modal-title">Excluir Post</h4>
               </div>
               <div class="modal-body">
-                <p>Excluir a notícia <strong><span id="news-id"></span></span></strong>?</p>
+                <p>Excluir o post <strong><span id="post-id"></span></span></strong>?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
@@ -93,7 +95,7 @@
                 <h4 class="modal-title">Successo</h4>
               </div>
               <div class="modal-body">
-                <p>Notícia excluida com sucesso!</p>
+                <p>Post excluido com sucesso!</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
@@ -104,29 +106,25 @@
           <!-- /.modal-dialog -->
         </div>
 
-    <div class="modal modal-warning fade" id="modal-update-news">
+    <div class="modal modal-warning fade" id="modal-update-post">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
 
-
-                <h4 class="modal-title">Editar Notícia</h4>
+                <h4 class="modal-title">Editar Post</h4>
               </div>
               <div class="update-body">
-                  <form role="form" method="post" id="update-news-form" enctype="multipart/form-data">
+                  <form role="form" method="post" id="update-post-form" enctype="multipart/form-data">
 
                 <!-- text input -->
-
                 <div class="form-group">
                   <label>Título: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" >
-                  <p class="help-block with-errors">Inserir título da notícia</p>
+                  <p class="help-block with-errors">Inserir título do Post</p>
 
                   <input type="hidden" name="idinput" id="idinput">
-
-
                 </div>
               
                  <div class="form-group">
@@ -141,9 +139,22 @@
                  
                 </div>
               
-                 <p class="help-block with-errors">Inserir data da notícia</p>
+                 <p class="help-block with-errors">Inserir data do Post</p>
               </div>
 
+              <div class="form-group" >
+                  <label>Categoria: </label>
+
+                  <select id="categoria" name="categoria" class="form-control pull-right">
+
+                    <option value="">
+                       Selecionar Categoria
+                    </option>
+                    <option v-for="c in results" v-bind:value="c.id">
+                      {{ c.categoria }}
+                    </option>
+                  </select>
+              </div>
 
               <div class="form-group">
                   <label>Artigo: </label>
@@ -151,7 +162,7 @@
                    
                      <textarea  name="article" id="editor1" placeholder="Insira um artigo"
                           ></textarea>
-                      <p class="help-block with-errors">Inserir artigo da notícia</p>
+                      <p class="help-block with-errors">Inserir artigo do Post</p>
                 </div>
              
               
@@ -159,7 +170,8 @@
               </form>
               </div>
               <div class="modal-footer">
-                
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+
                 <button type="submit" id="save" class="btn btn-outline">Salvar</button>
 
               </div>
