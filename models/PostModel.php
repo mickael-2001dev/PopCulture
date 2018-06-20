@@ -51,6 +51,28 @@
  		return $post;
  	}
 
+ 	public function selectByCategoria($categoria)
+ 	{
+ 		$post = [];
+ 		$sql = "SELECT pt.* FROM post as pt 
+	 		INNER JOIN categoria as cat ON cat.id = pt.idcategoria 
+	 		WHERE cat.categoria LIKE :categoria AND pt.deleted = 0";
+	 	$results = $this->ExecuteQuery($sql, [':categoria'=>$categoria.'%']);
+	 
+	 	foreach($results as $row) {
+	 		$post[] = new PostAbstract
+	 		(
+		 		$row['title'],
+		 		$row['article'],
+		 		$row['date_time'],
+		 		$row['idcategoria'],
+		 		$this->selectImagemPost($row['id']),
+				$row['id']
+			);
+	 	}
+
+	 	return $post;
+ 	}
 
  	public function selectLatest()
 	{
@@ -133,22 +155,22 @@
 
 	public function update($post) 
 	{
-		$return = false;
 		$date = new DateTime();
 		$date = $date->format('Y-m-d');
-		$sql = "UPDATE post SET title = :title, article = :article, date_time = :date_time, idcategoria = :idcategoria dtupdate = :dt_update 
+		$sql = "UPDATE post SET title = :title, article = :article, date_time = :date_time, idcategoria = :idcategoria, dtupdate = :dt_update 
 		WHERE id = :id";
 		if($this->ExecuteCommand($sql,  
 		[':title'=>$post->getTitle(), 
 			':article'=>$post->getArticle(),
 			':date_time'=>$post->getDateTime(),
-			':idcategoria'=>$post->getCategoria()->getId(),
+			':idcategoria'=>$post->getCategoria(),
 			':dt_update'=>$date,
 			':id'=>$post->getId()])){
-			$return = true;
+			return true;
+			die;
 		}
-
-		return $return;
+	
+		return false;
 	}
 
 
@@ -172,6 +194,25 @@
 		return json_encode($results);
 	}
 
+	public function getJsonByCategoria($categoria) {
+		$results = [];
+
+		foreach ($this->selectByCategoria($categoria) as $row) {
+			$results[] = [
+				'id'=>$row->getId(),
+				'title'=>$row->getTitle(),
+				'article'=>substr(filter_var($row->getArticle(), FILTER_SANITIZE_STRING), 0, 80)."...",
+				'date_time'=>date_create($row->getDateTime())
+			];
+		}
+
+		for($i = 0; $i < count($results); $i++){
+			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
+		}
+
+		return json_encode($results);
+	}
+
 	public function getJsonById($id) {
 		
 		$row = $this->selectById($id);
@@ -180,6 +221,7 @@
 			'title'=>$row->getTitle(),
 			'article'=>$row->getArticle(),
 			'categoria'=>$row->getCategoria()->getCategoria(),
+			'idcategoria'=>$row->getCategoria()->getId(),
 			'date_time'=>date_create($row->getDateTime())
 		];
 		

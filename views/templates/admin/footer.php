@@ -161,7 +161,7 @@ var post = new Vue({
       });
     }
 
-    function updateNews(){
+  function updateNews(){
       $('.update-news').click(function() {
         var id = $(this).attr('value');
         $('.form-group').removeClass('has-success');
@@ -198,17 +198,75 @@ var post = new Vue({
       });
     }
 
+    function updatePost(){
+      $('.update-post').click(function() {
+        var id = $(this).attr('value');
+        $('.form-group').removeClass('has-success');
+        $('#modal-update-post').modal('show');
+        var results = [];
+        $.ajax({
+            type: 'GET',
+            url: '/PopCulture/app/AdminPost/get/'+id,
+            dataType: 'json',
+            success: function(response){
+                  results = response;
+                  console.log(results);
+                 
+                    var date = results.date_time;
+                    date = replaceAll(date, "/", "-");
+                    var newdate = date.split("-").reverse().join("-");
+                    console.log(newdate);
+                    $('#idinput').val(id);
+                    $('#title').val(results.title);
+                    $('#date').val('20'+newdate);
+                    $('#image_default').val( results.image);
+                    console.log(results.categoria);
+                    console.log($('option'));
+                    /*for(i = 0; i < $('option').length; i++){
+                      if($('option').val() == results.categoria){
+                        console.log('true');
+                      }
+
+                    }*/
+
+                   $('option').each(function() {
+                     var text = $(this).val();
+                     console.log(text);
+                     if(text == results.idcategoria) {
+                        console.log('AAAAAAAAAA');
+                        $(this).attr('selected', 'selected');
+                     }
+                   });
+        
+                   
+                    CKEDITOR.instances.editor1.setData(results.article); 
+                      $('#save').click(function(){
+                      //saveUpdatepost();
+                      $('#update-post-form').submit();
+                     
+                    });
+                
+            }
+        });
+     
+      
+      
+      });
+    }
+
     function loadResources() {
         setTimeout(function(){ 
               $('#example2').DataTable();  
               deleteNews();
               updateNews();
               deletePost();
+              updatePost();
               //updateNews();
               $('#example2_next').click(function(){
                   deleteNews();
                   updateNews();
                   deletePost();
+                  updatePost();
               });
         }, 500);
     }
@@ -448,6 +506,73 @@ $.validator.setDefaults({
                 });
                 $('#resp').html(response);*/
                 news.getNews();
+                //$('#save').addClass('pull-left');
+                //$('html, body').animate({scrollTop:0}, 'fast');
+
+               
+   
+            }
+           });
+            return false;
+          }
+      });
+
+       $('#update-post-form').validate({
+        ignore: [],
+        rules:{
+            title: {
+              required: true,
+              minlength: 3
+            },
+            date_time: {
+              required: true
+            },
+            categoria: {
+              required: true
+            },
+            article: {
+                required:  function(textarea) {
+                  CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+                  var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+                  return editorcontent.length === 0;
+                },
+                minlength: 10
+            }
+        },
+        messages: {
+          title: {
+            required: "Você não inseriu um titulo a notícia",
+            minlength: "No mínimo 3 caracteres"
+          },
+          date_time:{
+            required: "Você não inseriu uma data válida para a notícia"
+          },
+          article:{
+            required: "Você não inseriu um artigo para a notíca",
+            minlength: "No mínimo 10 caracteres"
+          },
+          categoria:{
+            required: "Selecione a categoria!"
+          }
+        },
+        submitHandler: function() {
+          var data = new FormData($('#update-post-form')[0]);
+          var id = $('#idinput').val();
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/AdminPost/saveUpdate/'+id,
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                $('#modal-update-post').modal('hide');
+                console.log(response);
+                /*$('#resp').css({
+                  display: 'block'
+                });
+                $('#resp').html(response);*/
+                post.getPost();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
 

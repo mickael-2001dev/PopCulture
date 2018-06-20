@@ -17,9 +17,7 @@ class AdminPost extends Admin
 	{
 		$this->view->load('header');
 		$this->view->load('nav');
-
 		$this->view->load('post');
-
 		$this->view->load('footer');
 	}
 
@@ -33,6 +31,11 @@ class AdminPost extends Admin
 
 		print $return;
 
+	}
+
+	public function getSpecific($categoria)
+	{
+		print $this->model->getJsonByCategoria($categoria);
 	}
 	
 	public function add()
@@ -95,7 +98,7 @@ class AdminPost extends Admin
 						die;
 					} 
 				}*/
-				if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'],  $index['categoria'], null, $id))){
+				if($this->model->update(new PostAbstract($index['title'], $index['article'],  $index['date_time'],  $index['categoria'], null, $id))){
 
 					//$data['msg']="Alterado com sucesso!";
 					print "Deu";
