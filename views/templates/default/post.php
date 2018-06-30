@@ -1,29 +1,22 @@
-<?php $news = $data['news']; ?>
-<header class="masthead text-center text-white bgParallax"  id="news">
-      <div class="masthead-content">
-        <div class="container">
-          <h1 class="masthead-heading mb-0">Notícias</h1>
-        </div>
-      </div>
-     
-    </header>
+<?php $post = $data['post']; ?>
+
 
  
 
   <section class="news custom-views">
       <div class="container">
-        <h2 class="text-center">Ultimas Notícias</h2>
-        <?php foreach ($news as $new):?>
+        <h2 class="text-center">Ultimos Posts</h2>
+        <?php foreach ($post as $post):?>
         <div class="row align-items-center mx-auto">
        
           <div class="col-lg-12 mx-auto">
             <div class="p-5">
-            <?php $img = $new->getListimagens() ?>
+            <?php $img = $post->getListimagens() ?>
          
                
                <br>
-              <a href="<?php echo $this->base_url ?>news/article/<?php echo $new->getId() ?>">
-                <div class="col-lg-8 mx-auto mx-auto custom-new"><h3 class="text-left custom-title"><?php echo $new->getTitle(); ?></h3> <img class="img-fluid " src="<?php echo $this->base_url.'views/img/'.$img[0]->getSrc(); ?>" alt=""></a></div>
+              <a href="<?php echo $this->base_url ?>news/article/<?php echo $post->getId() ?>">
+                <div class="col-lg-8 mx-auto mx-auto custom-new"><h3 class="text-left custom-title"><?php echo $post->getTitle(); ?></h3> <img class="img-fluid " src="<?php echo $this->base_url.'views/img/'.$img[0]->getSrc(); ?>" alt=""></a></div>
             </div>
           
              

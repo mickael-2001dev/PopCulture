@@ -7,28 +7,28 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto navbar-left">
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo $this->base_url ?>Home">Home</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo $this->base_url ?>News">Noticias</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>news">Noticias</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="cinema.html">Cinema</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>cinema">Cinema</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="tv.html">TV</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>tv">TV</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="games.html">Games</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>games">Games</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="hqs.html">Quadrinhos</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>quadrinhos">Quadrinhos</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="music.html">Música</a>
+              <a class="nav-link" href="<?php echo $this->base_url ?>musica">Música</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="videos.html">Videos</a>
+              <a class="nav-link" href="videos">Videos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo $this->base_url ?>Contato">Contato</a>

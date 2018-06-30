@@ -9,6 +9,8 @@ class AdminNews extends Admin
 		parent::__construct();
 		$this->model = new NewsModel();
 		$this->imagem = new ImagemModel();
+
+		
 	}
 
 	public function index()
@@ -17,6 +19,8 @@ class AdminNews extends Admin
 		$this->view->load('nav');
 		$this->view->load('news');
 		$this->view->load('footer');
+
+
 	}
 
 	public function get($id = null)

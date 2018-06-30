@@ -235,7 +235,11 @@ class Admin extends Controller
             }
         } 
 
-        /*$type_image = false;
+    }
+}
+
+
+ /*$type_image = false;
         $dir = 'views/img/'.$image['name'];
         //var_dump($image);
         foreach($types as $type){
@@ -257,5 +261,3 @@ class Admin extends Controller
             $data['msg'] = "Extensão não suportada!";
             $this->error($data); 
         }*/
-    }
-}

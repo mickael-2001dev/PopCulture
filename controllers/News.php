@@ -20,7 +20,7 @@ class News extends Controller
 		$this->view->load('footer');
 	}
 
-	public function viewNews($id)
+	public function article($id)
 	{
 		$data['news'] = $this->model->selectById($id);
 		$data['title'] = $data['news']->getTitle();
@@ -30,5 +30,10 @@ class News extends Controller
 		$this->view->load('viewnews', $data);
 		$this->view->load('footer');
 
+	}
+
+	public function page()
+	{
+		echo "YEY";
 	}
 }

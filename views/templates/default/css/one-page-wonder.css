@@ -1,5 +1,6 @@
 body {
   font-family: 'Lato';
+  background: #E8E8E8;
 }
 
 h1,
@@ -353,4 +354,21 @@ header.masthead .bg-circle-4 {
 }
 .carousel-custom{
   margin-top:5%;
+}
+.custom-title{
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  padding-top: 35%;
+  padding-left: 5%;
+  text-shadow: #000 1px 1px 0px;
+}
+.custom-img{
+  /*text-align: left;*/
+  position: absolute;
+}
+.custom-new{
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0px 2px 9px #343837;
 }

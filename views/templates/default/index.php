@@ -17,7 +17,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Notícias</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+        
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Cinema</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+         
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
@@ -47,7 +47,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">TV</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+         
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
@@ -63,7 +63,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Games</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+         
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
@@ -78,7 +78,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Quadrinhos</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+         
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
@@ -93,7 +93,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Música</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+         
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
@@ -108,7 +108,7 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Videos</h1>
-          <p class="masthead-subheading  mainP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper elit nec turpis pretium volutpat. Pellentesque vel felis condimentum, finibus sapien sed, gravida arcu. Mauris iaculis ligula nec arcu tincidunt luctus. Integer vestibulum iaculis accumsan. Nullam augue ligula, elementum in urna a, ultricies porttitor nisi. Sed sed enim sapien. Vivamus euismod mauris molestie magna aliquam, ac molestie massa convallis. Duis tristique tempor tincidunt. Integer consequat vel nibh quis rhoncus. Pellentesque dui magna, sollicitudin vitae pulvinar a, varius vel est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor orci in interdum consequat. Sed porttitor metus nulla. Duis sed euismod neque. Vestibulum sodales leo in ligula tincidunt, eget tristique orci venenatis. Maecenas tincidunt, magna at commodo efficitur, elit tortor volutpat dolor, sed iaculis ex metus quis odio. </p>
+         
           <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>

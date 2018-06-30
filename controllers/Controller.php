@@ -15,7 +15,7 @@ class Controller
         $this->query = $query;
         if ($this->query) {
             $this->query = explode('/', $this->query);
-            $class_name = $this->query[0];
+            $class_name = mb_convert_case($this->query[0], MB_CASE_TITLE, 'UTF-8');
             if (count($this->query) > 1) {
                 $method = $this->query[1];
             } else {
