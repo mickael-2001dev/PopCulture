@@ -2,11 +2,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Notícias
+        Videos
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="#">Notícias</a></li>
+        <li class="active"><a href="#">Videos</a></li>
       </ol>
     </section>
 
@@ -16,11 +16,11 @@
         <div class="col-xs-12">
            <div class="box box-success">
             <div class="box-header">
-              <h3 class="box-title">Todas Notícias: </h3>
+              <h3 class="box-title">Todos os Videos: </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="news-table" class="table table-bordered table-striped">
+              <table id="video-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th class="text-center">ID</th>
@@ -31,7 +31,7 @@
                   <th class="text-center">Excluir</th>
                 </tr>
                 </thead>
-                <tbody id="news">
+                <tbody id="videopage">
                   <tr v-for="td in results">
                     <!--<td class="text-center">1</td>
                     <td class="text-center">Teste</td>

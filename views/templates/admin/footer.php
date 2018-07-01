@@ -38,6 +38,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo $this->asset ?>dist/js/demo.js"></script>
 
+<script src="<?php echo $this->asset ?>dist/js/auth.js"></script>
+
 <script src="<?php echo $this->asset ?>bower_components/chart.js/Chart.js"></script>
 
 <script src="<?php echo $this->asset ?>bower_components/ckeditor/ckeditor.js"></script>
@@ -59,7 +61,19 @@
 <!-- page script -->
 <script>
 
- var news = new Vue({
+window.onload = function(){
+ 
+
+ $(document).ready(function() {
+    function replaceAll(string, token, newtoken) {
+      while (string.indexOf(token) != -1) {
+        string = string.replace(token, newtoken);
+      }
+      return string;
+    }
+
+
+var news = new Vue({
       el: '#news',
           data: {
           results: [
@@ -70,11 +84,53 @@
           getNews: function() {
             axios.get('/PopCulture/app/AdminNews/get').then(response => {
               this.results = response.data
+            }).then(()=>{
+              $('#news-table').DataTable({
+                 "paging": true,
+                  "ordering": false,
+                  "info": true,
+                  "autoWidth": false
+              }); 
+              deleteNews();
+              updateNews(); 
+            })
+          },
+          getNewsTableNone: function(){
+             axios.get('/PopCulture/app/AdminNews/get').then(response => {
+              this.results = response.data
             })
           }
         },
         mounted() {
           this.getNews();
+        },
+      
+  }); 
+
+ var videopage = new Vue({
+      el: '#videopage',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getVideo: function() {
+            axios.get('/PopCulture/app/AdminVideo/get').then(response => {
+              this.results = response.data
+            }).then(()=>{
+              $('#video-table').DataTable({
+                "paging": true,
+                            "ordering": false,
+                            "info": true,
+                            "autoWidth": false
+              });  
+            })
+          }
+        },
+        mounted() {
+          this.getVideo();
+          console.log(this.results);
         }
   }); 
 
@@ -89,12 +145,26 @@ var post = new Vue({
           getPost: function() {
             axios.get('/PopCulture/app/AdminPost/get').then(response => {
               this.results = response.data
+            }).then(()=>{
+              $('#post-table').DataTable({
+                 "paging": true,
+                            "ordering": false,
+                            "info": true,
+                            "autoWidth": false
+              });
+              deletePost();
+              updatePost();  
+            })
+          },
+          getPostTableNone: function() {
+             axios.get('/PopCulture/app/AdminPost/get').then(response => {
+              this.results = response.data
             })
           }
         },
         mounted() {
           this.getPost();
-        }
+        },
   }); 
 
  var categoria = new Vue({
@@ -116,13 +186,50 @@ var post = new Vue({
         }
   }); 
 
- $(document).ready(function() {
-    function replaceAll(string, token, newtoken) {
-      while (string.indexOf(token) != -1) {
-        string = string.replace(token, newtoken);
-      }
-      return string;
+
+var videos = new Vue({
+      el: '#videos',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getVideos: function(q) {
+            axios.get('https://www.googleapis.com/youtube/v3/search', {params:{part: 'id', maxResults: 10, q: q, type:'video', key:'AIzaSyCnAlD9ZyhG3271N-jJZS0yvwCYTlGyj-4'}}).then(response => {
+              this.results = response.data;
+            })
+          },
+          select: function(val) {
+            selectVideo(val);
+          }
+        }
+   });
+
+
+
+  $('#search').click(function(){
+    var q = $('#query').val();
+    $('#videos').show().fadeIn(400);
+       
+    videos.getVideos(q);//Enviando a keyword via requisição http com Vue
+    console.log(videos.results);
+
+
+  });
+  
+  /*Salvando o video selecionado*/
+    function selectVideo(id){
+      $('#codevideo').val(id);
+      console.log( $('#codevideo').val());
+      $('#videos').css({
+        display: 'none'
+      });
     }
+      
+    
+
+
     function deleteNews(){
       $('.delete-news').click(function() {
           var id = $(this).val();
@@ -134,8 +241,8 @@ var post = new Vue({
                 success: function(){
                     $('#modal-delete-news').modal('hide');
                     $('#success-delete').modal('show');
-                    news.getNews();
-                    loadResources();
+                    news.getNewsTableNone();
+                    //loadResources();
                 }
             });
         });
@@ -153,8 +260,8 @@ var post = new Vue({
                 success: function(){
                     $('#modal-delete-post').modal('hide');
                     $('#success-delete').modal('show');
-                    post.getPost();
-                    loadResources();
+                    post.getPostTableNone();
+                    //loadResources();
                 }
             });
         });
@@ -256,9 +363,8 @@ var post = new Vue({
 
     function loadResources() {
         setTimeout(function(){ 
-              $('#example2').DataTable();  
-              deleteNews();
-              updateNews();
+              
+            
               deletePost();
               updatePost();
               //updateNews();
@@ -271,7 +377,7 @@ var post = new Vue({
         }, 500);
     }
    
-   loadResources();
+   // loadResources();
    
   CKEDITOR.replace('editor1');
   //CKEDITOR.replace('editor2');
@@ -455,6 +561,78 @@ $.validator.setDefaults({
           }
       });
 
+
+  $('#add-video-form').validate({
+        ignore: [],
+        rules:{
+            title: {
+              required: true,
+              minlength: 3
+            },
+            date_time: {
+              required: true
+            },
+            image: {
+              required: true
+            },
+            query:{
+              required: true
+            },
+            article: {
+                required:  function(textarea) {
+                  CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+                  var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+                  return editorcontent.length === 0;
+                },
+                minlength: 10
+            }
+        },
+        messages: {
+          title: {
+            required: "Você não inseriu um titulo a notícia",
+            minlength: "No mínimo 3 caracteres"
+          },
+          date_time:{
+            required: "Você não inseriu uma data válida para a notícia"
+          },
+          image:{
+            required: "Você não inseriu uma imagem para a notícia"
+          },
+          article:{
+            required: "Você não inseriu um artigo para a notíca",
+            minlength: "No mínimo 10 caracteres"
+          },
+          query:{
+            required: "Selecio um video!"
+          }
+        },
+        submitHandler: function() {
+          var data = new FormData($('#add-video-form')[0]);
+        
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/AdminVideo/save',
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                $('#resp').css({
+                  display: 'block'
+                });
+                $('#resp').html(response);
+                $('html, body').animate({scrollTop:0}, 'fast');
+                $('#add-video-form').trigger('reset');
+               
+                 CKupdate();
+               
+   
+            }
+           });
+            return false;
+          }
+      });
+
     //function saveUpdateNews() {
     $('#update-news-form').validate({
         ignore: [],
@@ -505,7 +683,7 @@ $.validator.setDefaults({
                   display: 'block'
                 });
                 $('#resp').html(response);*/
-                news.getNews();
+                news.getNewsTableNone();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
 
@@ -572,7 +750,7 @@ $.validator.setDefaults({
                   display: 'block'
                 });
                 $('#resp').html(response);*/
-                post.getPost();
+                post.getPostTableNone();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
 
@@ -585,6 +763,7 @@ $.validator.setDefaults({
       });
     //}
  });
+}
 </script>
 </body>
 </html>

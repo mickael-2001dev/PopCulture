@@ -25,8 +25,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo $this->base_url ?>AdminNews"><i class="fa fa-list"></i> Listar</a></li>
-            <li><a href="<?php echo $this->base_url ?>AdminNews/add"><i class="fa fa-plus"></i> Adicionar</a></li>
+            <li><a href="<?php echo $this->base_url ?>adminnews"><i class="fa fa-list"></i> Listar</a></li>
+            <li><a href="<?php echo $this->base_url ?>adminnews/add"><i class="fa fa-plus"></i> Adicionar</a></li>
           </ul>
         </li>
 
@@ -44,8 +44,8 @@
             <li><a href="#"><i class="fa fa-gamepad"></i> Games</a></li>
             <li><a href="#"><i class="fa fa-comment"></i> Quadrinhos</a></li>
             <li><a href="#"><i class="fa fa-music"></i> Música</a></li>
-            <li><a href="<?php echo $this->base_url ?>AdminPost"><i class="fa fa-list"></i> Listar</a></li>
-            <li><a href="<?php echo $this->base_url ?>AdminPost/add"><i class="fa fa-plus"></i> Adicionar</a></li>
+            <li><a href="<?php echo $this->base_url ?>adminpost"><i class="fa fa-list"></i> Listar</a></li>
+            <li><a href="<?php echo $this->base_url ?>adminpost/add"><i class="fa fa-plus"></i> Adicionar</a></li>
           </ul>
         </li>
 
@@ -58,8 +58,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list"></i> Listar</a></li>
-            <li><a href="#"><i class="fa fa-plus"></i> Adicionar</a></li>
+            <li><a href="<?php echo $this->base_url ?>adminvideo"><i class="fa fa-list"></i> Listar</a></li>
+            <li><a href="<?php echo $this->base_url ?>adminvideo/add"><i class="fa fa-plus"></i> Adicionar</a></li>
           </ul>
         </li>
 

@@ -18,7 +18,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">Notícias</h1>
         
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>news" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -33,7 +33,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">Cinema</h1>
          
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>cinema" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -48,7 +48,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">TV</h1>
          
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>tv" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -64,7 +64,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">Games</h1>
          
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>games" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -79,7 +79,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">Quadrinhos</h1>
          
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>quadrinhos" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -94,7 +94,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">Música</h1>
          
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>musica" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -109,7 +109,7 @@
         <div class="container">
           <h1 class="masthead-heading mb-0">Videos</h1>
          
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
+          <a href="<?php echo $this->base_url ?>videos" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-1">Abrir</a>
         </div>
       </div>
      
@@ -234,7 +234,7 @@
       </div>
 
     <div class="container">
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-2 d-block mx-auto">Ver Mais</a>
+          <a href="<?php echo $this->base_url ?>news" class="btn btn-primary btn-xl rounded-pill mt-5 person-btn-2 d-block mx-auto">Ver Mais</a>
     </div>
 
 
