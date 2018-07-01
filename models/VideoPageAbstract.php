@@ -19,6 +19,7 @@ class VideoPageAbstract
 		$this->deleted = $deleted;
 		$this->dtupdate = $dtupdate;
 		$this->listimagens = $listimagens;
+		$this->listvideos = $listvideos;
 		$this->id = $id;
 	}
 
@@ -59,7 +60,7 @@ class VideoPageAbstract
 
 	public function getListvideos()
 	{
-		return $this->listimagens;
+		return $this->listvideos;
 	}
 
 	public function setId($val)

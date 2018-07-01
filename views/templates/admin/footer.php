@@ -125,6 +125,13 @@ var news = new Vue({
                             "info": true,
                             "autoWidth": false
               });  
+              deleteVideo();
+              updateVideo(); 
+            })
+          },
+          getVideoTableNone: function() {
+             axios.get('/PopCulture/app/AdminVideo/get').then(response => {
+              this.results = response.data
             })
           }
         },
@@ -249,6 +256,25 @@ var videos = new Vue({
       });
     }
 
+    function deleteVideo(){
+      $('.delete-video').click(function() {
+          var id = $(this).val();
+          $('#modal-delete-video').modal('show');
+          $('#video-id').html(id);
+          $('#delete').click(function() {
+            $.ajax({
+                url:'/PopCulture/app/AdminVideo/delete/'+id,
+                success: function(){
+                    $('#modal-delete-video').modal('hide');
+                    $('#success-delete').modal('show');
+                    videopage.getVideoTableNone();
+                    //loadResources();
+                }
+            });
+        });
+      });
+    }
+
     function deletePost(){
       $('.delete-post').click(function() {
           var id = $(this).val();
@@ -294,6 +320,44 @@ var videos = new Vue({
                       $('#save').click(function(){
                       //saveUpdateNews();
                       $('#update-news-form').submit();
+                     
+                    });
+                
+            }
+        });
+     
+      
+      
+      });
+    }
+
+    function updateVideo(){
+      $('.update-video').click(function() {
+       
+        var id = $(this).attr('value');
+        $('.form-group').removeClass('has-success');
+        $('#modal-update-video').modal('show');
+        var results = [];
+        $.ajax({
+            type: 'GET',
+            url: '/PopCulture/app/AdminVideo/get/'+id,
+            dataType: 'json',
+            success: function(response){
+                  results = response;
+                  console.log(results);
+                 
+                    var date = results.date_time;
+                    date = replaceAll(date, "/", "-");
+                    var newdate = date.split("-").reverse().join("-");
+                    console.log(newdate);
+                    $('#idinput').val(id);
+                    $('#title').val(results.title);
+                    $('#date').val('20'+newdate);
+                    $('#image_default').val( results.image);
+                    CKEDITOR.instances.editor1.setData(results.article); 
+                      $('#save').click(function(){
+                      //saveUpdatevideo();
+                      $('#update-video-form').submit();
                      
                     });
                 
@@ -684,6 +748,67 @@ $.validator.setDefaults({
                 });
                 $('#resp').html(response);*/
                 news.getNewsTableNone();
+                //$('#save').addClass('pull-left');
+                //$('html, body').animate({scrollTop:0}, 'fast');
+
+               
+   
+            }
+           });
+            return false;
+          }
+      });
+
+      $('#update-video-form').validate({
+        ignore: [],
+        rules:{
+            title: {
+              required: true,
+              minlength: 3
+            },
+            date_time: {
+              required: true
+            },
+            article: {
+                required:  function(textarea) {
+                  CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+                  var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+                  return editorcontent.length === 0;
+                },
+                minlength: 10
+            }
+        },
+        messages: {
+          title: {
+            required: "Você não inseriu um titulo a notícia",
+            minlength: "No mínimo 3 caracteres"
+          },
+          date_time:{
+            required: "Você não inseriu uma data válida para a notícia"
+          },
+          article:{
+            required: "Você não inseriu um artigo para a notíca",
+            minlength: "No mínimo 10 caracteres"
+          }
+        },
+        submitHandler: function() {
+          var data = new FormData($('#update-video-form')[0]);
+          var id = $('#idinput').val();
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/AdminVideo/saveUpdate/'+id,
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                $('#modal-update-video').modal('hide');
+                //console.log(response);
+                /*$('#resp').css({
+                  display: 'block'
+                });
+                $('#resp').html(response);*/
+                videopage.getVideoTableNone();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
 

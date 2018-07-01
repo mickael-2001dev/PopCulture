@@ -30,13 +30,13 @@ class VideoPageModel extends Model implements InterfaceModel
 		$results = parent::getAllById('videopage', $id);
 		//var_dump($results);
 		//echo $results['title'];
-		
+		//var_dump($this->selectVideoVideoPage($results['id']));
 		$videopage = new VideoPageAbstract(
 			$results['title'],
 			$results['article'],
 			$results['date_time'],
 			$this->selectImagemVideoPage($results['id']),
-			$this->selectVideoVideoPage($row['id']),
+			$this->selectVideoVideoPage($results['id']),
 			$results['id']
 		);
 

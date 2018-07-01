@@ -44,8 +44,8 @@
                   <td class="text-center" v-text="td.title"></td>
                   <td class="text-center"  v-text="td.article"></td>
                   <td class="text-center" v-text="td.date_time"></td>
-                  <td class="text-center"><button class="btn btn-warning  btn-flat update-news" v-bind:value="td.id"><i class="fa fa-pencil"></i></button></td>
-                  <td class="text-center"><button class="btn btn-danger btn-flat delete-news" v-bind:value="td.id"><i class="fa fa-times"></i></button></td>
+                  <td class="text-center"><button class="btn btn-warning  btn-flat update-video" v-bind:value="td.id"><i class="fa fa-pencil"></i></button></td>
+                  <td class="text-center"><button class="btn btn-danger btn-flat delete-video" v-bind:value="td.id"><i class="fa fa-times"></i></button></td>
                 </tr>
                </tbody>
               </table>
@@ -60,7 +60,7 @@
     </section>
     <!-- /.content -->
   </div>
-    <div class="modal modal-danger fade" id="modal-delete-news">
+    <div class="modal modal-danger fade" id="modal-delete-video">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -69,7 +69,7 @@
                 <h4 class="modal-title">Excluir Notícia</h4>
               </div>
               <div class="modal-body">
-                <p>Excluir a notícia <strong><span id="news-id"></span></span></strong>?</p>
+                <p>Excluir o video <strong><span id="video-id"></span></span></strong>?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
@@ -93,7 +93,7 @@
                 <h4 class="modal-title">Successo</h4>
               </div>
               <div class="modal-body">
-                <p>Notícia excluida com sucesso!</p>
+                <p>Video excluido com sucesso!</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
@@ -104,7 +104,7 @@
           <!-- /.modal-dialog -->
         </div>
 
-    <div class="modal modal-warning fade" id="modal-update-news">
+    <div class="modal modal-warning fade" id="modal-update-video">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -112,17 +112,17 @@
                   <span aria-hidden="true">&times;</span></button>
 
 
-                <h4 class="modal-title">Editar Notícia</h4>
+                <h4 class="modal-title">Editar Video</h4>
               </div>
               <div class="update-body">
-                  <form role="form" method="post" id="update-news-form" enctype="multipart/form-data">
+                  <form role="form" method="post" id="update-video-form" enctype="multipart/form-data">
 
                 <!-- text input -->
 
                 <div class="form-group">
                   <label>Título: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Título" data-pattern-error="No mínimo 3 caracteres e inicio com letra maiscula" >
-                  <p class="help-block with-errors">Inserir título da notícia</p>
+                  <p class="help-block with-errors">Inserir título do video</p>
 
                   <input type="hidden" name="idinput" id="idinput">
 
@@ -141,7 +141,7 @@
                  
                 </div>
               
-                 <p class="help-block with-errors">Inserir data da notícia</p>
+                 <p class="help-block with-errors">Inserir data do video</p>
               </div>
 
 
@@ -151,7 +151,7 @@
                    
                      <textarea  name="article" id="editor1" placeholder="Insira um artigo"
                           ></textarea>
-                      <p class="help-block with-errors">Inserir artigo da notícia</p>
+                      <p class="help-block with-errors">Inserir artigo do video</p>
                 </div>
              
               

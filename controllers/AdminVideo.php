@@ -108,7 +108,7 @@ class AdminVideo extends Admin
 						die;
 					} 
 				}*/
-				if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, $id))){
+				if($this->model->update(new VideoPageAbstract($index['title'], $index['article'],  $index['date_time'], null, null, $id))){
 					die;
 				} 
 
