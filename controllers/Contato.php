@@ -9,7 +9,8 @@ class Contato extends Controller
 
 	public function index()
 	{
-		$this->view->load('header');
+		$data['title'] = "Contato";
+ 		$this->view->load('header', $data);
 		$this->view->load('nav');
 		$this->view->load('contato');
 		$this->view->load('footer');

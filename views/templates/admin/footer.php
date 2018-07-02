@@ -107,6 +107,41 @@ var news = new Vue({
       
   }); 
 
+var message = new Vue({
+      el: '#message',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getMessage: function() {
+            axios.get('/PopCulture/app/AdminMessage/get').then(response => {
+              this.results = response.data
+            }).then(()=>{
+              $('#message-table').DataTable({
+                 "paging": true,
+                  "ordering": false,
+                  "info": true,
+                  "autoWidth": false
+              }); 
+              deleteMessage();
+              replyMessage();
+              viewMessage();
+            })
+          },
+          getMessageTableNone: function(){
+             axios.get('/PopCulture/app/AdminMessage/get').then(response => {
+              this.results = response.data
+            })
+          }
+        },
+        mounted() {
+          this.getMessage();
+        },
+      
+  }); 
+
  var videopage = new Vue({
       el: '#videopage',
           data: {
@@ -256,6 +291,26 @@ var videos = new Vue({
       });
     }
 
+
+    function deleteMessage(){
+      $('.delete-message').click(function() {
+          var id = $(this).val();
+          $('#modal-delete-message').modal('show');
+          $('#message-id').html(id);
+          $('#delete').click(function() {
+            $.ajax({
+                url:'/PopCulture/app/AdminMessage/delete/'+id,
+                success: function(){
+                    $('#modal-delete-message').modal('hide');
+                    $('#success-delete').modal('show');
+                    message.getMessageTableNone();
+                    //loadResources();
+                }
+            });
+        });
+      });
+    }
+
     function deleteVideo(){
       $('.delete-video').click(function() {
           var id = $(this).val();
@@ -324,6 +379,23 @@ var videos = new Vue({
                     });
                 
             }
+        });
+     
+      
+      
+      });
+    }
+
+    function replyMessage(){
+      $('.reply-message').click(function() {
+        var id = $(this).attr('value');
+        $('.form-group').removeClass('has-success');
+        $('#modal-reply-message').modal('show');
+        $('#idperson').val(id);
+        $('#save').click(function(){
+                      //saveUpdateNews();
+            $('#reply-message-form').submit();
+                     
         });
      
       
@@ -424,6 +496,35 @@ var videos = new Vue({
       
       });
     }
+
+    function viewMessage(){
+      $('.view-message').click(function() {
+        var id = $(this).attr('value');
+        $('#view-message').modal('show');
+        var results = [];
+        $.ajax({
+            type: 'GET',
+            url: '/PopCulture/app/AdminMessage/get/'+id,
+            dataType: 'json',
+            success: function(response){
+                  results = response;
+                  console.log(results);
+                  console.log(results.message);
+
+                  $('#email').html(results.email);
+                  $('#name_ms').html(results.name_ms);
+                  $('#message-received').html(results.message);
+                 
+                  console.log($('#message'));
+                
+            }
+        });
+     
+      
+      
+      });
+    }
+
 
     function loadResources() {
         setTimeout(function(){ 
@@ -753,6 +854,57 @@ $.validator.setDefaults({
 
                
    
+            }
+           });
+            return false;
+          }
+      });
+
+    $('#reply-message-form').validate({
+        ignore: [],
+        rules:{
+            message: {
+                required:  function(textarea) {
+                  CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+                  var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+                  return editorcontent.length === 0;
+                },
+                minlength: 10
+            }
+        },
+        message: {
+          title: {
+            required: "Você não inseriu uma mensagem",
+            minlength: "No mínimo 3 caracteres"
+          }
+        },
+        submitHandler: function() {
+          var data = new FormData($('#reply-message-form')[0]);
+          var id = $('#idperson').val();
+          $('#resp').show();
+          $('#resp').html("<img width='80' class='col-lg-offset-5' src='http://profanderson.blog.etecarmine.com.br/wp-content/uploads/2017/10/loading-gif-transparent-10.gif'><br><br>");
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/AdminMessage/replyMessage/'+id,
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                
+                console.log(response);
+                /*$('#resp').css({
+                  display: 'block'
+                });
+               */
+               // $('#modal-reply-message').modal('hide');
+                $('#reply-message-form').trigger('reset');
+                message.getMessageTableNone();
+                //$('#save').addClass('pull-left');
+                //$('html, body').animate({scrollTop:0}, 'fast');
+                $('#resp').html(response);
+               
+                CKupdate();
             }
            });
             return false;

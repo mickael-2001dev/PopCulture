@@ -36,35 +36,40 @@
                         </span>
                     </a>
             </div>
-            <div class="col-lg-12 text-center message-section">
+            <div class="col-lg-12 mx-auto text-center message-section">
               <p class="contact-p">Enviar Mensagem:</p>
-              <form>
-                <div class="form-group row justify-content-center">
-                    <div class="col-4">
-                      <input class="form-control input-custom" type="text" name="nome" id="nome" placeholder="Nome">
+               <div id="resp" style="display: none">
+                    
+                </div>
+                <br>
+              <form method="post" id="message-form">
+                <div class="form-group">
+                    <div class="col-8 mx-auto">
+                      <input class="form-control input-custom" type="text" name="name_ms" id="nome" placeholder="Nome">
                     </div>
                 </div>
-                <div class="form-group row justify-content-center">
-                    <div class="col-4">
+                <div class="form-group">
+                    <div class="col-8 mx-auto">
                       <input class="form-control input-custom" type="email" name="email" id="email" placeholder="Email">
                     </div>
                 </div> 
-                <div class="form-group row justify-content-center">
+                <div class="form-group">
                       <label id="msg">
                           Mensagem: 
                       </label>
                 </div>
-                <div class="form-group row justify-content-center">
+                <div class="form-group">
                 
-                    <div class="col-4">
-                      <textarea rows="6" cols="4" class="form-control input-custom">
+                    <div class="col-8 mx-auto">
+                      <textarea name="message" rows="6" cols="4" class="form-control input-custom">
                         
                       </textarea>
                     </div>
                 </div>
-                <div class="form-group row justify-content-center">
-                  <input type="submit" class="btn btn-primary btn-block btn-xl rounded-pill mt-5 col-lg-5" value="Enviar">
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary btn-block btn-xl rounded-pill mt-5 col-lg-8 mx-auto" value="Enviar">
                 </div>
+               
               </form>
             </div>
 

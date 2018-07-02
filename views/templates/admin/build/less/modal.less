@@ -78,3 +78,15 @@
     border-color: darken(@red, 10%);
   }
 }
+
+.modal-purple {
+  .modal-body {
+    &:extend(.bg-purple);
+  }
+  .modal-header,
+  .modal-footer {
+    &:extend(.bg-purple-active);
+    border-color: darken(@purple, 10%);
+  }
+}
+

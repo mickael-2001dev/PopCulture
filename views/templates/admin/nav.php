@@ -64,7 +64,7 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="<?php echo $this->base_url ?>adminmessage">
             <i class="fa fa-envelope"></i> <span>Mensagens</span>
           </a>
         </li>

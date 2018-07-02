@@ -111,25 +111,6 @@ class Admin extends Controller
         header('location:' . $this->config->base_url . 'Admin');
     }  
 
-    protected function indexInput(array $indexForm)
-    {
-        $index = [];
-
-        foreach ($indexForm as $key => $value) {
-            
-            if($key == 'article'){
-                $index['article'] = filter_input(INPUT_POST, 'article');
-            } else {
-                $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
-            }
-
-         
-
-        }
-
-        return $index;
-    }  
-
 
 	public function changePassword($id) 
     {
@@ -173,19 +154,6 @@ class Admin extends Controller
         } 
        	
 	}
-
-	
-    private function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
-    {
-     	var_dump($msg);
-        $mail = new Email($mail, $theme, $msg, null, $replyUser);
-        if($mail->send()) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
 	
     private function numbersGenerator($begin, $end) 
     {
@@ -208,14 +176,7 @@ class Admin extends Controller
         $_SESSION['soma'] = $numbers['soma'];
     }
     
-    protected function error(array $data){
-        $this->view->load('error', $data);
-    } 
-
-    protected function success(array $data){
-        $this->view->load('success', $data);
-    }
-
+  
     protected function saveImagem($image)
     {
         $types = ['image/jpeg', 'image/png', 'image/gif'];
@@ -236,6 +197,15 @@ class Admin extends Controller
         } 
 
     }
+
+    protected function error(array $data){
+        $this->view->load('error', $data);
+    } 
+
+    protected function success(array $data){
+        $this->view->load('success', $data);
+    }
+
 }
 
 

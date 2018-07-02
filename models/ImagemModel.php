@@ -11,7 +11,7 @@ class ImagemModel extends Model
 	public function select()
 	{
 		$imagem = [];
-		parent::getAll('imagem');
+		$results = parent::getAll('imagem');
 
 		foreach ($results as $row) {
 			$imagem[] = new ImagemAbstract

@@ -4985,3 +4985,7 @@ table.text-center th {
   position: relative;
   padding: 15px;
 }
+.modal-purple.modal-header,
+  .modal-footer{
+  background: #605ca8!important; 
+}

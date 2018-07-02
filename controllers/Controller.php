@@ -70,6 +70,40 @@ class Controller
 
         header('Location: http://localhost/PopCulture/app/'.$location);
     } 
+
+    protected function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
+    {
+        
+        //var_dump($msg);
+        $mail = new Email($mail, $theme, $msg, null, $replyUser);
+        if($mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    protected function indexInput(array $indexForm)
+    {
+        $index = [];
+
+        foreach ($indexForm as $key => $value) {
+            
+            if($key == 'article'){
+                $index['article'] = filter_input(INPUT_POST, 'article');
+            } else {
+                $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+            }
+
+         
+
+        }
+
+        return $index;
+    }  
+
+
 }
 
 

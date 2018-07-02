@@ -68,7 +68,7 @@ class ForgetPassword extends Controller
 		return $randomPass;
 	}
 
-	private function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
+	/*private function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
     {
      	//var_dump($msg);
         $mail = new Email($mail, $theme, $msg, null, $replyUser);
@@ -78,6 +78,6 @@ class ForgetPassword extends Controller
             return false;
         }
 
-    }
+    }*/
 
 }
