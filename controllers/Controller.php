@@ -90,7 +90,7 @@ class Controller
 
         foreach ($indexForm as $key => $value) {
             
-            if($key == 'article'){
+            if($key === 'article'){
                 $index['article'] = filter_input(INPUT_POST, 'article');
             } else {
                 $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);

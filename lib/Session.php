@@ -35,6 +35,18 @@ class Session
         return (isset($_SESSION['user'])) ? true : false;
     }
 
+    static public  function createSessionByArray($array)
+    {
+        foreach ($array as $key => $value) {
+            $_SESSION[$key] = $value;
+        }
+    }
+
+    static public function  getSession($session)
+    {
+        return $_SESSION[$session];
+    }
+
     public function destroySession() 
     {
         session_destroy();

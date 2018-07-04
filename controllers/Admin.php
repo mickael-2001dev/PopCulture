@@ -42,8 +42,8 @@ class Admin extends Controller
             $indexes = $this->indexInput($_POST);
 
             if($indexes['user'] && $indexes['pass'] && $indexes['soma'])  {
-
-            	if($indexes['soma'] != $_SESSION['soma']){
+              
+            	if($indexes['soma'] != Session::getSession('soma')){
                     $data['msg'] = "Captcha Incorreto! Tente novamente!";
                     $numbers = $this->numbersGenerator(1,20);
                     $this->createSessionSoma($numbers);
@@ -171,9 +171,7 @@ class Admin extends Controller
     }
 
     private function createSessionSoma($numbers) {
-        $_SESSION['num1'] = $numbers['num1'];
-        $_SESSION['num2'] = $numbers['num2'];
-        $_SESSION['soma'] = $numbers['soma'];
+        Session::createSessionByArray($numbers);
     }
     
   
