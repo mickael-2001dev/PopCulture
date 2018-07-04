@@ -12,8 +12,8 @@ class Message extends Controller
 	public function sendMessage()
 	{
 
-		if($_POST){
-			$index = $this->indexInput($_POST);
+		
+		$index = $this->indexInput($_POST);
 			
 			if($index['message'] && $index['email'] && $index['name_ms']) {
 				if($this->model->insert(new MessageAbstract($index['message'], $index['email'], $index['name_ms'])) && $this->sendMail($index['email'], "Obrigado por enviar a mensagem! Se possível responderemos!", null, "PopCulture Brasil")) {
@@ -26,7 +26,7 @@ class Message extends Controller
 					$this->view->load('error', $data);
 				}
 			}
-		}
+		
 	}
 
 

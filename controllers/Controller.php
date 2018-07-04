@@ -84,20 +84,30 @@ class Controller
 
     }
 
-    protected function indexInput(array $indexForm)
+    protected function indexInput(array $indexForm, $excep = null)
     {
         $index = [];
 
-        foreach ($indexForm as $key => $value) {
-            
-            if($key === 'article'){
-                $index['article'] = filter_input(INPUT_POST, 'article');
-            } else {
-                $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+        if(!$indexForm) {
+            die;
+        }   
+
+        if($excep) {
+            foreach ($indexForm as $key => $value) {
+                
+                if($key !== $excep){
+                    $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING); 
+                } 
+
+                $index[$excep] = filter_input(INPUT_POST, $excep);
             }
 
-         
+            return $index;
+            die;
+        }
 
+        foreach ($indexForm as $key => $value) {
+             $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
         }
 
         return $index;

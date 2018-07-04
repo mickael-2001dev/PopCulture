@@ -53,7 +53,7 @@ class AdminNews extends Admin
 	public function save()
 	{
 		if($_POST) {
-			$index = $this->indexInput($_POST);
+			$index = $this->indexInput($_POST, 'article');
 
 			if($index['title'] && $index['article'] && $index['date_time']) {
 
@@ -87,7 +87,7 @@ class AdminNews extends Admin
 	public function saveUpdate($id)
 	{	
 		if($_POST) {
-			$index = $this->indexInput($_POST);
+			$index = $this->indexInput($_POST, 'article');
 
 			if($index['title'] && $index['article'] && $index['date_time']) {
 

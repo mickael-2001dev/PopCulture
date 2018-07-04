@@ -54,7 +54,7 @@ class AdminVideo extends Admin
 	public function save()
 	{
 		if($_POST) {
-			$index = $this->indexInput($_POST);
+			$index = $this->indexInput($_POST, 'article');
 
 			if($index['title'] && $index['article'] && $index['date_time'] && $index['codevideo']) {
 
@@ -95,7 +95,7 @@ class AdminVideo extends Admin
 	public function saveUpdate($id)
 	{	
 		if($_POST) {
-			$index = $this->indexInput($_POST);
+			$index = $this->indexInput($_POST, 'article');
 
 			if($index['title'] && $index['article'] && $index['date_time']) {
 
