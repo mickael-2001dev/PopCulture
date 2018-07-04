@@ -89,12 +89,13 @@ class Controller
         $index = [];
 
         if(!$indexForm) {
+            return false;
             die;
         }   
 
         if($excep) {
             foreach ($indexForm as $key => $value) {
-                
+
                 if($key !== $excep){
                     $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING); 
                 } 

@@ -52,65 +52,70 @@ class AdminNews extends Admin
 
 	public function save()
 	{
-		if($_POST) {
+		
 			$index = $this->indexInput($_POST, 'article');
 
-			if($index['title'] && $index['article'] && $index['date_time']) {
+			if(!$index) {
+				$data['msg'] = "Nada foi enviado!";
+				$this->error($data);
+			}
 
-				$index['date_time'] = new DateTime($index['date_time']);
-				$index['date_time'] = $index['date_time']->format('y-m-d');
+			$this->verifyInputIndexes($index);
 
-				if($_FILES['image']) {
-					if(!$this->saveImagem($_FILES['image'])){
+			$index['date_time'] = new DateTime($index['date_time']);
+			$index['date_time'] = $index['date_time']->format('y-m-d');
+
+			if($_FILES['image']) {
+				if(!$this->saveImagem($_FILES['image'])){
 						/*$data['msg'] = $this->saveImagem($_FILES['image']);
 						/*var_dump($data['msg']);
 						$this->error($data);*/
-						die;
-					} 
-				}
+					die;
+				} 
+			}
 
-				if($this->model->insert(new NewsAbstract($index['title'], $index['article'],  $index['date_time'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest())){
+			if($this->model->insert(new NewsAbstract($index['title'], $index['article'],  $index['date_time'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest())){
 
-					$data['msg']="Adicionada com sucesso!";
-					$this->success($data);
-				} else {
-					$data['msg']="Tem parada errada ai mermão!";
-					$this->error($data);
-				}
+				$data['msg']="Adicionada com sucesso!";
+				$this->success($data);
 			} else {
-				$data['msg']="Informe todos os campo!";
+				$data['msg']="Tem parada errada ai mermão!";
 				$this->error($data);
 			}
-		}
+
+		
 	}
 
 	public function saveUpdate($id)
 	{	
-		if($_POST) {
+		
 			$index = $this->indexInput($_POST, 'article');
 
-			if($index['title'] && $index['article'] && $index['date_time']) {
+			if(!$index) {
+				$data['msg'] = "Nada foi enviado!";
+				$this->error($data);
+			}
 
-				$index['date_time'] = new DateTime($index['date_time']);
-				$index['date_time'] = $index['date_time']->format('y-m-d');
-				var_dump($index);
+			$this->verifyInputIndexes($index);
+			
+
+			$index['date_time'] = new DateTime($index['date_time']);
+			$index['date_time'] = $index['date_time']->format('y-m-d');
+			//var_dump($index);
 
 				/*if($_FILES['image']) {
 					if(!$this->saveImagem($_FILES['image'])){
 						die;
 					} 
 				}*/
-				if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, $id))){
-					die;
-				} 
+			if($this->model->update(new NewsAbstract($index['title'], $index['article'],  $index['date_time'], null, $id))){
+				die;
+			} 
 
 
 		
-			} else {
-				$data['msg']="Informe todos os campo!";
-				$this->error($data);
-			}
-		}
+			
+		
 	}
 
 	

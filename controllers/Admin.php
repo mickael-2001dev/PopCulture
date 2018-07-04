@@ -204,6 +204,26 @@ class Admin extends Controller
         $this->view->load('success', $data);
     }
 
+    protected function verifyInputIndexes($indexes) 
+    {
+        $fieldIsOk = true;
+
+        foreach ($indexes as $key => $value) {
+            if($value === "") {
+                $fieldIsOk = false;
+            }
+        }
+
+        if(!$fieldIsOk) {
+            $data['msg'] = "Campos Vazios!";
+            $this->error($data);
+            return false;
+            die;
+        }
+
+        return true;
+    }
+
 }
 
 

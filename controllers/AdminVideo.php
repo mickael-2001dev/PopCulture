@@ -53,72 +53,75 @@ class AdminVideo extends Admin
 
 	public function save()
 	{
-		if($_POST) {
+		
 			$index = $this->indexInput($_POST, 'article');
 
-			if($index['title'] && $index['article'] && $index['date_time'] && $index['codevideo']) {
-
-				$index['date_time'] = new DateTime($index['date_time']);
-				$index['date_time'] = $index['date_time']->format('y-m-d');
-
-				if($_FILES['image']) {
-					if(!$this->saveImagem($_FILES['image'])){
-						/*$data['msg'] = $this->saveImagem($_FILES['image']);
-						/*var_dump($data['msg']);*/
-						$data['msg'] = "Não foi possível salvar a imagem!";
-						$this->error($data);
-						die;
-					} 
-				}
-
-				if(!$this->video->insert($index['codevideo'])){
-					$data['msg'] = "Não foi possível salvar o video!";
-					$this->error($data);
-					die;
-				}
-
-				if($this->model->insert(new VideoPageAbstract($index['title'], $index['article'],  $index['date_time'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest()) && $this->model->insertVideo($this->video->selectLatest(), $this->model->selectLatest())){
-
-					$data['msg']="Adicionada com sucesso!";
-					$this->success($data);
-				} else {
-					$data['msg']="Tem parada errada ai mermão!";
-					$this->error($data);
-				}
-			} else {
-				$data['msg']="Informe todos os campo!";
+			if(!$index) {
+				$data['msg'] = "Nada foi enviado!";
 				$this->error($data);
 			}
-		}
+
+			$this->verifyInputIndexes($index);
+
+			$index['date_time'] = new DateTime($index['date_time']);
+			$index['date_time'] = $index['date_time']->format('y-m-d');
+
+			if($_FILES['image']) {
+				if(!$this->saveImagem($_FILES['image'])){
+						/*$data['msg'] = $this->saveImagem($_FILES['image']);
+						/*var_dump($data['msg']);*/
+					$data['msg'] = "Não foi possível salvar a imagem!";
+					$this->error($data);
+					die;
+				} 
+			}
+
+			if(!$this->video->insert($index['codevideo'])){
+				$data['msg'] = "Não foi possível salvar o video!";
+				$this->error($data);
+				die;
+			}
+
+			if($this->model->insert(new VideoPageAbstract($index['title'], $index['article'],  $index['date_time'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest()) && $this->model->insertVideo($this->video->selectLatest(), $this->model->selectLatest())){
+
+				$data['msg']="Adicionada com sucesso!";
+				$this->success($data);
+			} else {
+				$data['msg']="Tem parada errada ai mermão!";
+				$this->error($data);
+			}
+		
 	}
 
 	public function saveUpdate($id)
 	{	
-		if($_POST) {
-			$index = $this->indexInput($_POST, 'article');
+	
+		$index = $this->indexInput($_POST, 'article');
 
-			if($index['title'] && $index['article'] && $index['date_time']) {
+		if(!$index) {
+			$data['msg'] = "Nada foi enviado!";
+			$this->error($data);
+		}
 
-				$index['date_time'] = new DateTime($index['date_time']);
-				$index['date_time'] = $index['date_time']->format('y-m-d');
-				var_dump($index);
+		$this->verifyInputIndexes($index);
+		
+
+		$index['date_time'] = new DateTime($index['date_time']);
+		$index['date_time'] = $index['date_time']->format('y-m-d');
+		var_dump($index);
 
 				/*if($_FILES['image']) {
 					if(!$this->saveImagem($_FILES['image'])){
 						die;
 					} 
 				}*/
-				if($this->model->update(new VideoPageAbstract($index['title'], $index['article'],  $index['date_time'], null, null, $id))){
-					die;
-				} 
+		if($this->model->update(new VideoPageAbstract($index['title'], $index['article'],  $index['date_time'], null, null, $id))){
+			die;
+		}
 
 
 		
-			} else {
-				$data['msg']="Informe todos os campo!";
-				$this->error($data);
-			}
-		}
+		
 	}
 
 	
