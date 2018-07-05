@@ -42,11 +42,6 @@
               </div>
             </li>
           </ul>
-          <ul class="navbar-nav ml-auto navbar-right">
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $this->base_url ?>Admin">Login</a>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
