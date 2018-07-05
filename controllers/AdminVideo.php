@@ -54,13 +54,9 @@ class AdminVideo extends Admin
 	public function save()
 	{
 		
-			$index = $this->indexInput($_POST, 'article');
+			$index = Form::($_POST, 'article');
 
-			if(!$index) {
-				Message::error("Nada foi enviado!");
-			}
-
-			$this->verifyInputIndexes($index);
+			Form::verifyInputIndexes($index);
 
 			$index['date_time'] = new DateTime($index['date_time']);
 			$index['date_time'] = $index['date_time']->format('y-m-d');
@@ -91,14 +87,9 @@ class AdminVideo extends Admin
 	public function saveUpdate($id)
 	{	
 	
-		$index = $this->indexInput($_POST, 'article');
+		$index = Form::($_POST, 'article')
 
-		if(!$index) {
-			$data['msg'] = "Nada foi enviado!";
-			$this->error($data);
-		}
-
-		$this->verifyInputIndexes($index);
+		Form::verifyInputIndexes($index);
 		
 
 		$index['date_time'] = new DateTime($index['date_time']);

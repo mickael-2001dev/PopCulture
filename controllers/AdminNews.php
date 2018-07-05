@@ -53,13 +53,9 @@ class AdminNews extends Admin
 	public function save()
 	{
 		
-			$index = $this->indexInput($_POST, 'article');
+			$index = Form::indexInput($_POST, 'article');
 
-			if(!$index) {
-				Message::error("Nada foi enviado!");
-			}
-
-			$this->verifyInputIndexes($index);
+			Form::verifyInputIndexes($index);
 
 			$index['date_time'] = new DateTime($index['date_time']);
 			$index['date_time'] = $index['date_time']->format('y-m-d');
@@ -86,13 +82,9 @@ class AdminNews extends Admin
 	public function saveUpdate($id)
 	{	
 		
-			$index = $this->indexInput($_POST, 'article');
+			$index = Form::indexInput($_POST, 'article');
 
-			if(!$index) {
-				Message::error("Nada foi enviado!");
-			}
-
-			$this->verifyInputIndexes($index);
+			Form::verifyInputIndexes($index);
 			
 
 			$index['date_time'] = new DateTime($index['date_time']);

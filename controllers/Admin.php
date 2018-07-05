@@ -39,7 +39,7 @@ class Admin extends Controller
        
 
         if(filter_input(INPUT_POST,'login')) {
-            $indexes = $this->indexInput($_POST);
+            $indexes = Form::indexInput($_POST);
 
            
               
@@ -128,7 +128,7 @@ class Admin extends Controller
            
 
 
-            $indexes = $this->indexInput($_POST);
+            $indexes = Form::indexInput($_POST);
             if($indexes['new-pass'] == $indexes['repeat-pass']){
 
                 $validatePassUser = new User($user, $indexes['new-pass']);
@@ -202,7 +202,7 @@ class Admin extends Controller
         $this->view->load('success', $data);
     }*/
 
-    protected function verifyInputIndexes($indexes) 
+    /*protected function verifyInputIndexes($indexes) 
     {
         $fieldIsOk = true;
 
@@ -219,7 +219,7 @@ class Admin extends Controller
         }
 
         return true;
-    }
+    }*/
 
 }
 

@@ -21,12 +21,8 @@ class Contato extends Controller
 	{
 
 		
-		$index = $this->indexInput($_POST);
+		$index = Form::indexInput($_POST);
 
-		if(!$index) {
-			Message::error("Nada foi enviado!");
-		}
-			
 		
 		if($this->model->insert(new MessageAbstract($index['message'], $index['email'], $index['name_ms'])) && $this->sendMail($index['email'], "Obrigado por enviar a mensagem! Se possível responderemos!", null, "PopCulture Brasil")) {
 					
