@@ -41,7 +41,7 @@ class Admin extends Controller
         if(filter_input(INPUT_POST,'login')) {
             $indexes = $this->indexInput($_POST);
 
-            if($indexes['user'] && $indexes['pass'] && $indexes['soma'])  {
+           
               
             	if($indexes['soma'] != Session::getSession('soma')){
                     $data['msg'] = "Captcha Incorreto! Tente novamente!";
@@ -87,9 +87,7 @@ class Admin extends Controller
 
                
       
-            } else {
-                $data['msg'] = "Preencha todos os campos!";
-            }
+         
 
         } else {
             $numbers = $this->numbersGenerator(1,20);
@@ -196,13 +194,13 @@ class Admin extends Controller
 
     }
 
-    protected function error(array $data){
+    /*protected function error(array $data){
         $this->view->load('error', $data);
     } 
 
     protected function success(array $data){
         $this->view->load('success', $data);
-    }
+    }*/
 
     protected function verifyInputIndexes($indexes) 
     {
@@ -215,8 +213,7 @@ class Admin extends Controller
         }
 
         if(!$fieldIsOk) {
-            $data['msg'] = "Campos Vazios!";
-            $this->error($data);
+            Message::error("Campos Vazios!");
             return false;
             die;
         }

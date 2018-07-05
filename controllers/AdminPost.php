@@ -57,8 +57,7 @@ class AdminPost extends Admin
 			$index = $this->indexInput($_POST, 'article');
 
 			if(!$index) {
-				$data['msg'] = "Nada foi enviado!";
-				$this->error($data);
+				Message::error("Nada foi enviado!");
 			}
 
 			$this->verifyInputIndexes($index);
@@ -75,11 +74,9 @@ class AdminPost extends Admin
 
 			if($this->model->insert(new PostAbstract($index['title'], $index['article'],  $index['date_time'], $index['categoria'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest())){
 
-				$data['msg']="Adicionada com sucesso!";
-				$this->success($data);
+				Message::success("Adicionado com sucesso!");
 			} else {
-				$data['msg']="Tem parada errada ai mermão!";
-				$this->error($data);
+				Message::error("Tem parada errada ai mermão!");
 			}
 
 		
@@ -91,8 +88,7 @@ class AdminPost extends Admin
 		$index = $this->indexInput($_POST, 'article');
 
 		if(!$index) {
-			$data['msg'] = "Nada foi enviado!";
-			$this->error($data);
+			Message::error("Nada foi enviado!");
 		}
 
 		$this->verifyInputIndexes($index);	

@@ -56,8 +56,7 @@ class AdminNews extends Admin
 			$index = $this->indexInput($_POST, 'article');
 
 			if(!$index) {
-				$data['msg'] = "Nada foi enviado!";
-				$this->error($data);
+				Message::error("Nada foi enviado!");
 			}
 
 			$this->verifyInputIndexes($index);
@@ -69,18 +68,16 @@ class AdminNews extends Admin
 				if(!$this->saveImagem($_FILES['image'])){
 						/*$data['msg'] = $this->saveImagem($_FILES['image']);
 						/*var_dump($data['msg']);
-						$this->error($data);*/
+						Message::error($data);*/
 					die;
 				} 
 			}
 
 			if($this->model->insert(new NewsAbstract($index['title'], $index['article'],  $index['date_time'])) && $this->model->insertImagem($this->imagem->selectLatest(), $this->model->selectLatest())){
 
-				$data['msg']="Adicionada com sucesso!";
-				$this->success($data);
+				Message::success("Adicionada com sucesso!");
 			} else {
-				$data['msg']="Tem parada errada ai mermão!";
-				$this->error($data);
+				Message::error("Tem parada errada ai mermão!");
 			}
 
 		
@@ -92,8 +89,7 @@ class AdminNews extends Admin
 			$index = $this->indexInput($_POST, 'article');
 
 			if(!$index) {
-				$data['msg'] = "Nada foi enviado!";
-				$this->error($data);
+				Message::error("Nada foi enviado!");
 			}
 
 			$this->verifyInputIndexes($index);
