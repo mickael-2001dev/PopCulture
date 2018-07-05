@@ -87,7 +87,7 @@ var news = new Vue({
             }).then(()=>{
               $('#news-table').DataTable({
                  "paging": true,
-                  "ordering": false,
+                  "ordering": true,
                   "info": true,
                   "autoWidth": false
               }); 
@@ -121,7 +121,7 @@ var message = new Vue({
             }).then(()=>{
               $('#message-table').DataTable({
                  "paging": true,
-                  "ordering": false,
+                  "ordering": true,
                   "info": true,
                   "autoWidth": false
               }); 
@@ -156,7 +156,7 @@ var message = new Vue({
             }).then(()=>{
               $('#video-table').DataTable({
                 "paging": true,
-                            "ordering": false,
+                            "ordering": true,
                             "info": true,
                             "autoWidth": false
               });  
@@ -190,9 +190,9 @@ var post = new Vue({
             }).then(()=>{
               $('#post-table').DataTable({
                  "paging": true,
-                            "ordering": false,
-                            "info": true,
-                            "autoWidth": false
+                  "ordering": true,
+                  "info": true,
+                  "autoWidth": false
               });
               deletePost();
               updatePost();  

@@ -51,7 +51,7 @@
             $('#resp').html("<img width='80' src='http://profanderson.blog.etecarmine.com.br/wp-content/uploads/2017/10/loading-gif-transparent-10.gif'>");
             $.ajax({
                 type: 'POST',
-                url: '/PopCulture/app/Message/sendMessage',
+                url: '/PopCulture/app/Contato/sendMessage',
                 data: data,
                 processData: false,
                 contentType: false,

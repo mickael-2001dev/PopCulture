@@ -20,7 +20,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="news-table" class="table table-bordered table-striped">
+              <table id="news-table" class="table cell-border table-bordered table-striped">
                 <thead>
                 <tr>
                   <th class="text-center">ID</th>
