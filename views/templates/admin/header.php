@@ -47,7 +47,7 @@
 
   <header class="skin-purple main-header">
     <!-- Logo -->
-    <a href="<?php $this->base_url?>Home" class="logo">
+    <a href="<?php $this->base_url?>home" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><i class="fa fa-home"></i></span>
       <!-- logo for regular state and mobile devices -->
