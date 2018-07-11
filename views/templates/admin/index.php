@@ -19,14 +19,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>12</h3>
+              <h3><?php echo AdminMessage::getTotal(); ?></h3>
 
               <p>Mensagens</p>
             </div>
             <div class="icon">
               <i class="fa fa-comments"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo $this->base_url ?>adminmessage" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -34,7 +34,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>15</h3>
+              <h3><?php echo Data::getInsertedData(); ?></h3>
 
               <p>Inserções</p>
             </div>
@@ -49,7 +49,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>5</h3>
+              <h3><?php echo Data::getUpdatedData(); ?></h3>
 
               <p>Atualizações</p>
             </div>
@@ -64,7 +64,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>7</h3>
+              <h3><?php echo Data::getDeletedData(); ?></h3>
 
               <p>Exclusões</p>
             </div>
