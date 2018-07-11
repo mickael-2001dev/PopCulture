@@ -40,11 +40,13 @@ class Model {
     }
 
     protected function ExecuteQuery($sql, $parameters, $extra_param = null) {
+        
         $connection = null;
         try {
             $connection = new PDO($this->connectionString, $this->user, $this->password);
             $connection->beginTransaction();
             $preparedStatment = $connection->prepare($sql);
+
             if ($parameters != null && $extra_param != null) {
                 foreach ($parameters as $key => $value) {
                     $preparedStatment->bindValue($key, $value, $extra_param);

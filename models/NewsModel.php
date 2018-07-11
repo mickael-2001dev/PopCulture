@@ -51,6 +51,7 @@ class NewsModel extends Model implements InterfaceModel
 
 	}
 
+	
 	public function selectImagemNews($id)
 	{
 		//echo $id;
@@ -177,6 +178,33 @@ class NewsModel extends Model implements InterfaceModel
 		
 
 		return json_encode($results);
+	}
+
+	public static function getInserted()
+	{
+		$sql = "SELECT COUNT(id) FROM news WHERE deleted = 0";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public static function getDeleted()
+	{
+		$sql = "SELECT COUNT(id) FROM news WHERE deleted = 1";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public static function getUpdated()
+	{
+		$sql = "SELECT COUNT(id) FROM news WHERE dtupdate IS NOT NULL";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
 	}
 
 }

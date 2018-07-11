@@ -211,5 +211,32 @@ class VideoPageModel extends Model implements InterfaceModel
 		return json_encode($results);
 	}
 
+	public static function getInserted()
+	{
+		$sql = "SELECT COUNT(id) FROM videopage WHERE deleted = 0";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public static function getDeleted()
+	{
+		$sql = "SELECT COUNT(id) FROM videopage WHERE deleted = 1";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public static function getUpdated()
+	{
+		$sql = "SELECT COUNT(id) FROM videopage WHERE dtupdate IS NOT NULL";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
 }
 

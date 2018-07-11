@@ -81,6 +81,15 @@ class MessageModel extends Model
 		return json_encode($results);
 	}
 
+	public function getTotal()
+	{
+		$sql = "SELECT COUNT(id) FROM message WHERE deleted = 0";
+		$results = (int)$this->ExecuteQuery($sql, array(),PDO::PARAM_INT)[0]['COUNT(id)'];
+
+
+		return $results;
+	}
+
 	public function delete($id)
 	{
 		$return = false;

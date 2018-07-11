@@ -233,4 +233,31 @@
 		return json_encode($results);
 	}
 
+	public static function getInserted()
+	{
+		$sql = "SELECT COUNT(id) FROM post WHERE deleted = 0";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public static function getDeleted()
+	{
+		$sql = "SELECT COUNT(id) FROM post WHERE deleted = 1";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
+	public static function getUpdated()
+	{
+		$sql = "SELECT COUNT(id) FROM post WHERE dtupdate IS NOT NULL";
+		$result = (new self)->ExecuteSimpleQuery($sql);
+
+		return $result;
+
+	}
+
  }
