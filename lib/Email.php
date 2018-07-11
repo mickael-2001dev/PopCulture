@@ -122,7 +122,8 @@ class Email
             'userName' => $email
                 ])
         );
-		
+        
+		$mail->ClearReplyTos();
 		$mail->addReplyTo($this->replyUser, '');
 		
 //Set who the message is to be sent from

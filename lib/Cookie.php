@@ -43,7 +43,7 @@ class Cookie
             $login = filter_input(INPUT_COOKIE, 'username');
             if ($login) {
                 $user = json_decode($login);
-                if (is_a($user, 'Usuario')) {
+                if (is_a($user, 'user')) {
                     return $user;
                 }
                 else{
