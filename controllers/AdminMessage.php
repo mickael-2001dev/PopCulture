@@ -34,6 +34,12 @@ class AdminMessage extends Admin
 
 	}
 
+	public static function getTotal() 
+	{
+		// var_dump($this->model->getTotal());
+		return  (new self)->model->getTotal();
+	}
+
 	public function delete($id)
 	{
 		$this->model->delete($id);

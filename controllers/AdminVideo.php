@@ -54,7 +54,7 @@ class AdminVideo extends Admin
 	public function save()
 	{
 		
-			$index = Form::($_POST, 'article');
+			$index = Form::IndexInput($_POST, 'article');
 
 			Form::verifyInputIndexes($index);
 
@@ -87,14 +87,14 @@ class AdminVideo extends Admin
 	public function saveUpdate($id)
 	{	
 	
-		$index = Form::($_POST, 'article')
+		$index = Form::IndexInput($_POST, 'article');
 
 		Form::verifyInputIndexes($index);
 		
 
 		$index['date_time'] = new DateTime($index['date_time']);
 		$index['date_time'] = $index['date_time']->format('y-m-d');
-		var_dump($index);
+		//var_dump($index);
 
 				/*if($_FILES['image']) {
 					if(!$this->saveImagem($_FILES['image'])){
