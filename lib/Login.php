@@ -43,7 +43,7 @@ class Login
         $dateToday = new DateTime();
         $interval = $dateToday->diff($dateUpdate);
 
-        var_dump($interval);
+        //var_dump($interval);
 
         if($interval->days >= 60) {
             $return = true;
