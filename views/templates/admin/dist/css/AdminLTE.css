@@ -2260,10 +2260,22 @@ a:focus {
   background-color: #dd4b39;
   border-color: #d73925;
 }
+
 .btn-danger:hover,
 .btn-danger:active,
 .btn-danger.hover {
   background-color: #d73925;
+}
+.btn-custom {
+  color: #fff!important;
+  background-color: #e67e22;
+  border-color: #e67e22;
+}
+btn-custom:hover,
+.btn-custom:active,
+.btn-custom.hover {
+  color: #fff!important;
+  background-color: #e67e22;
 }
 .btn-warning {
   background-color: #f39c12;

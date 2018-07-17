@@ -554,7 +554,7 @@ var videos = new Vue({
   }
 $.validator.setDefaults({
     errorElement: "span",
-    errorClass: "help-block",
+    errorClass: "help-block ",
     highlight: function (element, errorClass, validClass) {
         // Only validation controls
         if (!$(element).hasClass('novalidation')) {
