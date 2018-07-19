@@ -54,4 +54,17 @@ class Form
         return true;
     }
 
+    public static function tempPasswordGenerator($size) 
+    {
+        $randomPass = "";
+
+        $strings = 'ABCDEFGHIJKLMNOPQRSTUVXWYZabcdefghijklmnopqrstuvxwyz123456789!@#$%*-';
+
+        for ($i = 0; $i < $size ; $i++) { 
+            $randomPass.= $strings[rand(0, strlen($strings) - 1)];
+        }
+
+        return $randomPass;
+    }
+
 }

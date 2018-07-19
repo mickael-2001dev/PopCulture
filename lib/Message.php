@@ -23,5 +23,4 @@ class Message
 		(new self)->view->load('error', $data);
 	}
 
-
 }

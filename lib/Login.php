@@ -20,11 +20,8 @@ class Login
     public function verifyLogin($user) 
     {
         $this->user = $this->model->getUserByLogin($user->getUsername());
-        //$test = $this->user;
-        //var_dump($test);
-        if($this->user){
-            //echo $this->user->getPassword().'<br>';
-            //echo md5($user->getPassword());
+       
+        if($this->user){ 
             if ($this->user->getPassword() == md5($user->getPassword())) {
                 $this->logged = true;
             }
@@ -43,9 +40,8 @@ class Login
         $dateToday = new DateTime();
         $interval = $dateToday->diff($dateUpdate);
 
-        //var_dump($interval);
-
         if($interval->days >= 60) {
+            $this->requestChangePassword($this->user->getUsername(), $this->user->getId());
             $return = true;
         }
 
@@ -59,6 +55,7 @@ class Login
         $this->user = $this->model->getUserByLogin($username);
 
         if($this->user->getTempPassword() == $pass) {
+            $this->requestChangePassword($this->user->getUsername(), $this->user->getId());
             $return = true;
         }
 
@@ -75,16 +72,55 @@ class Login
     public function updateTempPassword($username, $email, $pass) 
     {
         $this->user = $this->model->getUserByEmailLogin($username, $email);
-        
+
         return $this->model->updateTempPassword($pass, $this->user->getId());
     }
 
-    /*public function showEmail($username)
+    public function verifyThePasswords($indexes) 
     {
-        $this->user =  $this->model->getUserByLogin($username);
 
-        return $this->user->getEmail();
-    }*/
+
+        if($this->verifyPassword($indexes['user'])) {
+                           
+            $this->user =  $this->model->getUserByLogin($indexes['user']);
+      
+            print $this->user->getId();
+            die;
+        }
+
+        if($this->verifyNewPassword($indexes['user'], $indexes['pass'])){
+
+            $this->user =  $this->model->getUserByLogin($indexes['user']);
+        
+            print $this->user->getId();
+            die;
+                                
+        }
+
+    }
+
+    private function requestChangePassword($username, $id) 
+    {
+         $changePassword = array(
+            'change' => true,
+            'username'=>$username,
+            'id' => $id
+        );
+            
+        Session::createSessionByArray($changePassword);
+
+    }
+
+    public function verifyUserHaveThisId($id, $username)
+    {
+        if(!$this->model->getUserByIdWithUsername($id, $username)){
+            Message::error('Usuário invalido!');
+            die;
+        }
+
+        return true;
+    }
+
 
     public function createSession() 
     {
