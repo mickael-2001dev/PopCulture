@@ -12,39 +12,37 @@ class ForgetPassword extends Controller
 
 	public function index() 
 	{
-		$data = null;
-        $work = false;
-
-        if(filter_input(INPUT_POST, 'forget')) {
-
-            $index = $this->indexInput($_POST);
-            $newPass = $this->passowordGenerator(8);
-
-            if(!$index['user'] || !$index['email']) {
-
-                $data['msg'] = "Campos vazios!";
-
-            } else {
-
-                if($this->login->updateTempPassword($index['user'], $index['email'], $newPass)) {
-                    $email = $index['email'];
-                    $msg = 'A sua senha é: '.$newPass;
-                    $this->sendMail($email, $msg);
-                    $this->location();
-                }
-                
-            }
-            //var_dump($index);
-            //var_dump($newPass);
-
-        } 
-
-        if(!$work) {
-            $this->view->load('forgot-password', $data); 
-        }
+	
+         $this->view->load('forgot-password'); 
+       
 	}
 
-	private function indexInput(array $indexForm)
+    public function sendMyTempPassword()
+    {
+        $httpResponse = false;
+
+        $index = Form::indexInput($_POST);
+        $newPass = Form::tempPasswordGenerator(8);
+
+        if($this->login->updateTempPassword($index['user'], $index['email'], $newPass)) {
+            $httpResponse = true;
+
+            $email = $index['email'];
+            $msg = 'A sua senha é: '.$newPass;
+            MailSender::sendMail($email, $msg);
+
+
+            print $httpResponse;
+            die;
+        }
+                
+        if(!$httpResponse) {
+            Message::error('Erro ao enviar senha temporária!');
+        }
+         
+    }
+
+	/*private function indexInput(array $indexForm)
     {
         $index = [];
 
@@ -55,18 +53,7 @@ class ForgetPassword extends Controller
         return $index;
     }  
 
-    private function passowordGenerator($size) 
-	{
-		$randomPass = "";
-
-		$strings = 'ABCDEFGHIJKLMNOPQRSTUVXWYZabcdefghijklmnopqrstuvxwyz123456789!@#$%*-';
-
-		for ($i = 0; $i < $size ; $i++) { 
-			$randomPass.= $strings[rand(0, strlen($strings) - 1)];
-		}
-
-		return $randomPass;
-	}
+   
 
 	/*private function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
     {

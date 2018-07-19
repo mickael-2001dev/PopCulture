@@ -71,48 +71,9 @@ class Controller
         header('Location: http://localhost/PopCulture/app/'.$location);
     } 
 
-    protected function sendMail($mail, $msg, $replyUser = null, $theme = "Nova Senha!") 
-    {
-        
-        //var_dump($msg);
-        $mail = new Email($mail, $theme, $msg, null, $replyUser);
-        if($mail->send()) {
-            return true;
-        } else {
-            return false;
-        }
+    
 
-    }
-
-    protected function indexInput(array $indexForm, $excep = null)
-    {
-        $index = [];
-
-        if(!$indexForm) {
-            return false;
-            die;
-        }   
-
-        if($excep) {
-            foreach ($indexForm as $key => $value) {
-
-                if($key !== $excep){
-                    $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING); 
-                } 
-
-                $index[$excep] = filter_input(INPUT_POST, $excep);
-            }
-
-            return $index;
-            die;
-        }
-
-        foreach ($indexForm as $key => $value) {
-             $index [$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
-        }
-
-        return $index;
-    }  
+   
 
 
 }

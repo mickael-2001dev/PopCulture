@@ -63,7 +63,7 @@ class AdminPost extends Admin
 			$index['date_time'] = $index['date_time']->format('y-m-d');
 
 			if($_FILES['image']) {
-				if(!$this->saveImagem($_FILES['image'])){
+				if(!$this->saveImagem($_FILES['image'], $this->imagem)){
 					die;
 				} 
 			}

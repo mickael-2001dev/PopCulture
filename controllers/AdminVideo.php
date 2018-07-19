@@ -62,10 +62,7 @@ class AdminVideo extends Admin
 			$index['date_time'] = $index['date_time']->format('y-m-d');
 
 			if($_FILES['image']) {
-				if(!$this->saveImagem($_FILES['image'])){
-						/*$data['msg'] = $this->saveImagem($_FILES['image']);
-						/*var_dump($data['msg']);*/
-					Message::error("Não foi possível salvar a imagem!");
+				if(!$this->saveImagem($_FILES['image'], $this->imagem)){
 					die;
 				} 
 			}
@@ -94,20 +91,12 @@ class AdminVideo extends Admin
 
 		$index['date_time'] = new DateTime($index['date_time']);
 		$index['date_time'] = $index['date_time']->format('y-m-d');
-		//var_dump($index);
+	
 
-				/*if($_FILES['image']) {
-					if(!$this->saveImagem($_FILES['image'])){
-						die;
-					} 
-				}*/
 		if($this->model->update(new VideoPageAbstract($index['title'], $index['article'],  $index['date_time'], null, null, $id))){
 			die;
 		}
-
-
-		
-		
+	
 	}
 
 	

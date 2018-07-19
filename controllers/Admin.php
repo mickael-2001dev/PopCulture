@@ -4,7 +4,7 @@ class Admin extends Controller
 
     protected $login;
     private $user;
-    private $imagem;
+    
 
     public function __construct() 
     {
@@ -12,15 +12,12 @@ class Admin extends Controller
         $this->view->setTemplate('admin');
         $this->login = new Login();
         $this->model = new UserModel();
-        $this->imagem = new ImagemModel();
   
 
         if(!$this->login->isLogged()) {
             $this->doLogin();
             die;
         }
-     
-   
 
     }
         
@@ -33,9 +30,7 @@ class Admin extends Controller
     } 
 
     public function login() {
-        $this->view->load('login2');
-
-      
+        $this->view->load('login2');  
     }
 
     public function doLogin()
@@ -45,32 +40,27 @@ class Admin extends Controller
         if($_POST) {
             $indexes = Form::indexInput($_POST);
 
-            $this->verifySessionCaptcha($indexes);
+            // $this->verifySessionCaptcha($indexes);
               
            
             if($this->login->verifyLogin(new User($indexes['user'], $indexes['pass']))) {
 
-                // if($indexes['continue']) {
-                    // $this->login->createCookies();
-                // }
+                if(array_key_exists('continue', $indexes)) {
+                    $this->login->createCookies();
+                }
 
                 $this->login->createSession();
+                $this->login->verifyThePasswords($indexes);
 
-                $this->verifyThePasswords($indexes);
+                print $this->login->isLogged();     
 
-                print $this->login->isLogged();        
             } else {
                 Message::error('Usuário ou senha incorretos!');
             }
 
         } else {
-            $numbers = $this->numbersGenerator(1, 20);
-            Session::createSessionByArray($numbers);
             $this->login();
         }
-
-       
-       
         
     }
 
@@ -80,8 +70,45 @@ class Admin extends Controller
         header('location:' . $this->config->base_url . 'home');
     }  
 
+    public function changePassword()
+    {
+        $this->view->load('update-password');
+    }
+
+    public function dochangePassword()
+    {
+        if(!Session::getSession('change')){
+            Message::error('Troca de senha não solicitada!');
+            die;
+        }
+
+        $indexes = Form::indexInput($_POST);
+
+        $id = Session::getSession('id');
+        $username = Session::getSession('username');
+
+        if($indexes['new-pass'] !== $indexes['repeat-pass']) {
+            Message::error('Senhas não conferem!');
+        }
+
+        $this->login->verifyUserHaveThisId($id, $username);
+
+        $user = new User($username, $indexes['new-pass']);
+
+        if(!$user->validatePassword()) {
+            Message::error('Senha precisa ter 4 letras e 4 números!');
+            die;
+        }
+
+        if(!$this->login->updatePassword($username, $indexes['new-pass'])){
+            Message::error('Não Possível mudar sua senha!');
+            die;
+        }
+
+        print true;
+    }
     
-    public function changePassword($id) 
+    /*public function changePassword($id) 
     {
     
         $data = null;  
@@ -148,33 +175,9 @@ class Admin extends Controller
             Message::error('Soma incorreta, calcule novamente');
             die;      
         }
-    }
+    }*/
 
-    private function verifyThePasswords($indexes) 
-    {
-
-
-        if($this->login->verifyPassword($indexes['user'])) {
-                           
-            $user =  $this->model->getUserByLogin($indexes['user']);
-      
-            print $user->getId();
-            die;
-        }
-
-        if($this->login->verifyNewPassword($indexes['user'], $indexes['pass'])){
-
-            $user =  $this->model->getUserByLogin($indexes['user']);
-        
-            print $user->getId();
-            die;
-                                
-        }
-    }
-
-    
-  
-    protected function saveImagem($image)
+    protected function saveImagem($image, $model)
     {
         $types = ['image/jpeg', 'image/png', 'image/gif'];
 
@@ -183,12 +186,12 @@ class Admin extends Controller
 
         if($upload->saveImage() !== true) {
             $insert = false;
-            $data['msg'] = $upload->saveImage();
-            $this->error($data); 
+            $data = $upload->saveImage();
+            Message::error($data); 
         }
 
         if($insert) {
-            if($this->imagem->insert($upload->getName())){
+            if($model->insert($upload->getName())){
                 return true;
             }
         } 
