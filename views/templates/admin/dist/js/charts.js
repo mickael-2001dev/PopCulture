@@ -108,11 +108,11 @@ $(document).ready(function () {
     //-------------
     //- LINE CHART -
     //--------------
-    var lineChartCanvas          = $('#lineChart').get(0).getContext('2d')
-    var lineChart                = new Chart(lineChartCanvas)
-    var lineChartOptions         = areaChartOptions
-    lineChartOptions.datasetFill = false
-    lineChart.Line(areaChartData, lineChartOptions)
+    // var lineChartCanvas          = $('#lineChart').get(0).getContext('2d')
+    // var lineChart                = new Chart(lineChartCanvas)
+    // var lineChartOptions         = areaChartOptions
+    // lineChartOptions.datasetFill = false
+    // lineChart.Line(areaChartData, lineChartOptions)
 
      var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
     var barChart                         = new Chart(barChartCanvas)

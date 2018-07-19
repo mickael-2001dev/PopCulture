@@ -60,10 +60,8 @@
 <!-- AdminLTE App -->
 <!-- page script -->
 <script>
-
 window.onload = function(){
  
-
  $(document).ready(function() {
     function replaceAll(string, token, newtoken) {
       while (string.indexOf(token) != -1) {
@@ -71,8 +69,6 @@ window.onload = function(){
       }
       return string;
     }
-
-
 var news = new Vue({
       el: '#news',
           data: {
@@ -82,15 +78,21 @@ var news = new Vue({
         },
         methods: {
           getNews: function() {
+            $('table').hide();
+            $('.loading-img').show();
             axios.get('/PopCulture/app/AdminNews/get').then(response => {
               this.results = response.data
             }).then(()=>{
+              $('table'). $('table').show();
+              $('.loading-img').hide();show();
+              $('.loading-img').hide();
               $('#news-table').DataTable({
                  "paging": true,
                   "ordering": true,
                   "info": true,
                   "autoWidth": false
               }); 
+             
               deleteNews();
               updateNews(); 
             })
@@ -106,7 +108,6 @@ var news = new Vue({
         },
       
   }); 
-
 var message = new Vue({
       el: '#message',
           data: {
@@ -116,15 +117,20 @@ var message = new Vue({
         },
         methods: {
           getMessage: function() {
+            $('table').hide();
+            $('.loading-img').show();
             axios.get('/PopCulture/app/AdminMessage/get').then(response => {
               this.results = response.data
             }).then(()=>{
+                $('table').show();
+              $('.loading-img').hide();
               $('#message-table').DataTable({
                  "paging": true,
                   "ordering": true,
                   "info": true,
                   "autoWidth": false
               }); 
+             
               deleteMessage();
               replyMessage();
               viewMessage();
@@ -141,7 +147,6 @@ var message = new Vue({
         },
       
   }); 
-
  var videopage = new Vue({
       el: '#videopage',
           data: {
@@ -151,15 +156,20 @@ var message = new Vue({
         },
         methods: {
           getVideo: function() {
+            $('table').hide();
+            $('.loading-img').show();
             axios.get('/PopCulture/app/AdminVideo/get').then(response => {
               this.results = response.data
             }).then(()=>{
+              $('table').show();
+              $('.loading-img').hide();
               $('#video-table').DataTable({
                 "paging": true,
                             "ordering": true,
                             "info": true,
                             "autoWidth": false
               });  
+              
               deleteVideo();
               updateVideo(); 
             })
@@ -175,7 +185,6 @@ var message = new Vue({
           console.log(this.results);
         }
   }); 
-
 var post = new Vue({
       el: '#post',
           data: {
@@ -185,15 +194,21 @@ var post = new Vue({
         },
         methods: {
           getPost: function() {
+            $('table').hide();
+            $('.loading-img').show();
             axios.get('/PopCulture/app/AdminPost/get').then(response => {
-              this.results = response.data
+
+              this.results = response.data;
             }).then(()=>{
+              $('table').show();
+              $('.loading-img').hide();
               $('#post-table').DataTable({
                  "paging": true,
                   "ordering": true,
                   "info": true,
                   "autoWidth": false
               });
+             
               deletePost();
               updatePost();  
             })
@@ -208,7 +223,6 @@ var post = new Vue({
           this.getPost();
         },
   }); 
-
  var categoria = new Vue({
       el: '#categoria',
           data: {
@@ -227,8 +241,6 @@ var post = new Vue({
           this.getCategoria();
         }
   }); 
-
-
 var videos = new Vue({
       el: '#videos',
           data: {
@@ -247,17 +259,12 @@ var videos = new Vue({
           }
         }
    });
-
-
-
   $('#search').click(function(){
     var q = $('#query').val();
     $('#videos').show().fadeIn(400);
        
     videos.getVideos(q);//Enviando a keyword via requisição http com Vue
     console.log(videos.results);
-
-
   });
   
   /*Salvando o video selecionado*/
@@ -270,8 +277,6 @@ var videos = new Vue({
     }
       
     
-
-
     function deleteNews(){
       $('.delete-news').click(function() {
           var id = $(this).val();
@@ -290,8 +295,6 @@ var videos = new Vue({
         });
       });
     }
-
-
     function deleteMessage(){
       $('.delete-message').click(function() {
           var id = $(this).val();
@@ -310,7 +313,6 @@ var videos = new Vue({
         });
       });
     }
-
     function deleteVideo(){
       $('.delete-video').click(function() {
           var id = $(this).val();
@@ -329,7 +331,6 @@ var videos = new Vue({
         });
       });
     }
-
     function deletePost(){
       $('.delete-post').click(function() {
           var id = $(this).val();
@@ -348,7 +349,6 @@ var videos = new Vue({
         });
       });
     }
-
   function updateNews(){
       $('.update-news').click(function() {
         var id = $(this).attr('value');
@@ -385,7 +385,6 @@ var videos = new Vue({
       
       });
     }
-
     function replyMessage(){
       $('.reply-message').click(function() {
         var id = $(this).attr('value');
@@ -402,7 +401,6 @@ var videos = new Vue({
       
       });
     }
-
     function updateVideo(){
       $('.update-video').click(function() {
        
@@ -440,7 +438,6 @@ var videos = new Vue({
       
       });
     }
-
     function updatePost(){
       $('.update-post').click(function() {
         var id = $(this).attr('value');
@@ -469,9 +466,7 @@ var videos = new Vue({
                       if($('option').val() == results.categoria){
                         console.log('true');
                       }
-
                     }*/
-
                    $('option').each(function() {
                      var text = $(this).val();
                      console.log(text);
@@ -496,7 +491,6 @@ var videos = new Vue({
       
       });
     }
-
     function viewMessage(){
       $('.view-message').click(function() {
         var id = $(this).attr('value');
@@ -510,7 +504,6 @@ var videos = new Vue({
                   results = response;
                   console.log(results);
                   console.log(results.message);
-
                   $('#email').html(results.email);
                   $('#name_ms').html(results.name_ms);
                   $('#message-received').html(results.message);
@@ -524,8 +517,6 @@ var videos = new Vue({
       
       });
     }
-
-
     function loadResources() {
         setTimeout(function(){ 
               
@@ -554,7 +545,7 @@ var videos = new Vue({
   }
 $.validator.setDefaults({
     errorElement: "span",
-    errorClass: "help-block ",
+    errorClass: "help-block",
     highlight: function (element, errorClass, validClass) {
         // Only validation controls
         if (!$(element).hasClass('novalidation')) {
@@ -654,7 +645,6 @@ $.validator.setDefaults({
             return false;
           }
       });
-
     $('#add-post-form').validate({
         ignore: [],
         rules:{
@@ -725,8 +715,6 @@ $.validator.setDefaults({
             return false;
           }
       });
-
-
   $('#add-video-form').validate({
         ignore: [],
         rules:{
@@ -797,7 +785,6 @@ $.validator.setDefaults({
             return false;
           }
       });
-
     //function saveUpdateNews() {
     $('#update-news-form').validate({
         ignore: [],
@@ -851,7 +838,6 @@ $.validator.setDefaults({
                 news.getNewsTableNone();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
-
                
    
             }
@@ -859,7 +845,6 @@ $.validator.setDefaults({
             return false;
           }
       });
-
     $('#reply-message-form').validate({
         ignore: [],
         rules:{
@@ -910,7 +895,6 @@ $.validator.setDefaults({
             return false;
           }
       });
-
       $('#update-video-form').validate({
         ignore: [],
         rules:{
@@ -963,7 +947,6 @@ $.validator.setDefaults({
                 videopage.getVideoTableNone();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
-
                
    
             }
@@ -971,7 +954,6 @@ $.validator.setDefaults({
             return false;
           }
       });
-
        $('#update-post-form').validate({
         ignore: [],
         rules:{
@@ -1030,7 +1012,6 @@ $.validator.setDefaults({
                 post.getPostTableNone();
                 //$('#save').addClass('pull-left');
                 //$('html, body').animate({scrollTop:0}, 'fast');
-
                
    
             }
@@ -1044,20 +1025,3 @@ $.validator.setDefaults({
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -84,6 +84,7 @@
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-success">
             <div class="box-header with-border">
+              <i class="fa fa-life-bouy"></i>
               <h3 class="box-title">Registros</h3>
 
               <div class="box-tools pull-right">
@@ -110,14 +111,14 @@
           <!-- /.box -->
 
           <!-- quick email widget -->
-          <div class="box box-info">
+          <div class="box box-primary">
             <div class="box-header">
               <i class="fa fa-envelope"></i>
 
               <h3 class="box-title">Email Rapido</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                <button type="button" class="btn btn-primary btn-sm" data-widget="remove" data-toggle="tooltip"
                         title="Remove">
                   <i class="fa fa-times"></i></button>
               </div>
@@ -132,7 +133,7 @@
                   <input type="text" class="form-control" name="assunto" placeholder="Assunto: ">
                 </div>
                 <div>
-                  <textarea class="textarea" placeholder="Message"
+                  <textarea class="textarea" 
                             style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
               </form>
@@ -150,23 +151,7 @@
 
           <!-- Map box -->
          <!-- LINE CHART -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Acessos</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="lineChart" style="height:250px"></canvas>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
+          
 
           <!-- Calendar -->
           <div class="box box-solid bg-green-gradient">
@@ -199,16 +184,15 @@
               <!--The calendar -->
               <div id="calendar" style="width: 100%"></div>
             </div>
-          <!-- /.box -->
 
-        </section>
-        <!-- right col -->
-      </div>
-      <!-- /.row (main row) -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="box">
+
+          
+          <!-- /.box -->
+        </div>
+
+        <div class="box box-primary">
             <div class="box-header">
+              <i class="fa fa-newspaper-o"></i>
               <h3 class="box-title">Ultimas Notícias</h3>
             </div>
             <!-- /.box-header -->
@@ -218,7 +202,6 @@
                 <tr>
                   <th>ID</th>
                   <th>Titulo</th>
-                  <th>Artigo</th>
                   <th>Data</th>
   
                 </tr>
@@ -227,104 +210,46 @@
                   <tr>
                     <td>1</td>
                     <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
                     <td>19/02/2018</td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>Lorem Ipsum</td>
                     <td>Lorem Ipsum</td>
                     <td>19/02/2018</td>
                   </tr>
                   <tr>
                     <td>3</td>
                     <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
                     <td>19/02/2018</td>
                   </tr>
                   <tr>
                     <td>4</td>
-                    <td>Lorem Ipsum</td>
                     <td>Lorem Ipsum</td>
                     <td>19/02/2018</td>
                   </tr>
                   <tr>
                     <td>5</td>
                     <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
                     <td>19/02/2018</td>
                   </tr>
                   <tr>
                     <td>6</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum </td>
                     <td>19/02/2018</td>
                   </tr>
-                </tbody>
-                
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Ultimos Posts</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Titulo</th>
-                  <th>Artigo</th>
-                  <th>Categoria</th>
-                  <th>Data</th>
-  
-                </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Cinema</td>
+                   <tr>
+                    <td>7</td>
+                    <td>Lorem Ipsum </td>
                     <td>19/02/2018</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Games</td>
+                   <tr>
+                    <td>8</td>
+                    <td>Lorem Ipsum </td>
                     <td>19/02/2018</td>
                   </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td>TV</td>
-                    <td>19/02/2018</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Música</td>
-                    <td>19/02/2018</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td></td>
-                    <td>19/02/2018</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Quadrinhos</td>
+                   <tr>
+                    <td>9</td>
+                    <td>Lorem Ipsum </td>
                     <td>19/02/2018</td>
                   </tr>
                 </tbody>
@@ -335,8 +260,11 @@
           </div>
 
 
-
-        </div>
+        </section>
+        <!-- right col -->
+      </div>
+      <!-- /.row (main row) -->
+    
 
 
 

@@ -1,106 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Recuperar Conta</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<?php echo $this->asset?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo $this->asset?>bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<?php echo $this->asset?>bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo $this->asset?>dist/css/AdminLTE.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?php echo $this->asset?>plugins/iCheck/square/blue.css">
 
-  <head>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="<?php echo $this->base_url?>home"><b>Alterar minha Senha</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Coleque sua nova senha, no mínimo 8 caracteres entre 4 números e 4 letras.</p>
+    <div id="resp"></div>
+    <form method="post" id="update-pass-form">
 
-    <title>PopCulture Brasil</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo $this->asset ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    
-
-    <!-- Custom styles for this template -->
-    <link href="<?php echo $this->asset ?>css/one-page-wonder.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-
-  <section class="news custom-views">
-      <div class="container">
-        
-          
-            <div class="text-center message-section">
-              <p class="contact-p">Trocar Senha</p>
-              <form method="post">
-              <div class="form-group row justify-content-center">
-            
-            
-                  <input class="form-control col-4 input-custom" type="password" name="new-pass" placeholder="Nova Senha">
-               
-                
-               
-             
-              
-            </div>
-             <div class="form-group row justify-content-center">
-            
-              
-               
-                  <input class="form-control col-4 input-custom" type="password" name="repeat-pass" placeholder="Repetir Senha">
-               
-                
-               
-          
-              
-            </div>
-           
-
-
-                <div class="form-group row justify-content-center">
-                  <input type="submit" name="update" class="btn btn-primary btn-block btn-lg rounded-pill col-lg-4 d-block mx-auto" value="Trocar">
-                </div>
-                 <?php if($data['msg']): ?>
-                 <div class="form-group row justify-content-center">
-                
-                    <div class="alert alert-danger col-lg-5">
-                      <?php echo $data['msg']  ?>
-                    </div>
-                  
-                </div>
-                <?php endif; ?>
-              </form>
-            </div>
-            
-              
-           
-
-
+      <div class="form-group has-feedback">
+        <input type="password" name="new-pass" class="form-control" placeholder="Senha">
+        <span class="form-control-feedback">
+          <i class="fa fa-lock"></i>
+        </span>
+      </div>
+      <!--<div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email">
+        <span class="form-control-feedback">
+            <i class="fa fa-envelope"></i>
+        </span>
+      </div>-->
+      <div class="form-group has-feedback">
+        <input type="password" name="repeat-pass" class="form-control" placeholder="Repetir Senha">
+        <span class="form-control-feedback">
+            <i class="fa fa-lock"></i>
+        </span>
       </div>
 
+      
+    
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-lg-12">
+          <button type="submit" class="btn btn-custom btn-lg btn-block btn-flat">Alterar</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+
+    <!-- /.social-auth-links -->
+
    
-  </section>
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
-    <!-- Footer -->
+<!-- jQuery 3 -->
+<script src="<?php echo $this->asset?>bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo $this->asset?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="<?php echo $this->asset?>plugins/iCheck/icheck.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
+<script>
+ $(document).ready(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="<?php echo $this->asset ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo $this->asset ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-        $('.carousel').carousel();
-        $('div.bgParallax').each(function(){
-            var $obj = $(this);
-         
-            $(window).scroll(function() {
-                var yPos = -($(window).scrollTop() / $obj.data('speed')); 
-         
-                var bgpos = '50% '+ yPos + 'px';
-         
-                $obj.css('background-position', bgpos );
-         
-            }); 
-        });
+    $.validator.setDefaults({
+        errorElement: "span",
+        errorClass: "help-block",
+        highlight: function (element, errorClass, validClass) {
+            // Only validation controls
+            if (!$(element).hasClass('novalidation')) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+              
+            }
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            // Only validation controls
+            if (!$(element).hasClass('novalidation')) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+              
+            }
+        },
+        errorPlacement: function (error, element) {
+            $('p.help-block').hide();
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            }
+            else if (element.prop('type') === 'radio' && element.parent('.radio-inline').length) {
+                error.insertAfter(element.parent().parent());
+            }
+            else if (element.prop('type') === 'textarea') {
+                error.insertAfter('#cke_editor1');
+            }
+            else if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                error.appendTo(element.parent().parent());
+            }
+            else {
+                error.insertAfter(element);
+            }
+        }
+});
 
-    </script>
-  </body>
 
+
+
+
+    
+
+    $('#update-pass-form').validate({
+        ignore: [],
+        rules:{
+            "new-pass": {
+              required: true,
+            },
+            "repeat-pass": {
+              required: true
+            }
+           
+        },
+        messages: {
+           "new-pass": {
+              required: "Por Favor preencha a sua nova senha",
+            },
+            "repeat-pass": {
+              required: "Por Favor repita sua nova senha"
+            }            
+        },
+        submitHandler: function() {
+          var data = new FormData($('#update-pass-form')[0]);
+          $('#resp').show();
+          $('#resp').html("<img width='100' class='col-lg-offset-4' src='http://localhost/PopCulture/app/views/img/load.gif'><br><br><br>");
+          $.ajax({
+            type: 'POST',
+            url: '/PopCulture/app/Admin/doChangePassword',
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'html',
+            success: function(response) {
+                $('#resp').css({
+                  display: 'block'
+                });
+                console.log(response);
+                
+                if(response != true && isNaN(parseInt(response))) {
+                   $('#resp').html(response);
+                } else {
+                    window.location.href="http://localhost/PopCulture/app/admin/";
+                }
+   
+            }
+           });
+            return false;
+          }
+      });
+});
+</script>
+</body>
 </html>

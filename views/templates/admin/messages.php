@@ -51,6 +51,7 @@
                 </tr>
                </tbody>
               </table>
+              <img width="160" src="http://localhost/PopCulture/app/views/img/load.gif" class="col-lg-offset-5 loading-img" style="display: none;">
             </div>
             <!-- /.box-body -->
           </div>

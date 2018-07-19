@@ -4997,3 +4997,8 @@ table.text-center th {
   position: relative;
   padding: 15px;
 }
+.loading-image{
+  display:block;
+  margin: 0 auto;
+
+}

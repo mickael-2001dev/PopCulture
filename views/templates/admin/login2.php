@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -30,11 +30,11 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?php echo $this->base_url?>home"><b>PopCulture</b>Brasil</a>
+    <a href="<?php echo $this->base_url?>home"><b>PopCulture</b>Admin</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Login</p>
+    <p class="login-box-msg">Login - Painel de Controle</p>
     <div id="resp"></div>
     <form method="post" id="login-form">
 
@@ -57,10 +57,7 @@
         </span>
       </div>
 
-      <div class="form-group">
-        <input type="text" name="soma" class="form-control" placeholder="<?php echo $_SESSION['num1'].' + '.$_SESSION['num2'].' =  ' ?> ">
       
-      </div>
     
       <div class="row">
         <div class="col-lg-12">
@@ -74,7 +71,7 @@
             </div>
             <div class="col-xs-6">
               <div class="checkbox">
-                  <a href="#">Esqueci minha senha</a><br>
+                  <a href="<?php echo $this->base_url ?>forgetpassword">Esqueci minha senha</a><br>
               </div>
               
             </div>
@@ -106,7 +103,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
 <script>
-  $(function () {
+ $(document).ready(function () {
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
@@ -165,14 +162,15 @@
             pass: {
               required: true
             }
+           
         },
         messages: {
            user: {
-              required: "Usuário obrigatório",
+              required: "Por Favor preencha o nome de usuário",
             },
             pass: {
-             required: "Senha obrigatória",
-            }
+             required: "Por Favor preencha sua senha",
+            }            
         },
         submitHandler: function() {
           var data = new FormData($('#login-form')[0]);
@@ -193,8 +191,9 @@
                 if(response != true && isNaN(parseInt(response))) {
                    $('#resp').html(response);
                 }else if(!isNaN(parseInt(response)) && response > 1) {
-                   window.location.href="http://localhost/PopCulture/app/admin/changepassword/"+response;
+                   window.location.href="http://localhost/PopCulture/app/admin/changepassword/";
                 } else {
+                  $('html, body').html("<img width='500' class='col-lg-offset-4' src='http://localhost/PopCulture/app/views/img/load.gif'>");
                   window.location.reload();
                 }
                
@@ -205,7 +204,7 @@
             return false;
           }
       });
-  });
+});
 </script>
 </body>
 </html>
