@@ -70,7 +70,7 @@ window.onload = function(){
       return string;
     }
 var news = new Vue({
-      el: '#news',
+     el: '#news',
           data: {
           results: [
          
@@ -81,23 +81,22 @@ var news = new Vue({
             $('table').hide();
             $('.loading-img').show();
             axios.get('/PopCulture/app/AdminNews/get').then(response => {
-              this.results = response.data
+              this.results = response.data;
             }).then(()=>{
-              $('table'). $('table').show();
-              $('.loading-img').hide();show();
+              $('table').show();
               $('.loading-img').hide();
               $('#news-table').DataTable({
                  "paging": true,
                   "ordering": true,
                   "info": true,
                   "autoWidth": false
-              }); 
+              });
              
               deleteNews();
-              updateNews(); 
+              updateNews();  
             })
           },
-          getNewsTableNone: function(){
+          getNewsTableNone: function() {
              axios.get('/PopCulture/app/AdminNews/get').then(response => {
               this.results = response.data
             })
@@ -106,7 +105,6 @@ var news = new Vue({
         mounted() {
           this.getNews();
         },
-      
   }); 
 var message = new Vue({
       el: '#message',
@@ -197,7 +195,6 @@ var post = new Vue({
             $('table').hide();
             $('.loading-img').show();
             axios.get('/PopCulture/app/AdminPost/get').then(response => {
-
               this.results = response.data;
             }).then(()=>{
               $('table').show();
