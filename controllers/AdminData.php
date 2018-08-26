@@ -18,6 +18,17 @@ class AdminData extends Admin
 
 	}
 
+
+	public function updates()
+	{
+		$this->view->load('header');
+		$this->view->load('nav');
+		$this->view->load('updates');
+		$this->view->load('footer');
+
+
+	}
+
 	
 	
 

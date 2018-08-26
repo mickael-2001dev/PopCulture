@@ -43,6 +43,29 @@ class VideoPageModel extends Model implements InterfaceModel
 		return $videopage;
 	}
 
+
+	public function selectUpdated()
+	{
+		$sql = "SELECT * FROM videopage WHERE dtupdate IS NOT NULL";
+
+		$results = $this->ExecuteQuery($sql, array());
+
+		foreach ($results as $row) {
+
+			$videopage[] = new VideoPageAbstract(
+				$row['title'],
+				$row['article'],
+				$row['date_time'],
+				$this->selectImagemVideoPage($row['id']),
+				$row['id'],
+				0,
+				$row['dtupdate']
+			);
+		}
+
+		return $videopage;
+	} 
+
 	public function selectLatest()
 	{
 		$sql = "SELECT id FROM videopage ORDER BY id desc LIMIT 1";
@@ -188,6 +211,27 @@ class VideoPageModel extends Model implements InterfaceModel
 
 		for($i = 0; $i < count($results); $i++){
 			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
+		}
+
+		return json_encode($results);
+	}
+
+	public function getUpdatedJson() {
+		$results = [];
+
+		foreach ($this->selectUpdated() as $row) {
+			$results[] = [
+				'id'=>$row->getId(),
+				'title'=>$row->getTitle(),
+				'article'=>substr(filter_var($row->getArticle(), FILTER_SANITIZE_STRING), 0, 80)."...",
+				'date_time'=>date_create($row->getDateTime()),
+				'dtupdate'=>date_create($row->getDtupdate())
+			];
+		}
+
+		for($i = 0; $i < count($results); $i++){
+			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
+			$results[$i]['dtupdate'] = date_format($results[$i]['dtupdate'], 'd/m/y');
 		}
 
 		return json_encode($results);

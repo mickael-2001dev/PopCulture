@@ -237,7 +237,122 @@ var post = new Vue({
         mounted() {
           this.getCategoria();
         }
+  });
+
+var newsUpdated = new Vue({
+     el: '#news-updated',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getNews: function() {
+            $('table').hide();
+            $('.loading-img').show();
+            axios.get('/PopCulture/app/AdminNews/getUpdated').then(response => {
+              this.results = response.data;
+            }).then(()=>{
+              $('table').show();
+              $('.loading-img').hide();
+              $('#news-table-updated').DataTable({
+                 "paging": true,
+                  "ordering": true,
+                  "info": true,
+                  "autoWidth": false
+              });
+             
+              deleteNews();
+              updateNews();  
+            })
+          },
+          getNewsTableNone: function() {
+             axios.get('/PopCulture/app/AdminNews/get').then(response => {
+              this.results = response.data
+            })
+          }
+        },
+        mounted() {
+          this.getNews();
+        },
   }); 
+var videopageUpdated = new Vue({
+      el: '#videopage-updated',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getVideo: function() {
+            $('table').hide();
+            $('.loading-img').show();
+            axios.get('/PopCulture/app/AdminVideo/getUpdated').then(response => {
+              this.results = response.data
+            }).then(()=>{
+              $('table').show();
+              $('.loading-img').hide();
+              $('#video-table-updated').DataTable({
+                "paging": true,
+                            "ordering": true,
+                            "info": true,
+                            "autoWidth": false
+              });  
+              
+              deleteVideo();
+              updateVideo(); 
+            })
+          },
+          getVideoTableNone: function() {
+             axios.get('/PopCulture/app/AdminVideo/get').then(response => {
+              this.results = response.data
+            })
+          }
+        },
+        mounted() {
+          this.getVideo();
+          console.log(this.results);
+        }
+  }); 
+var postUpdated = new Vue({
+      el: '#post-updated',
+          data: {
+          results: [
+         
+          ],
+        },
+        methods: {
+          getPost: function() {
+            $('table').hide();
+            $('.loading-img').show();
+            axios.get('/PopCulture/app/AdminPost/getUpdated').then(response => {
+              this.results = response.data;
+            }).then(()=>{
+              $('table').show();
+              $('.loading-img').hide();
+              $('#post-table-updated').DataTable({
+                 "paging": true,
+                  "ordering": true,
+                  "info": true,
+                  "autoWidth": false
+              });
+             
+              deletePost();
+              updatePost();  
+            })
+          },
+          getPostTableNone: function() {
+             axios.get('/PopCulture/app/AdminPost/get').then(response => {
+              this.results = response.data
+            })
+          }
+        },
+        mounted() {
+          this.getPost();
+        },
+  }); 
+
+
 var videos = new Vue({
       el: '#videos',
           data: {

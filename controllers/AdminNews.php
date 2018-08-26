@@ -36,6 +36,15 @@ class AdminNews extends Admin
 
 	}
 
+	public function getUpdated()
+	{
+		$return = $this->model->getUpdatedJson();
+
+		print $return;
+
+
+	}
+
 	public function delete($id)
 	{
 		$this->model->delete($id);

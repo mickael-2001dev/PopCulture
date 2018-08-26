@@ -33,6 +33,13 @@ class AdminVideo extends Admin
 		}
 
 		print $return;
+	}
+
+	public function getUpdated()
+	{
+		$return = $this->model->getUpdatedJson();
+
+		print $return;
 
 
 	}

@@ -33,6 +33,13 @@ class AdminPost extends Admin
 
 	}
 
+	public function getUpdated()
+	{
+		$return = $this->model->getUpdatedJson();
+
+		print $return;
+	}
+
 	public function getSpecific($categoria)
 	{
 		print $this->model->getJsonByCategoria($categoria);
