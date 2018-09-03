@@ -41,7 +41,7 @@
             <div class="icon">
               <i class="fa fa-plus"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo $this->base_url ?>admindata/inserctions"" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -56,7 +56,7 @@
             <div class="icon">
               <i class="fa fa-edit"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo $this->base_url ?>admindata/updates"" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -71,7 +71,7 @@
             <div class="icon">
               <i class="fa fa-times-circle"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo $this->base_url ?>admindata/deletes"" class="small-box-footer">Ver Mais <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

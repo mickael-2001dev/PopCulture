@@ -45,9 +45,28 @@ class AdminNews extends Admin
 
 	}
 
+	public function getDeleted()
+	{
+		$return = $this->model->getDeletedJson();
+
+		print $return;
+
+
+	}
+
 	public function delete($id)
 	{
 		$this->model->delete($id);
+	}
+
+	public function deleteDefinitive($id)
+	{
+		$this->model->deleteDefinitive($id);
+	}
+
+	public function recovery($id)
+	{
+		$this->model->recovery($id);
 	}
 
 	public function add() 

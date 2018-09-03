@@ -44,6 +44,15 @@ class AdminVideo extends Admin
 
 	}
 
+	public function getDeleted()
+	{
+		$return = $this->model->getDeletedJson();
+
+		print $return;
+
+
+	}
+
 	public function delete($id)
 	{
 		$this->model->delete($id);

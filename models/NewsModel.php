@@ -64,6 +64,28 @@ class NewsModel extends Model implements InterfaceModel
 		return $news;
 	} 
 
+	public function selectDeleted()
+	{
+		$sql = "SELECT * FROM news WHERE deleted = 1";
+
+		$results = $this->ExecuteQuery($sql, array());
+
+		foreach ($results as $row) {
+
+			$news[] = new NewsAbstract(
+				$row['title'],
+				$row['article'],
+				$row['date_time'],
+				$this->selectImagemNews($row['id']),
+				$row['id'],
+				0,
+				$row['dtupdate']
+			);
+		}
+
+		return $news;
+	} 
+
 	public function selectLatest()
 	{
 		$sql = "SELECT id FROM news ORDER BY id desc LIMIT 1";
@@ -200,6 +222,25 @@ class NewsModel extends Model implements InterfaceModel
 		for($i = 0; $i < count($results); $i++){
 			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
 			$results[$i]['dtupdate'] = date_format($results[$i]['dtupdate'], 'd/m/y');
+		}
+
+		return json_encode($results);
+	}
+
+	public function getDeletedJson() {
+		$results = [];
+
+		foreach ($this->selectDeleted() as $row) {
+			$results[] = [
+				'id'=>$row->getId(),
+				'title'=>$row->getTitle(),
+				'article'=>substr(filter_var($row->getArticle(), FILTER_SANITIZE_STRING), 0, 80)."...",
+				'date_time'=>date_create($row->getDateTime())
+			];
+		}
+
+		for($i = 0; $i < count($results); $i++){
+			$results[$i]['date_time'] = date_format($results[$i]['date_time'], 'd/m/y');
 		}
 
 		return json_encode($results);

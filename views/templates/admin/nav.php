@@ -79,8 +79,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo $this->base_url ?>admindata/inserctions"><i class="fa fa-plus"></i>Inserções</a></li>
-            <li><a href="#"><i class="fa fa-pencil"></i> Atualizações</a></li>
-            <li><a href="#"><i class="fa fa-remove"></i> Exclusões</a></li>
+            <li><a href="<?php echo $this->base_url ?>admindata/updates""><i class="fa fa-pencil"></i> Atualizações</a></li>
+            <li><a href="<?php echo $this->base_url ?>admindata/deletes""><i class="fa fa-remove"></i> Exclusões</a></li>
           </ul>
         </li>
 

@@ -40,6 +40,13 @@ class AdminPost extends Admin
 		print $return;
 	}
 
+	public function getDeleted()
+	{
+		$return = $this->model->getDeletedJson();
+
+		print $return;
+	}
+
 	public function getSpecific($categoria)
 	{
 		print $this->model->getJsonByCategoria($categoria);
